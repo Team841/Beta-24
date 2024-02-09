@@ -9,4 +9,23 @@ public class ConstantsIO {
 
     public static final int SysIDCommandPort = 4; // for sysID
   }
+
+  public static final class CANID {
+
+    public static final int kIntakeOne = 2;
+
+    public static final class PWMPorts {
+      // LED BLINKIN
+      //public static final int kblinkin = 4;
+  
+      // Intake sensor
+      public static final int Intake_Index_Sensor = 0;
+  
+      // Arm sensor
+      //public static final int Arm_Index_Sensor = 1;
+  
+      // Kicker sensor
+      //public static final int Kicker_Index_Sensor = 5;
+      }
+  }
 }
