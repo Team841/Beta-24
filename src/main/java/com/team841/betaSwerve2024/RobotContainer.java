@@ -4,10 +4,12 @@ import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.SubsystemManifest;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.Intake;
+import com.team841.betaSwerve2024.Superstructure.Commands.IntakeOn;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -72,6 +74,7 @@ public class RobotContainer {
     }
   }
 
+  //xbox
   public void configureCoBindings() {
     cojoystick.leftBumper().onTrue(intake.toggleIn());
     cojoystick.b().onTrue(intake.toggleOut());
@@ -82,6 +85,10 @@ public class RobotContainer {
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
+
+    //Register Named Commands
+
+    NamedCommands.registerCommand("IntakeOn", new IntakeOn());
   }
 
   public Command getAutonomousCommand() {
