@@ -57,12 +57,7 @@ public class RobotContainer {
         ));
 
     joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
-    joystick
-        .circle()
-        .whileTrue(
-            drivetrain.applyRequest(
-                () -> point.withModuleDirection(
-                    new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+    joystick.circle().whileTrue(drivetrain.applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
     joystick.L1().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
@@ -74,7 +69,7 @@ public class RobotContainer {
     }
   }
 
-  //xbox
+  //xbox bindings
   public void configureCoBindings() {
     cojoystick.leftBumper().onTrue(intake.toggleIn());
     cojoystick.b().onTrue(intake.toggleOut());
@@ -92,6 +87,8 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
+    //auto chooser on shuffleboard
     return autoChooser.getSelected();
+
   }
 }
