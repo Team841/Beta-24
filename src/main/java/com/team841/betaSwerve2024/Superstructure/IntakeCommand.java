@@ -5,18 +5,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class IntakeCommand extends Command {
 
   private Intake f_intake;
-  private Kicker f_kicker;
+  private Indexer f_indexer;
 
-  public IntakeCommand(Intake omg_Intake, Kicker omg_kicker) {
+  public IntakeCommand(Intake omg_Intake, Indexer omg_indexer) {
     this.f_intake = omg_Intake;
-    this.f_kicker = omg_kicker;
-    addRequirements(f_intake, f_kicker);
+    this.f_indexer = omg_indexer;
+    addRequirements(f_intake, f_indexer);
   }
 
   @Override
   public void initialize() {
     f_intake.intake();
-    f_kicker.intake();
+    f_indexer.intake();
   }
 
   @Override
@@ -25,12 +25,12 @@ public class IntakeCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     f_intake.stopIntake();
-    f_kicker.stopKicker();
+    f_indexer.stopIndexer();
     f_intake.resetStop();
   }
 
   @Override
   public boolean isFinished() {
-    return f_kicker.getKickerSensor();
+    return f_indexer.getindexerSensor();
   }
 }

@@ -30,7 +30,7 @@ public class RobotContainer {
   private final Drivetrain drivetrain = SubsystemManifest.drivetrain; // My drivetrain
   private final Intake intake = SubsystemManifest.intake;
 
-  private final Kicker kicker = SubsystemManifest.kicker;
+  private final Indexer Indexer = SubsystemManifest.indexer;
 
   private final Shooter shooter = SubsystemManifest.shooter;
 
@@ -85,7 +85,7 @@ public class RobotContainer {
   // xbox
   public void configureCoBindings() {
 
-    Command c_command = new IntakeCommand(intake, kicker);
+    Command c_command = new IntakeCommand(intake, Indexer);
     cojoystick.leftBumper().whileTrue(c_command);
     cojoystick
         .leftTrigger()
@@ -93,13 +93,14 @@ public class RobotContainer {
         .onFalse(new InstantCommand(shooter::stopShooter));
     cojoystick
         .rightTrigger()
-        .onTrue(new InstantCommand(kicker::Pass))
-        .onFalse(new InstantCommand(kicker::stopKicker));
+        .onTrue(new InstantCommand(Indexer::Pass))
+        .onFalse(new InstantCommand(Indexer::stopIndexer));
     cojoystick
         .rightBumper()
         .onTrue(
             new SequentialCommandGroup(
-                new InstantCommand(kicker::stopKicker), new InstantCommand(shooter::stopShooter)));
+                new InstantCommand(Indexer::stopIndexer),
+                new InstantCommand(shooter::stopShooter)));
   }
 
   public RobotContainer() {

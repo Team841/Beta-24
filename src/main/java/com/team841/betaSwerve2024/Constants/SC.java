@@ -62,7 +62,7 @@ public class SC {
             .withSlot0(k_slot0);
   }
 
-  public static class Kicker {
+  public static class Indexer {
 
     private static AudioConfigs k_audio =
         new AudioConfigs()
@@ -86,14 +86,14 @@ public class SC {
     private static CustomParamsConfigs k_customParamConfigs =
         new CustomParamsConfigs().withCustomParam0(841).withCustomParam1(841);
 
-    private static MotionMagicConfigs k_kickerMotionMagicConfig =
+    private static MotionMagicConfigs k_IndexerMotionMagicConfig =
         new MotionMagicConfigs()
             .withMotionMagicAcceleration(0.0)
             .withMotionMagicCruiseVelocity(0.0)
             .withMotionMagicExpo_kA(0.0)
             .withMotionMagicExpo_kV(0.12)
             .withMotionMagicJerk(0.0);
-    private static MotorOutputConfigs k_kickerMotorOutputConfig =
+    private static MotorOutputConfigs k_IndexerMotorOutputConfig =
         new MotorOutputConfigs().withInverted(InvertedValue.CounterClockwise_Positive);
 
     // with note
@@ -103,18 +103,18 @@ public class SC {
     // No Note
     private static Slot1Configs k_slot1 =
         new Slot1Configs().withKP(60).withKI(0).withKD(0.1).withKV(0.12).withKS(0.5);
-    public static TalonFXConfiguration k_KickerConfiguration =
+    public static TalonFXConfiguration k_IndexerConfiguration =
         new TalonFXConfiguration()
             .withAudio(k_audio)
             .withClosedLoopRamps(k_closedLoopRampConfig)
             .withCurrentLimits(k_currentLimitsConfig)
             .withCustomParams(k_customParamConfigs)
-            .withMotionMagic(k_kickerMotionMagicConfig)
-            .withMotorOutput(k_kickerMotorOutputConfig)
+            .withMotionMagic(k_IndexerMotionMagicConfig)
+            .withMotorOutput(k_IndexerMotorOutputConfig)
             .withSlot0(k_slot0)
             .withSlot1(k_slot1);
 
-    public static int k_kickerSensorChannel = 1;
+    public static int k_IndexerSensorChannel = 1;
   }
 
   public static class Intake {

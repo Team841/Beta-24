@@ -6,34 +6,34 @@ import com.team841.betaSwerve2024.Constants.SC;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Kicker extends SubsystemBase {
+public class Indexer extends SubsystemBase {
 
-  private final TalonFX kickerTalon = new TalonFX(10, "rio");
+  private final TalonFX indexerTalon = new TalonFX(10, "rio");
 
-  private DigitalInput kickerSensor = new DigitalInput(SC.Kicker.k_kickerSensorChannel);
+  private DigitalInput indexerSensor = new DigitalInput(SC.Indexer.k_IndexerSensorChannel);
 
-  public Kicker() {
-    kickerTalon.getConfigurator().apply(SC.Kicker.k_KickerConfiguration);
+  public Indexer() {
+    indexerTalon.getConfigurator().apply(SC.Indexer.k_IndexerConfiguration);
   }
 
   private void setDutyCyle(double speed) {
-    kickerTalon.setControl(new DutyCycleOut(speed));
+    indexerTalon.setControl(new DutyCycleOut(speed));
   }
 
   public void intake() {
     setDutyCyle(-0.6);
   }
 
-  public void stopKicker() {
-    kickerTalon.stopMotor();
+  public void stopIndexer() {
+    indexerTalon.stopMotor();
   }
 
   public void Pass() {
     setDutyCyle(-0.6);
   }
 
-  public boolean getKickerSensor() {
-    return !(kickerSensor.get());
+  public boolean getindexerSensor() {
+    return !(indexerSensor.get());
   }
 
   @Override
