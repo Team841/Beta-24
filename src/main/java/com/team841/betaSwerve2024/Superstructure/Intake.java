@@ -18,6 +18,8 @@ public class Intake extends SubsystemBase {
 
   private int outTakeClock = 0;
 
+  private String toggle = "OFF";
+
   public Intake() {
 
     intakeOneMotor.restoreFactoryDefaults();
@@ -37,23 +39,30 @@ public class Intake extends SubsystemBase {
 
   public void intake() {
     setIntakeMotor(1.0);
+    toggle = "IN";
   }
 
   public void outTake() {
     setIntakeMotor(-1.0);
+    toggle = "OUT";
   }
 
-  public void StopTake() {
+  public void stopTake() {
     setIntakeMotor(0.0);
+    toggle = "OFF";
+  }
+
+  public String getCurrentState() {
+    return toggle;
   }
 
   public Command toggleIn() {
-    return new ConditionalCommand(new InstantCommand(this::StopTake), new InstantCommand(this::intake),
+    return new ConditionalCommand(new InstantCommand(this::stopTake), new InstantCommand(this::intake),
         () -> intakeOneMotor.get() > 0);
   }
 
   public Command toggleOut() {
-    return new ConditionalCommand(new InstantCommand(this::StopTake), new InstantCommand(this::outTake),
+    return new ConditionalCommand(new InstantCommand(this::stopTake), new InstantCommand(this::outTake),
         () -> intakeOneMotor.get() < 0);
   }
 

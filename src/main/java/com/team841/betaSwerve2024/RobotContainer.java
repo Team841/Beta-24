@@ -9,7 +9,9 @@ import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.SubsystemManifest;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.Intake;
-import com.team841.betaSwerve2024.Superstructure.Commands.IntakeOn;
+import com.team841.betaSwerve2024.Superstructure.Commands.IntakeStop;
+import com.team841.betaSwerve2024.Superstructure.Commands.*;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -57,7 +59,8 @@ public class RobotContainer {
         ));
 
     joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
-    joystick.circle().whileTrue(drivetrain.applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+    joystick.circle().whileTrue(drivetrain
+        .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
     joystick.L1().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
@@ -69,10 +72,10 @@ public class RobotContainer {
     }
   }
 
-  //xbox bindings
+  // xbox bindings
   public void configureCoBindings() {
-    cojoystick.leftBumper().onTrue(intake.toggleIn());
-    cojoystick.b().onTrue(intake.toggleOut());
+    cojoystick.leftBumper().onTrue(new IntakeOn(intake));
+    cojoystick.b().onTrue(new IntakeOut(intake));
   }
 
   public RobotContainer() {
@@ -81,13 +84,13 @@ public class RobotContainer {
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
 
-    //Register Named Commands
+    // Register Named Commands
 
-    NamedCommands.registerCommand("IntakeOn", new IntakeOn());
+    NamedCommands.registerCommand("IntakeOn", new IntakeOn(intake));
   }
 
   public Command getAutonomousCommand() {
-    //auto chooser on shuffleboard
+    // auto chooser on shuffleboard
     return autoChooser.getSelected();
 
   }

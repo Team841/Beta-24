@@ -7,11 +7,11 @@ package com.team841.betaSwerve2024.Superstructure.Commands;
 import com.team841.betaSwerve2024.Superstructure.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class IntakeOn extends Command {
-  /** Creates a new IntakeOn. */
+public class IntakeOut extends Command {
+  /** Creates a new IntakeOut. */
   private final Intake cmd_intake;
 
-  public IntakeOn(Intake subsystem) {
+  public IntakeOut(Intake subsystem) {
     cmd_intake = subsystem;
     addRequirements(cmd_intake);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -20,9 +20,8 @@ public class IntakeOn extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
     if (cmd_intake.getCurrentState() == "OFF") {
-      cmd_intake.intake();
+      cmd_intake.outTake();
 
     } else {
       cmd_intake.stopTake();
@@ -43,6 +42,6 @@ public class IntakeOn extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
