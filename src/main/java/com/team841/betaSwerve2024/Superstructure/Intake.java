@@ -20,6 +20,8 @@ public class Intake extends SubsystemBase {
 
   private int outTakeClock = 0;
 
+  private String toggle = "OFF";
+
   public Intake() {
 
     intakeOneMotor.restoreFactoryDefaults();
@@ -43,10 +45,16 @@ public class Intake extends SubsystemBase {
 
   public void outTake() {
     setIntakeMotor(-1.0);
+    toggle = "OUT";
   }
 
   public void stopIntake() {
     setIntakeMotor(0.0);
+    toggle = "OFF";
+  }
+
+  public String getCurrentState() {
+    return toggle;
   }
 
   public void setStop() {

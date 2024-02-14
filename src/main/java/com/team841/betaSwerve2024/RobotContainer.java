@@ -4,6 +4,7 @@ import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.SubsystemManifest;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
@@ -104,6 +105,9 @@ public class RobotContainer {
   }
 
   public RobotContainer() {
+    // Register Named Commands
+    NamedCommands.registerCommand("IntakeOn", new IntakeOn(intake));
+    
     configureBindings();
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
@@ -111,6 +115,8 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
+    // auto chooser on shuffleboard
     return autoChooser.getSelected();
+
   }
 }
