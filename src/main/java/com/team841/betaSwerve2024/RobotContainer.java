@@ -79,14 +79,14 @@ public class RobotContainer {
   }
 
   public RobotContainer() {
+    // Register Named Commands
+    NamedCommands.registerCommand("IntakeOn", new IntakeOn(intake));
+    
     configureBindings();
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
 
-    // Register Named Commands
-
-    NamedCommands.registerCommand("IntakeOn", new IntakeOn(intake));
   }
 
   public Command getAutonomousCommand() {
