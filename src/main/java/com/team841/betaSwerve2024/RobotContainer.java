@@ -106,7 +106,7 @@ public class RobotContainer {
 
   public RobotContainer() {
     // Register Named Commands
-    NamedCommands.registerCommand("IntakeOn", new IntakeOn(intake));
+    // NamedCommands.registerCommand("IntakeOn", new IntakeOn(intake));
     
     configureBindings();
     configureCoBindings();
