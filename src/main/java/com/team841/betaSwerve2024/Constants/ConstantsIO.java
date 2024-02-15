@@ -24,7 +24,7 @@ public class ConstantsIO {
       // Arm sensor
       // public static final int Arm_Index_Sensor = 1;
 
-      // Kicker sensor
+      // Indexer sensor
       // public static final int Kicker_Index_Sensor = 5;
     }
   }
