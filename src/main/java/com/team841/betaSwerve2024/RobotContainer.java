@@ -117,6 +117,5 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // auto chooser on shuffleboard
     return autoChooser.getSelected();
-
   }
 }

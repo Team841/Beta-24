@@ -11,6 +11,7 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -64,7 +65,13 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
             Swerve.kSpeedAt12VoltsMps,
             driveBaseRadius,
             new ReplanningConfig()),
-        () -> false, // Change this if the path needs to be flipped on red vs blue
+        () -> {
+          var alliance = DriverStation.getAlliance();
+          if (alliance.isPresent()) {
+            return alliance.get() == DriverStation.Alliance.Red;
+          }
+          return false;
+        }, // Change this if the path needs to be flipped on red vs blue
         this); // Subsystem for requirements
   }
 
