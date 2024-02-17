@@ -40,7 +40,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void intake() {
-    setIntakeMotor(-1.0);
+    setIntakeMotor(1.0);
   }
 
   public void outTake() {
