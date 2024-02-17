@@ -106,8 +106,8 @@ public class RobotContainer {
 
   public RobotContainer() {
     // Register Named Commands
-    // NamedCommands.registerCommand("IntakeOn", new IntakeOn(intake));
-    
+    NamedCommands.registerCommand("IntakeOn", new IntakeCommand(intake, Indexer));
+
     configureBindings();
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
