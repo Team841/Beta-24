@@ -13,7 +13,8 @@ public class ConstantsIO {
   public static final class CANID {
 
     public static final int kIntakeOne = 2;
-
+      public static final int kHangerMoterLeft = 3; 
+      public static final int kHangerMotorRight = 4;
     public static final class PWMPorts {
       // LED BLINKIN
       // public static final int kblinkin = 4;

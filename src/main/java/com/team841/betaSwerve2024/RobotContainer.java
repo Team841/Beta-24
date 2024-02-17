@@ -35,6 +35,8 @@ public class RobotContainer {
 
   private final Shooter shooter = SubsystemManifest.shooter;
 
+  private final Hanger hanger = SubsystemManifest.hanger;
+  
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
           .withDeadband(MaxSpeed * 0.1)
@@ -102,6 +104,9 @@ public class RobotContainer {
             new SequentialCommandGroup(
                 new InstantCommand(Indexer::stopIndexer),
                 new InstantCommand(shooter::stopShooter)));
+    cojoystick.povUp().whileTrue(new InstantCommand(hanger::ExtendHanger));
+    cojoystick.povDown().whileTrue(new InstantCommand(hanger::RetractHanger));
+    cojoystick.povCenter().whileTrue(new InstantCommand(hanger::StopHanger));
   }
 
   public RobotContainer() {
