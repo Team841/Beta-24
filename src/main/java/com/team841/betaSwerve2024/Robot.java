@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    SignalLogger.start();
+    // SignalLogger.start();
 
     LED.set(-0.97);
   }
@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopExit() {
-    SignalLogger.stop();
+    // SignalLogger.stop();
   }
 
   @Override
