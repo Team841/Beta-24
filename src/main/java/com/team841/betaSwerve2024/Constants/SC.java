@@ -120,4 +120,48 @@ public class SC {
   public static class Intake {
     public static final int currentLimit = 60; // in amps
   }
+
+  public static class Arm {
+    private static AudioConfigs k_audio =
+            new AudioConfigs()
+                    .withAllowMusicDurDisable(true)
+                    .withBeepOnBoot(true)
+                    .withBeepOnConfig(true);
+
+    private static ClosedLoopRampsConfigs k_closedLoopRampConfig =
+            new ClosedLoopRampsConfigs()
+                    .withDutyCycleClosedLoopRampPeriod(0.05)
+                    .withTorqueClosedLoopRampPeriod(0.05)
+                    .withVoltageClosedLoopRampPeriod(0.1);
+
+    private static CurrentLimitsConfigs k_currentLimitsConfig =
+            new CurrentLimitsConfigs()
+                    .withSupplyCurrentLimit(10)
+                    .withSupplyCurrentLimitEnable(true)
+                    .withSupplyCurrentThreshold(10)
+                    .withSupplyTimeThreshold(0);
+
+    private static CustomParamsConfigs k_customParamConfigs =
+            new CustomParamsConfigs().withCustomParam0(841).withCustomParam1(841);
+
+    private static MotionMagicConfigs k_ArmMotionMagicConfig =
+            new MotionMagicConfigs()
+                    .withMotionMagicAcceleration(200.0)
+                    .withMotionMagicCruiseVelocity(0.0)
+                    .withMotionMagicExpo_kA(0.0)
+                    .withMotionMagicExpo_kV(0.0)
+                    .withMotionMagicJerk(0.0);
+
+    private static Slot0Configs k_slot0 =
+            new Slot0Configs().withKP(0.6).withKI(0).withKD(0).withKV(0).withKS(0);
+
+    public static TalonFXConfiguration k_ArmConfiguration =
+            new TalonFXConfiguration()
+                    .withAudio(k_audio)
+                    .withClosedLoopRamps(k_closedLoopRampConfig)
+                    .withCurrentLimits(k_currentLimitsConfig)
+                    .withCustomParams(k_customParamConfigs)
+                    .withMotionMagic(k_ArmMotionMagicConfig)
+                    .withSlot0(k_slot0);
+  }
 }

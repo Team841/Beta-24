@@ -7,6 +7,8 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.SubsystemManifest;
+import com.team841.betaSwerve2024.Constants.Swerve;
+import com.team841.betaSwerve2024.Constants.TunerConstants;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -19,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
-  private double MaxSpeed = 6; // 6 meters per second desired top speed
+  private double MaxSpeed = Swerve.kSpeedAt12VoltsMps; // 6 meters per second desired top speed
   private double MaxAngularRate =
       1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
 
@@ -34,6 +36,8 @@ public class RobotContainer {
   private final Indexer Indexer = SubsystemManifest.indexer;
 
   private final Shooter shooter = SubsystemManifest.shooter;
+
+  private final Arm arm = SubsystemManifest.arm;
 
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
@@ -81,8 +85,6 @@ public class RobotContainer {
     }
   }
 
-  public void justStopStop() {}
-
   // xbox
   public void configureCoBindings() {
 
@@ -102,11 +104,15 @@ public class RobotContainer {
             new SequentialCommandGroup(
                 new InstantCommand(Indexer::stopIndexer),
                 new InstantCommand(shooter::stopShooter)));
+    cojoystick.x().onTrue(new InstantCommand(shooter::ampShot)).onFalse(new InstantCommand(shooter::stopShooter));
+
+    cojoystick.a().whileTrue(new InstantCommand(arm::forward)).onFalse(new InstantCommand(arm::stop));
+    cojoystick.y().whileTrue(new InstantCommand(arm::backward)).onFalse(new InstantCommand(arm::stop));
   }
 
   public RobotContainer() {
     // Register Named Commands
-    NamedCommands.registerCommand("IntakeOn", new IntakeCommand(intake, Indexer));
+    // NamedCommands.registerCommand("IntakeOn", new IntakeCommand(intake, Indexer));
 
     configureBindings();
     configureCoBindings();
@@ -117,6 +123,5 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // auto chooser on shuffleboard
     return autoChooser.getSelected();
-
   }
 }
