@@ -80,11 +80,7 @@ public class Intake extends SubsystemBase {
   }
 
   public boolean getSensor() {
-    if (stop) {
-      return true;
-    } else {
-      return !Intake_Index_Sensor.get();
-    }
+    return !Intake_Index_Sensor.get();
   }
 
   @Override

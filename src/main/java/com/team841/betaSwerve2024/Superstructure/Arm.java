@@ -4,35 +4,32 @@ import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.team841.betaSwerve2024.Constants.SC;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.FunctionalCommand;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
 
-    final TalonFX leftArmJoint = new TalonFX(13, "rio");
+  final TalonFX leftArmJoint = new TalonFX(13, "rio");
 
-    final TalonFX rightArmJoint = new TalonFX(14, "rio");
+  final TalonFX rightArmJoint = new TalonFX(14, "rio");
 
-    public Arm(){
-        leftArmJoint.getConfigurator().apply(SC.Arm.k_ArmConfiguration);
-        rightArmJoint.getConfigurator().apply(SC.Arm.k_ArmConfiguration);
-        leftArmJoint.setControl(new Follower(rightArmJoint.getDeviceID(), false));
-    }
+  public Arm() {
+    leftArmJoint.getConfigurator().apply(SC.Arm.k_ArmConfiguration);
+    rightArmJoint.getConfigurator().apply(SC.Arm.k_ArmConfiguration);
+    leftArmJoint.setControl(new Follower(rightArmJoint.getDeviceID(), false));
+  }
 
-    public void forward(){
-        this.rightArmJoint.setControl(new DutyCycleOut(-0.1));
-    }
+  public void forward() {
+    this.rightArmJoint.setControl(new DutyCycleOut(-0.1));
+  }
 
-    public void backward(){
-        this.rightArmJoint.setControl(new DutyCycleOut(0.1));
-    }
+  public void backward() {
+    this.rightArmJoint.setControl(new DutyCycleOut(0.1));
+  }
 
-    public void stop(){
-        this.rightArmJoint.stopMotor();
-    }
+  public void stop() {
+    this.rightArmJoint.stopMotor();
+  }
 
-    @Override
-    public void periodic() {}
+  @Override
+  public void periodic() {}
 }
