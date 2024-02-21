@@ -129,8 +129,9 @@ public class RobotContainer {
     NamedCommands.registerCommand("IntakeOn", new IntakeCommand(intake, Indexer));
     NamedCommands.registerCommand("Shoot", new ParallelCommandGroup(new InstantCommand(shooter::spinUp), new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(Indexer::Pass))).withTimeout(3));
     NamedCommands.registerCommand("SpinUp", new InstantCommand(shooter::spinUp));
-    NamedCommands.registerCommand("JustShoot", new InstantCommand(Indexer::Pass));
-    NamedCommands.registerCommand("ALLSYSTEMSGO", new ParallelCommandGroup(new InstantCommand(intake::intake), new InstantCommand(shooter::spinUp), new InstantCommand(Indexer::Pass)));
+    NamedCommands.registerCommand("JustShoot", new InstantCommand(Indexer::Pass).withTimeout(0.5));
+    NamedCommands.registerCommand("ALLSYSTEMSGO", new ParallelCommandGroup(new InstantCommand(intake::intake), new InstantCommand(shooter::spinUp), new InstantCommand(Indexer::Pass)).withTimeout(2.5));
+    NamedCommands.registerCommand("FunnyInake", new ParallelCommandGroup(new InstantCommand(intake::intake), new InstantCommand(Indexer::Pass)).withTimeout(0.75));
     NamedCommands.registerCommand("JustStop", new ParallelCommandGroup(new InstantCommand(Indexer::stopIndexer), new InstantCommand(shooter::stopShooter)));
 
     configureBindings();
