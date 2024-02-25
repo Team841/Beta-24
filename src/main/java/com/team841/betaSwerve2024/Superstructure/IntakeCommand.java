@@ -1,5 +1,8 @@
 package com.team841.betaSwerve2024.Superstructure;
 
+import com.team841.betaSwerve2024.Constants.Manifest;
+import com.team841.betaSwerve2024.RobotContainer;
+import com.team841.betaSwerve2024.Rumble;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class IntakeCommand extends Command {

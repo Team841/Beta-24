@@ -15,7 +15,7 @@ public class Arm extends SubsystemBase {
   public Arm() {
     leftArmJoint.getConfigurator().apply(SC.Arm.k_ArmConfiguration);
     rightArmJoint.getConfigurator().apply(SC.Arm.k_ArmConfiguration);
-    leftArmJoint.setControl(new Follower(rightArmJoint.getDeviceID(), false));
+    leftArmJoint.setControl(new Follower(rightArmJoint.getDeviceID(), true));
   }
 
   public void forward() {

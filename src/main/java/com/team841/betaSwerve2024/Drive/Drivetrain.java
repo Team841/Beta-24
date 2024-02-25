@@ -1,6 +1,7 @@
 package com.team841.betaSwerve2024.Drive;
 
 import com.ctre.phoenix6.Utils;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
@@ -35,6 +36,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
+    ConfigureMotors();
     configurePathplanner();
   }
 
@@ -45,7 +47,25 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
+    ConfigureMotors();
     configurePathplanner();
+  }
+
+  private void ConfigureMotors() {
+    for (var CurrentModule : this.Modules) {
+      CurrentModule.getDriveMotor()
+          .getConfigurator()
+          .apply(
+              new CurrentLimitsConfigs()
+                  .withSupplyCurrentLimit(60)
+                  .withSupplyCurrentLimitEnable(true));
+      CurrentModule.getSteerMotor()
+          .getConfigurator()
+          .apply(
+              new CurrentLimitsConfigs()
+                  .withSupplyCurrentLimit(60)
+                  .withSupplyCurrentLimitEnable(true));
+    }
   }
 
   public void configurePathplanner() {

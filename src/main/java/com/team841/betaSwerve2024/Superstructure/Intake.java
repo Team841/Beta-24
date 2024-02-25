@@ -14,8 +14,6 @@ public class Intake extends SubsystemBase {
   private final CANSparkMax intakeOneMotor =
       new CANSparkMax(ConstantsIO.CANID.kIntakeOne, MotorType.kBrushless);
 
-  private final DigitalInput Intake_Index_Sensor = new DigitalInput(0);
-
   private boolean stop;
 
   private int outTakeClock = 0;
@@ -77,10 +75,6 @@ public class Intake extends SubsystemBase {
         new InstantCommand(this::stopIntake),
         new InstantCommand(this::outTake),
         () -> intakeOneMotor.get() < 0);
-  }
-
-  public boolean getSensor() {
-    return !Intake_Index_Sensor.get();
   }
 
   @Override
