@@ -13,8 +13,6 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
 
-  private Spark LED = new Spark(4);
-
   private RobotContainer m_robotContainer;
 
   private final DigitalInput intakeSensor = new DigitalInput(0);
@@ -68,7 +66,7 @@ public class Robot extends TimedRobot {
 
     SignalLogger.start();
 
-    LED.set(-0.97);
+  
   }
 
   @Override

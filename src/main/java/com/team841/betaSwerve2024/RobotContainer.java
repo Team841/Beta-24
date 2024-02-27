@@ -38,6 +38,8 @@ public class RobotContainer {
 
   private final Arm arm = Manifest.SubsystemManifest.arm;
 
+  private final LED led = Manifest.SubsystemManifest.led;
+
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
           .withDeadband(MaxSpeed * 0.1)
@@ -132,6 +134,8 @@ public class RobotContainer {
     joystick.cross().whileTrue(new InstantCommand(arm::forward)).onFalse(new InstantCommand(arm::stop));
     joystick.triangle().whileTrue(new InstantCommand(arm::backward)).onFalse(new InstantCommand(arm::stop));
     */
+
+
   }
 
   public RobotContainer() {
@@ -166,6 +170,8 @@ public class RobotContainer {
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
+
+    led.setDefaultCommand(new UpdateLED(led, Indexer));
   }
 
   public Command getAutonomousCommand() {
