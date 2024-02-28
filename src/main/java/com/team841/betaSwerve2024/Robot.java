@@ -21,7 +21,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_robotContainer = new RobotContainer();
 
-    SignalLogger.setPath("/media/sda1/");
+    // SignalLogger.setPath("/media/sda1/");
   }
 
   @Override
@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    SignalLogger.start();
+    //  SignalLogger.start();
 
   
   }
@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopExit() {
-    SignalLogger.stop();
+    // SignalLogger.stop();
   }
 
   @Override

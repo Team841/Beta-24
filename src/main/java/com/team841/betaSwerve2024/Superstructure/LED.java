@@ -16,8 +16,8 @@ public class LED extends SubsystemBase {
     if (color == "Yellow"){
       LED.set(0.69);
     }
-    else if (color == "Green"){
-      LED.set(0.77);
+    else if (color == "Violet"){
+      LED.set(0.91);
     }
   }
 
