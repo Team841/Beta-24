@@ -5,8 +5,10 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
-import com.team841.betaSwerve2024.Constants.ConstantsIO;
-import com.team841.betaSwerve2024.Constants.SubsystemManifest;
+import com.team841.Util.BioCommandPS5Controller;
+import com.team841.Util.BioCommandXboxController;
+import com.team841.betaSwerve2024.Constants.Manifest;
+import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -15,25 +17,24 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.*;
-import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
-  private double MaxSpeed = 6; // 6 meters per second desired top speed
-  private double MaxAngularRate =
-      1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
-
+  private double MaxSpeed = Swerve.kSpeedAt12VoltsMps; // 6 meters per second desired top speed
+  private double MaxAngularRate = 4 * Math.PI;
+  // 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
+  public final BioCommandPS5Controller joystick = Manifest.JoystickManifest.joystick; // My joystick
+  public final BioCommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick;
   /* Setting up bindings for necessary control of the swerve drive platform */
-  private final CommandPS5Controller joystick =
-      new CommandPS5Controller(ConstantsIO.OI.driverPortLeft); // My joystick
-  private final CommandXboxController cojoystick =
-      new CommandXboxController(ConstantsIO.OI.codriverPort);
-  private final Drivetrain drivetrain = SubsystemManifest.drivetrain; // My drivetrain
-  private final Intake intake = SubsystemManifest.intake;
+  private final Drivetrain drivetrain = Manifest.SubsystemManifest.drivetrain; // My drivetrain
+  private final Intake intake = Manifest.SubsystemManifest.intake;
 
-  private final Indexer Indexer = SubsystemManifest.indexer;
+  private final Indexer Indexer = Manifest.SubsystemManifest.indexer;
 
-  private final Shooter shooter = SubsystemManifest.shooter;
+  private final Shooter shooter = Manifest.SubsystemManifest.shooter;
+
+  private final Arm arm = Manifest.SubsystemManifest.arm;
+
+  private final LED led = Manifest.SubsystemManifest.led;
 
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
@@ -62,17 +63,12 @@ public class RobotContainer {
                             * MaxAngularRate) // Drive counterclockwise with negative X (left)
             ));
 
-    joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
-    joystick
-        .circle()
-        .whileTrue(
-            drivetrain.applyRequest(
-                () ->
-                    point.withModuleDirection(
-                        new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+    // joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
+    // joystick.circle().whileTrue(drivetrain.applyRequest(() -> point.withModuleDirection(new
+    // Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
-    joystick.L1().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
+    joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
@@ -80,8 +76,6 @@ public class RobotContainer {
       drivetrain.registerTelemetry(logger::telemeterize);
     }
   }
-
-  public void justStopStop() {}
 
   // xbox
   public void configureCoBindings() {
@@ -102,21 +96,81 @@ public class RobotContainer {
             new SequentialCommandGroup(
                 new InstantCommand(Indexer::stopIndexer),
                 new InstantCommand(shooter::stopShooter)));
+    cojoystick
+        .x()
+        .onTrue(new InstantCommand(shooter::ampShot))
+        .onFalse(new InstantCommand(shooter::stopShooter));
+
+    cojoystick
+        .a()
+        .whileTrue(new InstantCommand(arm::forward))
+        .onFalse(new InstantCommand(arm::stop));
+    cojoystick
+        .y()
+        .whileTrue(new InstantCommand(arm::backward))
+        .onFalse(new InstantCommand(arm::stop));
+    /*
+    joystick.L1().whileTrue(c_command);
+    joystick
+            .L2()
+            .onTrue(new InstantCommand(shooter::spinUp))
+            .onFalse(new InstantCommand(shooter::stopShooter));
+    joystick
+            .R2()
+            .onTrue(new InstantCommand(Indexer::Pass))
+            .onFalse(new InstantCommand(Indexer::stopIndexer));
+    joystick
+            .R1()
+            .onTrue(
+                    new SequentialCommandGroup(
+                            new InstantCommand(Indexer::stopIndexer),
+                            new InstantCommand(shooter::stopShooter)));
+    joystick.square().onTrue(new InstantCommand(shooter::ampShot)).onFalse(new InstantCommand(shooter::stopShooter));
+
+    joystick.cross().whileTrue(new InstantCommand(arm::forward)).onFalse(new InstantCommand(arm::stop));
+    joystick.triangle().whileTrue(new InstantCommand(arm::backward)).onFalse(new InstantCommand(arm::stop));
+    */
+
   }
 
   public RobotContainer() {
     // Register Named Commands
-    // NamedCommands.registerCommand("IntakeOn", new IntakeOn(intake));
-    
+    NamedCommands.registerCommand("IntakeOn", new IntakeCommand(intake, Indexer));
+    NamedCommands.registerCommand(
+        "Shoot",
+        new ParallelCommandGroup(
+                new InstantCommand(shooter::spinUp),
+                new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(Indexer::Pass)))
+            .withTimeout(3));
+    NamedCommands.registerCommand("SpinUp", new InstantCommand(shooter::spinUp));
+    NamedCommands.registerCommand("JustShoot", new InstantCommand(Indexer::Pass).withTimeout(0.5));
+    NamedCommands.registerCommand(
+        "ALLSYSTEMSGO",
+        new ParallelCommandGroup(
+                new InstantCommand(intake::intake),
+                new InstantCommand(shooter::spinUp),
+                new InstantCommand(Indexer::Pass))
+            .withTimeout(2.5));
+    NamedCommands.registerCommand(
+        "FunnyInake",
+        new ParallelCommandGroup(
+                new InstantCommand(intake::intake), new InstantCommand(Indexer::Pass))
+            .withTimeout(0.75));
+    NamedCommands.registerCommand(
+        "JustStop",
+        new ParallelCommandGroup(
+            new InstantCommand(Indexer::stopIndexer), new InstantCommand(shooter::stopShooter)));
+
     configureBindings();
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
+
+    led.setDefaultCommand(new UpdateLED(led, Indexer));
   }
 
   public Command getAutonomousCommand() {
     // auto chooser on shuffleboard
     return autoChooser.getSelected();
-
   }
 }
