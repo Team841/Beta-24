@@ -9,19 +9,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LED extends SubsystemBase {
   private final Spark LED = new Spark(4);
-  /** Creates a new LED. */
 
+  /** Creates a new LED. */
   public LED() {}
-  public void setColor (String color){
-    if (color == "Yellow"){
+
+  public void setColor(String color) {
+    if (color == "Yellow") {
       LED.set(0.69);
-    }
-    else if (color == "Violet"){
+    } else if (color == "Violet") {
       LED.set(0.91);
     }
   }
 
-  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

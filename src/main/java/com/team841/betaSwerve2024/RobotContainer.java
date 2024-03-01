@@ -7,9 +7,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.Util.BioCommandPS5Controller;
 import com.team841.Util.BioCommandXboxController;
-import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Manifest;
-import com.team841.betaSwerve2024.Constants.Manifest.SubsystemManifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
@@ -24,10 +22,8 @@ public class RobotContainer {
   private double MaxSpeed = Swerve.kSpeedAt12VoltsMps; // 6 meters per second desired top speed
   private double MaxAngularRate = 4 * Math.PI;
   // 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
-  public final BioCommandPS5Controller joystick =
-          Manifest.JoystickManifest.joystick; // My joystick
-  public final BioCommandXboxController cojoystick =
-          Manifest.JoystickManifest.cojoystick;
+  public final BioCommandPS5Controller joystick = Manifest.JoystickManifest.joystick; // My joystick
+  public final BioCommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick;
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final Drivetrain drivetrain = Manifest.SubsystemManifest.drivetrain; // My drivetrain
   private final Intake intake = Manifest.SubsystemManifest.intake;
@@ -134,7 +130,6 @@ public class RobotContainer {
     joystick.cross().whileTrue(new InstantCommand(arm::forward)).onFalse(new InstantCommand(arm::stop));
     joystick.triangle().whileTrue(new InstantCommand(arm::backward)).onFalse(new InstantCommand(arm::stop));
     */
-
 
   }
 

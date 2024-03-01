@@ -1,11 +1,9 @@
 package com.team841.betaSwerve2024;
 
-import com.ctre.phoenix6.SignalLogger;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -30,8 +28,7 @@ public class Robot extends TimedRobot {
 
     if (!intakeSensor.get() && !(Manifest.JoystickManifest.rumble.nowCounting()))
       Manifest.JoystickManifest.rumble.Intaked();
-    if (ConstantsIO.rumbleNeedsPing)
-      Manifest.JoystickManifest.rumble.update();
+    if (ConstantsIO.rumbleNeedsPing) Manifest.JoystickManifest.rumble.update();
   }
 
   @Override
@@ -66,7 +63,6 @@ public class Robot extends TimedRobot {
 
     //  SignalLogger.start();
 
-  
   }
 
   @Override

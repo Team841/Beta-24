@@ -38,11 +38,6 @@ public class Shooter extends SubsystemBase {
         new MotionMagicVelocityVoltage(2).withFeedForward(6).withAcceleration(200).withSlot(0));
     bottomShooter.setControl(
         new MotionMagicVelocityVoltage(20).withFeedForward(6).withAcceleration(200).withSlot(0));
-
-            new MotionMagicVelocityVoltage(25).withFeedForward(6).withAcceleration(200).withSlot(0));
-    bottomShooter.setControl(
-            new MotionMagicVelocityVoltage(25).withFeedForward(6).withAcceleration(200).withSlot(0));
-
   }
 
   protected double getMotorVoltage() {

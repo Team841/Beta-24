@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class UpdateLED extends Command {
   private LED f_led;
   private Indexer f_indexer;
+
   /** Creates a new UpdateLED. */
   public UpdateLED(LED led, Indexer indexer) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -24,10 +25,9 @@ public class UpdateLED extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(f_indexer.getindexerSensor()){
+    if (f_indexer.getindexerSensor()) {
       f_led.setColor("Violet");
-    }
-    else{
+    } else {
       f_led.setColor("Yellow");
     }
   }

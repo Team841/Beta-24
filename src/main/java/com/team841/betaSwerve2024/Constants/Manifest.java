@@ -7,9 +7,8 @@ import com.team841.betaSwerve2024.Rumble;
 import com.team841.betaSwerve2024.Superstructure.Arm;
 import com.team841.betaSwerve2024.Superstructure.Indexer;
 import com.team841.betaSwerve2024.Superstructure.Intake;
-import com.team841.betaSwerve2024.Superstructure.Shooter;
 import com.team841.betaSwerve2024.Superstructure.LED;
-
+import com.team841.betaSwerve2024.Superstructure.Shooter;
 
 public class Manifest {
   public class SubsystemManifest {
@@ -27,9 +26,9 @@ public class Manifest {
 
   public class JoystickManifest {
     public static final BioCommandPS5Controller joystick =
-            new BioCommandPS5Controller(ConstantsIO.OI.driverPortLeft); // My joystick
+        new BioCommandPS5Controller(ConstantsIO.OI.driverPortLeft); // My joystick
     public static final BioCommandXboxController cojoystick =
-            new BioCommandXboxController(ConstantsIO.OI.codriverPort);
+        new BioCommandXboxController(ConstantsIO.OI.codriverPort);
 
     public static final Rumble rumble = new Rumble();
   }
