@@ -129,6 +129,25 @@
           "data": {
             "name": "JustStop"
           }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Middle to Right"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "SpinUp"
+                }
+              }
+            ]
+          }
         }
       ]
     }

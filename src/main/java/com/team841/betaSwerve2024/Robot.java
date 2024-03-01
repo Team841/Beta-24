@@ -13,8 +13,6 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
 
-  private Spark LED = new Spark(4);
-
   private RobotContainer m_robotContainer;
 
   private final DigitalInput intakeSensor = new DigitalInput(0);
@@ -23,7 +21,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_robotContainer = new RobotContainer();
 
-    SignalLogger.setPath("/media/sda1/");
+    // SignalLogger.setPath("/media/sda1/");
   }
 
   @Override
@@ -66,9 +64,9 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    SignalLogger.start();
+    //  SignalLogger.start();
 
-    LED.set(-0.97);
+  
   }
 
   @Override
@@ -76,7 +74,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopExit() {
-    SignalLogger.stop();
+    // SignalLogger.stop();
   }
 
   @Override
