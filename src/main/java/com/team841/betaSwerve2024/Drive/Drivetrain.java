@@ -1,6 +1,7 @@
 package com.team841.betaSwerve2024.Drive;
 
 import com.ctre.phoenix6.Utils;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
@@ -11,6 +12,7 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,6 +36,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
+    ConfigureMotors();
     configurePathplanner();
   }
 
@@ -44,7 +47,25 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
+    ConfigureMotors();
     configurePathplanner();
+  }
+
+  private void ConfigureMotors() {
+    for (var CurrentModule : this.Modules) {
+      CurrentModule.getDriveMotor()
+          .getConfigurator()
+          .apply(
+              new CurrentLimitsConfigs()
+                  .withSupplyCurrentLimit(60)
+                  .withSupplyCurrentLimitEnable(true));
+      CurrentModule.getSteerMotor()
+          .getConfigurator()
+          .apply(
+              new CurrentLimitsConfigs()
+                  .withSupplyCurrentLimit(60)
+                  .withSupplyCurrentLimitEnable(true));
+    }
   }
 
   public void configurePathplanner() {
@@ -64,7 +85,13 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
             Swerve.kSpeedAt12VoltsMps,
             driveBaseRadius,
             new ReplanningConfig()),
-        () -> false, // Change this if the path needs to be flipped on red vs blue
+        () -> {
+          var alliance = DriverStation.getAlliance();
+          if (alliance.isPresent()) {
+            return alliance.get() == DriverStation.Alliance.Red;
+          }
+          return false;
+        }, // Change this if the path needs to be flipped on red vs blue
         this); // Subsystem for requirements
   }
 
@@ -91,5 +118,18 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
               updateSimState(deltaTime, RobotController.getBatteryVoltage());
             });
     m_simNotifier.startPeriodic(kSimLoopPeriod);
+  }
+
+  @Override
+  public void periodic() {
+    // read values periodically
+    /*double x = tx.getDouble(0.0);
+    double y = ty.getDouble(0.0);
+    double area = ta.getDouble(0.0);
+
+    //post to smart dashboard periodically
+    SmartDashboard.putNumber("LimelightX", x);
+    SmartDashboard.putNumber("LimelightY", y);
+    SmartDashboard.putNumber("LimelightArea", area);*/
   }
 }

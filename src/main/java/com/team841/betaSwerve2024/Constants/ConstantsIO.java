@@ -2,6 +2,8 @@ package com.team841.betaSwerve2024.Constants;
 
 public class ConstantsIO {
 
+  public static boolean rumbleNeedsPing = false;
+
   public static class OI {
     public static final int driverPortLeft = 0; // controller USB port 0
     public static final int driverPortRight = 1; // controller USB port 1

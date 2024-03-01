@@ -1,9 +1,9 @@
 package com.team841.betaSwerve2024;
 
-import com.ctre.phoenix6.SignalLogger;
-
+import com.team841.betaSwerve2024.Constants.ConstantsIO;
+import com.team841.betaSwerve2024.Constants.Manifest;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -11,23 +11,24 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
 
-  private Spark LED = new Spark(4);
-
   private RobotContainer m_robotContainer;
 
-  
-  
+  private final DigitalInput intakeSensor = new DigitalInput(0);
 
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
 
-    SignalLogger.setPath("/media/sda/ctre-logs/");
+    // SignalLogger.setPath("/media/sda1/");
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+
+    if (!intakeSensor.get() && !(Manifest.JoystickManifest.rumble.nowCounting()))
+      Manifest.JoystickManifest.rumble.Intaked();
+    if (ConstantsIO.rumbleNeedsPing) Manifest.JoystickManifest.rumble.update();
   }
 
   @Override
@@ -60,9 +61,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    SignalLogger.start();
+    //  SignalLogger.start();
 
-    LED.set(-0.97);
   }
 
   @Override
@@ -70,7 +70,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopExit() {
-    SignalLogger.stop();
+    // SignalLogger.stop();
   }
 
   @Override
