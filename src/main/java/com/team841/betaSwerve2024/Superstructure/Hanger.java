@@ -5,18 +5,21 @@
 package com.team841.betaSwerve2024.Superstructure;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.team841.betaSwerve2024.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Hanger extends SubsystemBase {
-  private CANSparkMax LeftHangerMotor;
-  private CANSparkMax RightHangerMotor;
+  private TalonFX LeftHangerMotor;
+  private TalonFX RightHangerMotor;
 
   /** Creates a new Hanger. */
   public Hanger() {
-    LeftHangerMotor = new CANSparkMax(ConstantsIO.CANID.kHangerMoterLeft, MotorType.kBrushed);
-    RightHangerMotor = new CANSparkMax(ConstantsIO.CANID.kHangerMotorRight, MotorType.kBrushed);
+    LeftHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMoterLeft, "rio");
+    RightHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMotorRight, "rio");
+    
+
   }
 
   @Override
@@ -25,8 +28,8 @@ public class Hanger extends SubsystemBase {
   }
 
   public void ExtendHanger() {
-    LeftHangerMotor.set(.25);
-    RightHangerMotor.set(.25);
+    LeftHangerMotor.set(0.25);
+    RightHangerMotor.set(0.25);
   }
 
   public void RetractHanger() {

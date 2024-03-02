@@ -45,7 +45,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public boolean isShooting() {
-    return this.topShooter.getVelocity().getValue() > 45;
+    return this.topShooter.getVelocity().getValue() > 0;
   }
 
   public void stopShooter() {
