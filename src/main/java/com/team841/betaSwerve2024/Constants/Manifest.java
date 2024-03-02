@@ -9,6 +9,7 @@ import com.team841.betaSwerve2024.Superstructure.Indexer;
 import com.team841.betaSwerve2024.Superstructure.Intake;
 import com.team841.betaSwerve2024.Superstructure.LED;
 import com.team841.betaSwerve2024.Superstructure.Shooter;
+import com.team841.betaSwerve2024.Superstructure.Hanger;;
 
 public class Manifest {
   public class SubsystemManifest {
@@ -22,6 +23,9 @@ public class Manifest {
     public static final Arm arm = new Arm();
 
     public static final LED led = new LED();
+
+    public static final Hanger hanger = new Hanger();
+
   }
 
   public class JoystickManifest {

@@ -2,15 +2,33 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.35,
-      "y": 7.0
+      "x": 1.4,
+      "y": 6.82
     },
-    "rotation": 180.0
+    "rotation": -127.47362811584902
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": null
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustStop"
+          }
+        },
         {
           "type": "parallel",
           "data": {
@@ -18,13 +36,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Left start to left note"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "SpinUp"
+                  "pathName": " Left on Start line to left note"
                 }
               },
               {
@@ -34,19 +46,13 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.9
+                        "waitTime": 0.7
                       }
                     },
                     {
                       "type": "named",
                       "data": {
-                        "name": "JustShoot"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "IntakeOn"
+                        "name": "AllSubystems"
                       }
                     }
                   ]
@@ -59,12 +65,6 @@
           "type": "named",
           "data": {
             "name": "JustStop"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
           }
         },
         {
@@ -95,25 +95,6 @@
                     }
                   ]
                 }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.3
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "JustShoot"
-                      }
-                    }
-                  ]
-                }
               }
             ]
           }
@@ -128,25 +109,6 @@
           "type": "named",
           "data": {
             "name": "JustStop"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Middle to Right"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "SpinUp"
-                }
-              }
-            ]
           }
         }
       ]

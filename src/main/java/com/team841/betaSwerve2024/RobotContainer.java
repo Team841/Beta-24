@@ -35,9 +35,9 @@ public class RobotContainer {
   private final Arm arm = Manifest.SubsystemManifest.arm;
 
   private final LED led = Manifest.SubsystemManifest.led;
-  private final Shooter shooter = SubsystemManifest.shooter;
+ 
 
-  private final Hanger hanger = SubsystemManifest.hanger;
+  private final Hanger hanger = Manifest.SubsystemManifest.hanger;
 
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
@@ -91,7 +91,7 @@ public class RobotContainer {
         .onFalse(new InstantCommand(shooter::stopShooter));
     cojoystick
         .rightTrigger()
-        .onTrue(new InstantCommand(Indexer::Pass))
+        .onTrue(new ConditionalCommand(new InstantCommand(Indexer::Pass), new InstantCommand(Indexer::stopIndexer), ()->shooter.isShooting()))
         .onFalse(new InstantCommand(Indexer::stopIndexer));
     cojoystick
         .rightBumper()

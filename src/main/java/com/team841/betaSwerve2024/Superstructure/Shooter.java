@@ -44,6 +44,9 @@ public class Shooter extends SubsystemBase {
     return topShooter.getMotorVoltage().getValue();
   }
 
+  public boolean isShooting(){
+    return this.topShooter.getVelocity().getValue() >45;
+  }  
   public void stopShooter() {
     topShooter.stopMotor();
     bottomShooter.stopMotor();
