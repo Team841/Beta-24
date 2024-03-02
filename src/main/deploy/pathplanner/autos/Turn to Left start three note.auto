@@ -2,21 +2,15 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.4,
-      "y": 6.82
+      "x": 1.2,
+      "y": 7.3
     },
-    "rotation": -127.47362811584902
+    "rotation": 180.0
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
-        {
-          "type": "path",
-          "data": {
-            "pathName": null
-          }
-        },
         {
           "type": "named",
           "data": {
@@ -24,9 +18,33 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "Turn to speaker to Left Start"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "JustStop"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
           }
         },
         {
@@ -40,22 +58,9 @@
                 }
               },
               {
-                "type": "sequential",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.7
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "AllSubystems"
-                      }
-                    }
-                  ]
+                  "name": "IntakeOn"
                 }
               }
             ]
@@ -64,7 +69,19 @@
         {
           "type": "named",
           "data": {
-            "name": "JustStop"
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
           }
         },
         {
@@ -78,25 +95,18 @@
                 }
               },
               {
-                "type": "sequential",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.7
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "AllSubystems"
-                      }
-                    }
-                  ]
+                  "name": "IntakeOn"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
           }
         },
         {
