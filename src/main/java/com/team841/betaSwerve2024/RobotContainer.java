@@ -99,6 +99,9 @@ public class RobotContainer {
             new SequentialCommandGroup(
                 new InstantCommand(Indexer::stopIndexer),
                 new InstantCommand(shooter::stopShooter)));
+      cojoystick.povUp().whileTrue(new InstantCommand(hanger::ExtendHanger));
+      cojoystick.povDown().whileTrue(new InstantCommand(hanger::RetractHanger));
+      cojoystick.povCenter().whileTrue(new InstantCommand(hanger::StopHanger));
   }
 
   public RobotContainer() {
