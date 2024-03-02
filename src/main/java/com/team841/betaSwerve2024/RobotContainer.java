@@ -28,14 +28,13 @@ public class RobotContainer {
   private final Drivetrain drivetrain = Manifest.SubsystemManifest.drivetrain; // My drivetrain
   private final Intake intake = Manifest.SubsystemManifest.intake;
 
-  private final Indexer Indexer = Manifest.SubsystemManifest.indexer;
+  private final Indexer indexer = Manifest.SubsystemManifest.indexer;
 
   private final Shooter shooter = Manifest.SubsystemManifest.shooter;
 
   private final Arm arm = Manifest.SubsystemManifest.arm;
 
   private final LED led = Manifest.SubsystemManifest.led;
- 
 
   private final Hanger hanger = Manifest.SubsystemManifest.hanger;
 
@@ -83,7 +82,7 @@ public class RobotContainer {
   // xbox
   public void configureCoBindings() {
 
-    Command c_command = new IntakeCommand(intake, Indexer);
+    Command c_command = new IntakeCommand(intake, indexer);
     cojoystick.leftBumper().whileTrue(c_command);
     cojoystick
         .leftTrigger()
@@ -91,50 +90,58 @@ public class RobotContainer {
         .onFalse(new InstantCommand(shooter::stopShooter));
     cojoystick
         .rightTrigger()
-        .onTrue(new ConditionalCommand(new InstantCommand(Indexer::Pass), new InstantCommand(Indexer::stopIndexer), ()->shooter.isShooting()))
-        .onFalse(new InstantCommand(Indexer::stopIndexer));
+        .onTrue(
+            new ConditionalCommand(
+                new InstantCommand(indexer::Pass),
+                new InstantCommand(indexer::stopIndexer),
+                () -> shooter.isShooting()))
+        .onFalse(new InstantCommand(indexer::stopIndexer));
     cojoystick
         .rightBumper()
         .onTrue(
             new SequentialCommandGroup(
-                new InstantCommand(Indexer::stopIndexer),
+                new InstantCommand(indexer::stopIndexer),
                 new InstantCommand(shooter::stopShooter)));
+    cojoystick
+        .x()
+        .onTrue(new InstantCommand(shooter::ampShot))
+        .onFalse(new InstantCommand(shooter::stopShooter));
   }
 
   public RobotContainer() {
     // Register Named Commands
-    NamedCommands.registerCommand("IntakeOn", new IntakeCommand(intake, Indexer));
+    NamedCommands.registerCommand("IntakeOn", new IntakeCommand(intake, indexer));
     NamedCommands.registerCommand(
         "Shoot",
         new ParallelCommandGroup(
                 new InstantCommand(shooter::spinUp),
-                new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(Indexer::Pass)))
+                new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(indexer::Pass)))
             .withTimeout(3));
     NamedCommands.registerCommand("SpinUp", new InstantCommand(shooter::spinUp));
-    NamedCommands.registerCommand("JustShoot", new InstantCommand(Indexer::Pass).withTimeout(0.5));
+    NamedCommands.registerCommand("JustShoot", new InstantCommand(indexer::Pass).withTimeout(0.5));
     NamedCommands.registerCommand(
         "ALLSYSTEMSGO",
         new ParallelCommandGroup(
                 new InstantCommand(intake::intake),
                 new InstantCommand(shooter::spinUp),
-                new InstantCommand(Indexer::Pass))
+                new InstantCommand(indexer::Pass))
             .withTimeout(2.5));
     NamedCommands.registerCommand(
         "FunnyInake",
         new ParallelCommandGroup(
-                new InstantCommand(intake::intake), new InstantCommand(Indexer::Pass))
+                new InstantCommand(intake::intake), new InstantCommand(indexer::Pass))
             .withTimeout(0.75));
     NamedCommands.registerCommand(
         "JustStop",
         new ParallelCommandGroup(
-            new InstantCommand(Indexer::stopIndexer), new InstantCommand(shooter::stopShooter)));
+            new InstantCommand(indexer::stopIndexer), new InstantCommand(shooter::stopShooter)));
 
     configureBindings();
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
 
-    led.setDefaultCommand(new UpdateLED(led, Indexer));
+    led.setDefaultCommand(new UpdateLED(led, indexer));
   }
 
   public Command getAutonomousCommand() {

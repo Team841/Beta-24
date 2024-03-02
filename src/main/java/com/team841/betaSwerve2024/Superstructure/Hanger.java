@@ -4,13 +4,15 @@
 
 package com.team841.betaSwerve2024.Superstructure;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
 import com.team841.betaSwerve2024.Constants.*;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 public class Hanger extends SubsystemBase {
   private CANSparkMax LeftHangerMotor;
   private CANSparkMax RightHangerMotor;
+
   /** Creates a new Hanger. */
   public Hanger() {
     LeftHangerMotor = new CANSparkMax(ConstantsIO.CANID.kHangerMoterLeft, MotorType.kBrushed);
@@ -21,14 +23,17 @@ public class Hanger extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
   public void ExtendHanger() {
     LeftHangerMotor.set(.25);
     RightHangerMotor.set(.25);
   }
+
   public void RetractHanger() {
     LeftHangerMotor.set(-.25);
     RightHangerMotor.set(-.25);
   }
+
   public void StopHanger() {
     LeftHangerMotor.set(0);
     RightHangerMotor.set(0);

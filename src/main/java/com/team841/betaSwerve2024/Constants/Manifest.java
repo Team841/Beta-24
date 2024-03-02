@@ -5,11 +5,11 @@ import com.team841.Util.BioCommandXboxController;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Rumble;
 import com.team841.betaSwerve2024.Superstructure.Arm;
+import com.team841.betaSwerve2024.Superstructure.Hanger;
 import com.team841.betaSwerve2024.Superstructure.Indexer;
 import com.team841.betaSwerve2024.Superstructure.Intake;
 import com.team841.betaSwerve2024.Superstructure.LED;
 import com.team841.betaSwerve2024.Superstructure.Shooter;
-import com.team841.betaSwerve2024.Superstructure.Hanger;;
 
 public class Manifest {
   public class SubsystemManifest {
@@ -25,7 +25,6 @@ public class Manifest {
     public static final LED led = new LED();
 
     public static final Hanger hanger = new Hanger();
-
   }
 
   public class JoystickManifest {
