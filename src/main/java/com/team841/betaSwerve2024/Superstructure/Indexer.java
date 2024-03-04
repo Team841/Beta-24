@@ -36,6 +36,10 @@ public class Indexer extends SubsystemBase {
     return !(indexerSensor.get());
   }
 
+  public void reverseIndexer(){
+    setDutyCyle(0.6);
+  }
+
   @Override
   public void periodic() {}
 }
