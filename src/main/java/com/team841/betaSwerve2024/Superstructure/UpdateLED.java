@@ -27,8 +27,7 @@ public class UpdateLED extends Command {
   public void execute() {
     if (f_indexer.getindexerSensor()) {
       f_led.setColor("Green");
-    }  
-    else {
+    } else {
       f_led.setColor("Violet");
     }
   }

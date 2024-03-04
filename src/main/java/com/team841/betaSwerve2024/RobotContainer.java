@@ -111,9 +111,13 @@ public class RobotContainer {
         .onFalse(new InstantCommand(shooter::stopShooter));
     cojoystick
         .b()
-            .onTrue(new ParallelCommandGroup(new InstantCommand(intake::outTake), new InstantCommand(indexer::reverseIndexer)))
-            .onFalse(new SequentialCommandGroup(new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
-    }
+        .onTrue(
+            new ParallelCommandGroup(
+                new InstantCommand(intake::outTake), new InstantCommand(indexer::reverseIndexer)))
+        .onFalse(
+            new SequentialCommandGroup(
+                new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
+  }
 
   public RobotContainer() {
     // Register Named Commands

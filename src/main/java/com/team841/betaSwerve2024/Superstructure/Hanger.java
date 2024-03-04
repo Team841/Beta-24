@@ -4,15 +4,11 @@
 
 package com.team841.betaSwerve2024.Superstructure;
 
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.revrobotics.CANSparkMax;
 import com.team841.betaSwerve2024.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import com.ctre.phoenix6.configs.MotorOutputConfigs;
-import com.ctre.phoenix6.controls.StaticBrake;
 
 public class Hanger extends SubsystemBase {
   private TalonFX LeftHangerMotor;
@@ -22,8 +18,10 @@ public class Hanger extends SubsystemBase {
   public Hanger() {
     LeftHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMoterLeft, "rio");
     RightHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMotorRight, "rio");
-    LeftHangerMotor.getConfigurator().apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake));
-    RightHangerMotor.getConfigurator().apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake));
+    LeftHangerMotor.getConfigurator()
+        .apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake));
+    RightHangerMotor.getConfigurator()
+        .apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake));
   }
 
   @Override
