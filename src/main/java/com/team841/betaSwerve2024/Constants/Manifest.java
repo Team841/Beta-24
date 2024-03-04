@@ -5,6 +5,7 @@ import com.team841.Util.BioCommandXboxController;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Rumble;
 import com.team841.betaSwerve2024.Superstructure.Arm;
+import com.team841.betaSwerve2024.Superstructure.Hanger;
 import com.team841.betaSwerve2024.Superstructure.Indexer;
 import com.team841.betaSwerve2024.Superstructure.Intake;
 import com.team841.betaSwerve2024.Superstructure.LED;
@@ -22,6 +23,8 @@ public class Manifest {
     public static final Arm arm = new Arm();
 
     public static final LED led = new LED();
+
+    public static final Hanger hanger = new Hanger();
   }
 
   public class JoystickManifest {

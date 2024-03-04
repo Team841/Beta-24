@@ -4,31 +4,41 @@
 
 package com.team841.betaSwerve2024.Superstructure;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.team841.betaSwerve2024.Constants.*;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 public class Hanger extends SubsystemBase {
-  private CANSparkMax LeftHangerMotor;
-  private CANSparkMax RightHangerMotor;
+  private TalonFX LeftHangerMotor;
+  private TalonFX RightHangerMotor;
+
   /** Creates a new Hanger. */
   public Hanger() {
-    LeftHangerMotor = new CANSparkMax(ConstantsIO.CANID.kHangerMoterLeft, MotorType.kBrushed);
-    RightHangerMotor = new CANSparkMax(ConstantsIO.CANID.kHangerMotorRight, MotorType.kBrushed);
+    LeftHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMoterLeft, "rio");
+    RightHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMotorRight, "rio");
+    LeftHangerMotor.getConfigurator()
+        .apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake));
+    RightHangerMotor.getConfigurator()
+        .apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake));
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
   public void ExtendHanger() {
-    LeftHangerMotor.set(.25);
-    RightHangerMotor.set(.25);
+    LeftHangerMotor.set(1.00);
+    RightHangerMotor.set(-1.00);
   }
+
   public void RetractHanger() {
-    LeftHangerMotor.set(-.25);
-    RightHangerMotor.set(-.25);
+    LeftHangerMotor.set(-.45);
+    RightHangerMotor.set(.45);
   }
+
   public void StopHanger() {
     LeftHangerMotor.set(0);
     RightHangerMotor.set(0);
