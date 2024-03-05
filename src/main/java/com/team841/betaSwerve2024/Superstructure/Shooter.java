@@ -2,6 +2,7 @@ package com.team841.betaSwerve2024.Superstructure;
 
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.SC;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -9,8 +10,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
 
-  private final TalonFX bottomShooter = new TalonFX(12, "rio");
-  private final TalonFX topShooter = new TalonFX(11, "rio");
+  private final TalonFX bottomShooter = new TalonFX(ConstantsIO.CANID.bottomShooter, "rio");
+  private final TalonFX topShooter = new TalonFX(ConstantsIO.CANID.topShooter, "rio");
 
   public Shooter() {
     bottomShooter.getConfigurator().apply(SC.Shooter.k_BottomConfiguration);

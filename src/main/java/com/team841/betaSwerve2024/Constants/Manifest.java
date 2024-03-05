@@ -1,15 +1,10 @@
 package com.team841.betaSwerve2024.Constants;
 
-import com.team841.Util.BioCommandPS5Controller;
-import com.team841.Util.BioCommandXboxController;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
-import com.team841.betaSwerve2024.Rumble;
-import com.team841.betaSwerve2024.Superstructure.Arm;
-import com.team841.betaSwerve2024.Superstructure.Hanger;
-import com.team841.betaSwerve2024.Superstructure.Indexer;
-import com.team841.betaSwerve2024.Superstructure.Intake;
-import com.team841.betaSwerve2024.Superstructure.LED;
-import com.team841.betaSwerve2024.Superstructure.Shooter;
+import com.team841.betaSwerve2024.FeedBack;
+import com.team841.betaSwerve2024.Superstructure.*;
+import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class Manifest {
   public class SubsystemManifest {
@@ -28,11 +23,11 @@ public class Manifest {
   }
 
   public class JoystickManifest {
-    public static final BioCommandPS5Controller joystick =
-        new BioCommandPS5Controller(ConstantsIO.OI.driverPortLeft); // My joystick
-    public static final BioCommandXboxController cojoystick =
-        new BioCommandXboxController(ConstantsIO.OI.codriverPort);
+    public static final CommandPS5Controller joystick =
+        new CommandPS5Controller(ConstantsIO.OI.driverPortLeft); // My joystick
+    public static final CommandXboxController cojoystick =
+        new CommandXboxController(ConstantsIO.OI.codriverPort);
 
-    public static final Rumble rumble = new Rumble();
+    public static final FeedBack FEED_BACK = new FeedBack();
   }
 }

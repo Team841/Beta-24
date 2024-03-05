@@ -4,27 +4,33 @@
 
 package com.team841.betaSwerve2024.Superstructure;
 
+import com.team841.betaSwerve2024.Constants.Manifest;
+import com.team841.betaSwerve2024.Constants.SC;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LED extends SubsystemBase {
-  private final Spark LED = new Spark(4);
+
+  private final Spark LED = new Spark(SC.Intake.kBlinkingID);
+
+  private Indexer indexer = Manifest.SubsystemManifest.indexer;
 
   /** Creates a new LED. */
   public LED() {}
 
   public void setColor(String color) {
-    if (color == "Yellow") {
-      LED.set(0.91);
-    } else if (color == "Violet") {
-      LED.set(0.91);
-    } else if (color == "Green") {
-      LED.set(.77);
+    switch (color) {
+      case "Violet" -> LED.set(0.91);
+      case "Green" -> LED.set(.77);
     }
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    if (indexer.getindexerSensor()) {
+      setColor("Green");
+    } else {
+      setColor("Violet");
+    }
   }
 }

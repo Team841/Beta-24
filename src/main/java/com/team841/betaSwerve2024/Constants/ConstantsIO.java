@@ -14,22 +14,18 @@ public class ConstantsIO {
 
   public static final class CANID {
 
-    public static final int kIntakeOne = 2;
-    public static final int kHangerMoterLeft = 15;
+    public static final int kIntake = 2;
+
+    public static final int kIndexerTalon = 10;
+
+    public static final int kHangerMotorLeft = 15;
     public static final int kHangerMotorRight = 3;
 
-    public static final class PWMPorts {
-      // LED BLINKIN
-      // public static final int kblinkin = 4;
+    public static final int kLeftArmJoint = 13;
+    public static final int kRightArmJoint = 14;
 
-      // Intake sensor
-      public static final int Intake_Index_Sensor = 0;
+    public static final int bottomShooter = 12;
 
-      // Arm sensor
-      // public static final int Arm_Index_Sensor = 1;
-
-      // Indexer sensor
-      // public static final int Kicker_Index_Sensor = 5;
-    }
+    public static final int topShooter = 11;
   }
 }

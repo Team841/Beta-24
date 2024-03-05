@@ -11,13 +11,12 @@ import com.team841.betaSwerve2024.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Hanger extends SubsystemBase {
-  private TalonFX LeftHangerMotor;
-  private TalonFX RightHangerMotor;
+  private TalonFX LeftHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMotorLeft, "rio");
+  private TalonFX RightHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMotorRight, "rio");
 
   /** Creates a new Hanger. */
   public Hanger() {
-    LeftHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMoterLeft, "rio");
-    RightHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMotorRight, "rio");
+
     LeftHangerMotor.getConfigurator()
         .apply(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake));
     RightHangerMotor.getConfigurator()

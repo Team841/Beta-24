@@ -5,8 +5,6 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
-import com.team841.Util.BioCommandPS5Controller;
-import com.team841.Util.BioCommandXboxController;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
@@ -17,13 +15,14 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.*;
+import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
-  private double MaxSpeed = Swerve.kSpeedAt12VoltsMps; // 6 meters per second desired top speed
-  private double MaxAngularRate = 4 * Math.PI;
-  // 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
-  public final BioCommandPS5Controller joystick = Manifest.JoystickManifest.joystick; // My joystick
-  public final BioCommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick;
+
+  public final CommandPS5Controller joystick = Manifest.JoystickManifest.joystick; // My joystick
+  public final CommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick;
+
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final Drivetrain drivetrain = Manifest.SubsystemManifest.drivetrain; // My drivetrain
   private final Intake intake = Manifest.SubsystemManifest.intake;
@@ -40,14 +39,14 @@ public class RobotContainer {
 
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
-          .withDeadband(MaxSpeed * 0.1)
-          .withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
+          .withDeadband(Swerve.MaxSpeed * 0.1)
+          .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
           .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
 
   // driving in open loop
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
-  private final Telemetry logger = new Telemetry(MaxSpeed);
+  private final Telemetry logger = new Telemetry(Swerve.MaxSpeed);
 
   private final SendableChooser<Command> autoChooser;
 
@@ -56,13 +55,14 @@ public class RobotContainer {
         drivetrain.applyRequest(
             () ->
                 drive
-                    .withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with
+                    .withVelocityX(-joystick.getLeftY() * Swerve.MaxSpeed) // Drive forward with
                     // negative Y (forward)
                     .withVelocityY(
-                        -joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
+                        -joystick.getLeftX() * Swerve.MaxSpeed) // Drive left with negative X (left)
                     .withRotationalRate(
                         -joystick.getRightX()
-                            * MaxAngularRate) // Drive counterclockwise with negative X (left)
+                            * Swerve
+                                .MaxAngularRate) // Drive counterclockwise with negative X (left)
             ));
 
     // joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
@@ -151,8 +151,6 @@ public class RobotContainer {
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
-
-    led.setDefaultCommand(new UpdateLED(led, indexer));
   }
 
   public Command getAutonomousCommand() {

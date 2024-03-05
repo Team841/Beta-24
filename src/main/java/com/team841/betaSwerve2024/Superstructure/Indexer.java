@@ -2,13 +2,14 @@ package com.team841.betaSwerve2024.Superstructure;
 
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.SC;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Indexer extends SubsystemBase {
 
-  private final TalonFX indexerTalon = new TalonFX(10, "rio");
+  private final TalonFX indexerTalon = new TalonFX(ConstantsIO.CANID.kIndexerTalon, "rio");
 
   private DigitalInput indexerSensor = new DigitalInput(SC.Indexer.k_IndexerSensorChannel);
 

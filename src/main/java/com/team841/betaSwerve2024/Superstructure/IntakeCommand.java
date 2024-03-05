@@ -26,7 +26,6 @@ public class IntakeCommand extends Command {
   public void end(boolean interrupted) {
     f_intake.stopIntake();
     f_indexer.stopIndexer();
-    f_intake.resetStop();
   }
 
   @Override

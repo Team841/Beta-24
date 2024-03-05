@@ -26,9 +26,9 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
 
-    if (!intakeSensor.get() && !(Manifest.JoystickManifest.rumble.nowCounting()))
-      Manifest.JoystickManifest.rumble.Intaked();
-    if (ConstantsIO.rumbleNeedsPing) Manifest.JoystickManifest.rumble.update();
+    if (!intakeSensor.get() && !(Manifest.JoystickManifest.FEED_BACK.nowCounting()))
+      Manifest.JoystickManifest.FEED_BACK.Intaked();
+    if (ConstantsIO.rumbleNeedsPing) Manifest.JoystickManifest.FEED_BACK.update();
   }
 
   @Override

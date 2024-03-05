@@ -118,7 +118,9 @@ public class SC {
   }
 
   public static class Intake {
-    public static final int currentLimit = 60; // in amps
+    public static final int kCurrentLimit = 60; // in amps
+
+    public static final int kBlinkingID = 4;
   }
 
   public static class Arm {
@@ -164,4 +166,6 @@ public class SC {
             .withMotionMagic(k_ArmMotionMagicConfig)
             .withSlot0(k_slot0);
   }
+
+  public static class Hanger {}
 }
