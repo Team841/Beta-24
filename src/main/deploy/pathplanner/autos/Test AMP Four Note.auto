@@ -122,13 +122,19 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Middle to Right"
+                  "pathName": "Copy of Middle to Right"
                 }
               },
               {
@@ -138,18 +144,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Right to middle"
           }
         },
         {

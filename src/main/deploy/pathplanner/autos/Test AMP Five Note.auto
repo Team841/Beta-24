@@ -122,13 +122,56 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Middle to Right"
+                  "pathName": "Copy of Middle to Right"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOn"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustStop"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "3 to 6th note"
                 }
               },
               {
@@ -149,7 +192,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right to middle"
+            "pathName": "6th to speaker"
           }
         },
         {
