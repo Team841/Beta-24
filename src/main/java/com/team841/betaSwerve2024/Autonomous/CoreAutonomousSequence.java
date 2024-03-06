@@ -38,7 +38,7 @@ public class CoreAutonomousSequence extends SequentialCommandGroup {
         new PIDController(10, 0, 0),
         (ChassisSpeeds speeds) ->
             a_drivetrain.setControl(new SwerveRequest.ApplyChassisSpeeds().withSpeeds(speeds)),
-        () -> 
+        () ->
             DriverStation.getAlliance().orElse(DriverStation.Alliance.Blue) == DriverStation.Alliance.Red
         ,
         a_drivetrain);
