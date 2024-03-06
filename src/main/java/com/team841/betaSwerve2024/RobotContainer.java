@@ -5,6 +5,7 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.team841.betaSwerve2024.Autonomous.Autos;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
@@ -155,6 +156,7 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     // auto chooser on shuffleboard
-    return autoChooser.getSelected();
+    // return autoChooser.getSelected();
+    return new Autos.FourNoteCenterStart(drivetrain, intake, indexer, shooter);
   }
 }
