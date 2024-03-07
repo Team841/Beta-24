@@ -151,12 +151,15 @@ public class RobotContainer {
     configureBindings();
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+    autoChooser.addOption(
+        "Choreo 4 Note auto test 1",
+        new Autos.FourNoteCenterStart(drivetrain, intake, indexer, shooter));
     SmartDashboard.putData("Auto Mode", autoChooser);
   }
 
   public Command getAutonomousCommand() {
     // auto chooser on shuffleboard
-    // return autoChooser.getSelected();
-    return new Autos.FourNoteCenterStart(drivetrain, intake, indexer, shooter);
+    return autoChooser.getSelected();
+    // return new Autos.FourNoteCenterStart(drivetrain, intake, indexer, shooter);
   }
 }
