@@ -2,7 +2,7 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.1980586123334407,
+      "x": 1.4,
       "y": 7.3
     },
     "rotation": 180.0
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Turn to speaker to Left Start"
+            "pathName": "S-AMP to Starting line"
           }
         },
         {
@@ -48,7 +48,44 @@
           }
         },
         {
-          "type": "race",
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": " Left on Start line to left note"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOn"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
+          "type": "parallel",
           "data": {
             "commands": [
               {
@@ -91,7 +128,7 @@
           }
         },
         {
-          "type": "race",
+          "type": "parallel",
           "data": {
             "commands": [
               {
