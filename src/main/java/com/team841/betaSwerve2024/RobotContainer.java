@@ -118,6 +118,8 @@ public class RobotContainer {
         .onFalse(
             new SequentialCommandGroup(
                 new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
+
+    cojoystick.y().onTrue(new InstantCommand(()-> System.exit(404)));
   }
 
   public RobotContainer() {
@@ -154,6 +156,7 @@ public class RobotContainer {
     autoChooser.addOption(
         "Choreo 4 Note auto test 1",
         new Autos.FourNoteCenterStart(drivetrain, intake, indexer, shooter));
+    autoChooser.addOption("Choreo i meter test", new Autos.OneMeterTest(drivetrain, intake, indexer, shooter));
     SmartDashboard.putData("Auto Mode", autoChooser);
   }
 

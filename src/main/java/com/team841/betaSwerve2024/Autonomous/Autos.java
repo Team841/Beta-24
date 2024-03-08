@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
+import java.nio.file.Path;
+
 public class Autos {
   public static class FourNoteCenterStart extends CoreAutonomousSequence {
 
@@ -47,6 +49,20 @@ public class Autos {
           JustShoot(),
           new WaitCommand(0.3),
           SuperstructureStop());
+    }
+  }
+
+  public static class OneMeterTest extends CoreAutonomousSequence {
+    private final String startingPath = "i meter.1";
+    private final PathPlannerPath oneMeterPath = PathPlannerPath.fromChoreoTrajectory(startingPath);
+
+    public OneMeterTest(Drivetrain drive, Intake intake, Indexer indexer, Shooter shooter) {
+      super(drive, intake, indexer, shooter);
+
+      addCommands(
+              new InstantCommand(() -> ResetStartingPoseFromTrajectory(startingPath)),
+              FollowPath(oneMeterPath)
+      );
     }
   }
 }

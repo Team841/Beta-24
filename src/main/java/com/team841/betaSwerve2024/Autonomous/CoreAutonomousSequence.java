@@ -53,8 +53,8 @@ public class CoreAutonomousSequence extends SequentialCommandGroup {
         // ChassisSpeeds
         new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in
             // your Constants class
-            new PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
-            new PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
+            new PIDConstants(5.65, 0.0, 0.7), // Translation PID constants
+            new PIDConstants(1.5, 0.0, 0.0), // Rotation PID constants
             4.5, // Max module speed, in m/s
             0.28780635091142, // Drive base radius in meters. Distance from robot center to furthest
             // module. Calculated by sqrt(10.375^2*2)
