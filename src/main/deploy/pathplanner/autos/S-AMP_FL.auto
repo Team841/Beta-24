@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.56,
-      "y": 4.08
+      "x": 1.4,
+      "y": 7.3
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Start 8, 7 and 6"
+            "pathName": "S-AMP to Starting line"
           }
         },
         {
@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 1.0
           }
         },
         {
@@ -42,13 +42,19 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "8 note path"
+                  "pathName": " Left on Start line to left note"
                 }
               },
               {
@@ -63,55 +69,19 @@
         {
           "type": "named",
           "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "8 note to speaker"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
             "name": "JustShoot"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "JustStop"
+            "waitTime": 1.0
           }
         },
         {
           "type": "named",
           "data": {
             "name": "SpinUp"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "JustShoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "JustStop"
           }
         }
       ]

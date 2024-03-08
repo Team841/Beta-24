@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.2,
-      "y": 7.3
+      "x": 1.28,
+      "y": 3.4
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Turn to speaker to Left Start"
+            "pathName": "Start 8, 7 and 6"
           }
         },
         {
@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.5
           }
         },
         {
@@ -42,19 +42,13 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": " Left on Start line to left note"
+                  "pathName": "8 note path"
                 }
               },
               {
@@ -69,13 +63,31 @@
         {
           "type": "named",
           "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "8 note to speaker"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "JustShoot"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustStop"
           }
         },
         {
