@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.32,
-      "y": 3.28
+      "x": 0.56,
+      "y": 4.08
     },
-    "rotation": -179.3579682055393
+    "rotation": 180.0
   },
   "command": {
     "type": "sequential",
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "p1 source race to midline"
+            "pathName": "Start 8, 7 and 6"
           }
         },
         {
@@ -48,7 +48,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "p2 source race to midline"
+                  "pathName": "8 note path"
                 }
               },
               {
@@ -69,7 +69,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "p3 source race to midline"
+            "pathName": "8 note to speaker"
           }
         },
         {
@@ -88,6 +88,12 @@
           "type": "named",
           "data": {
             "name": "JustStop"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
           }
         }
       ]
