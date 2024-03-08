@@ -12,6 +12,7 @@ public class Indexer extends SubsystemBase {
   private final TalonFX indexerTalon = new TalonFX(ConstantsIO.CANID.kIndexerTalon, "rio");
 
   private DigitalInput indexerSensor = new DigitalInput(SC.Indexer.k_IndexerSensorChannel);
+  private DigitalInput leftIndexerSensor = new DigitalInput(3);
 
   public Indexer() {
     indexerTalon.getConfigurator().apply(SC.Indexer.k_IndexerConfiguration);
@@ -25,6 +26,10 @@ public class Indexer extends SubsystemBase {
     setDutyCyle(-0.6);
   }
 
+  public void halfIntake() {
+    setDutyCyle(-0.3);
+  }
+
   public void stopIndexer() {
     indexerTalon.stopMotor();
   }
@@ -35,6 +40,10 @@ public class Indexer extends SubsystemBase {
 
   public boolean getindexerSensor() {
     return !(indexerSensor.get());
+  }
+
+  public boolean getLeftIndexerSensor() {
+    return !(leftIndexerSensor.get());
   }
 
   public void reverseIndexer() {
