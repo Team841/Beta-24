@@ -20,7 +20,15 @@ public class IntakeCommand extends Command {
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+    if (f_indexer.getindexerSensor() && !(f_indexer.getLeftIndexerSensor())){
+      f_indexer.halfIntake();
+    } else if (f_indexer.getLeftIndexerSensor() && !(f_indexer.getindexerSensor())){
+      f_indexer.halfIntake();      
+    } else if (!(f_indexer.getLeftIndexerSensor()) && !(f_indexer.getindexerSensor())){
+      f_indexer.intake();
+    }
+  }
 
   @Override
   public void end(boolean interrupted) {
@@ -30,6 +38,6 @@ public class IntakeCommand extends Command {
 
   @Override
   public boolean isFinished() {
-    return f_indexer.getindexerSensor();
+    return f_indexer.getindexerSensor() && f_indexer.getLeftIndexerSensor();
   }
 }
