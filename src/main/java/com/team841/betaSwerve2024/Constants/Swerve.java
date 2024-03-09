@@ -93,7 +93,7 @@ public class Swerve {
   // Front Right
   private static final int kFrontRightDriveMotorId = 1;
   private static final int kFrontRightSteerMotorId = 2;
-  private static final int kFrontRightEncoderId = 0;
+  private static final int kFrontRightEncoderId = 1;
   private static final double kFrontRightEncoderOffset = -0.472412109375;
 
   private static final double kFrontRightXPosInches = 10.375;
