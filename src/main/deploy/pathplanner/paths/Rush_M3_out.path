@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.5521146085027211,
-        "y": 4.092954054853979
+        "x": 2.55,
+        "y": 3.4
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5521146085027233,
-        "y": 4.092954054853979
+        "x": 3.612820911903561,
+        "y": 2.144466366397522
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.2,
-        "y": 3.28
+        "x": 8.5,
+        "y": 4.365103352419147
       },
       "prevControl": {
-        "x": 1.3986930425708781,
-        "y": 3.28
+        "x": 5.9279817632405205,
+        "y": 5.063543261622908
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,21 +32,21 @@
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 3.25,
+    "maxVelocity": 4.5,
+    "maxAcceleration": 4.2,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 0.0,
-    "rotation": 140.0,
-    "rotateFast": false
+    "velocity": 0,
+    "rotation": 180.0,
+    "rotateFast": true
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Rush M out",
   "previewStartingState": {
-    "rotation": 178.94881925045627,
+    "rotation": 130.44090929164128,
     "velocity": 0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

@@ -121,7 +121,7 @@ public class RobotContainer {
 
   public RobotContainer() {
     // Register Named Commands
-    NamedCommands.registerCommand("IntakeOn", new IntakeCommand(intake, indexer));
+    NamedCommands.registerCommand("IntakeOn", new IntakeAuto(intake, indexer));
     NamedCommands.registerCommand(
         "Shoot",
         new ParallelCommandGroup(
