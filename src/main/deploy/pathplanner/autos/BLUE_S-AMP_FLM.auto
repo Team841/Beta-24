@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "S-AMP to Starting line"
+            "pathName": "BLUE_S-AMP to Starting line"
           }
         },
         {
@@ -54,7 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": " Left on Start line_FL"
+                  "pathName": " BLUE_Left on Start line_FL"
                 }
               },
               {
@@ -82,6 +82,43 @@
           "type": "named",
           "data": {
             "name": "SpinUp"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "BLUE_Left to middle"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOn"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustStop"
           }
         }
       ]

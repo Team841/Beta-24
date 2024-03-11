@@ -16,19 +16,30 @@
     },
     {
       "anchor": {
-        "x": 8.5,
-        "y": 4.365103352419147
+        "x": 9.5,
+        "y": 4.517379936315037
       },
       "prevControl": {
-        "x": 5.9279817632405205,
-        "y": 5.063543261622908
+        "x": 6.47674131459374,
+        "y": 5.1325427083072475
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 180.0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 0.8,
+      "rotationDegrees": 180.0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -40,7 +51,7 @@
   "goalEndState": {
     "velocity": 0,
     "rotation": 180.0,
-    "rotateFast": true
+    "rotateFast": false
   },
   "reversed": false,
   "folder": "Rush M out",

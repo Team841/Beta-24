@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.2,
-      "y": 4.3
+      "x": 1.4,
+      "y": 7.3
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right start to right note"
+            "pathName": "BLUE_S-AMP to Starting line"
           }
         },
         {
@@ -54,7 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Right line to right note"
+                  "pathName": " BLUE_Left on Start line_FL"
                 }
               },
               {

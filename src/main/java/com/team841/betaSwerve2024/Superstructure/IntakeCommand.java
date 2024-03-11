@@ -21,11 +21,11 @@ public class IntakeCommand extends Command {
 
   @Override
   public void execute() {
-    if (f_indexer.getindexerSensor() && !(f_indexer.getLeftIndexerSensor())){
+    if (f_indexer.getindexerSensor() && !(f_indexer.getLeftIndexerSensor())) {
       f_indexer.halfIntake();
-    } else if (f_indexer.getLeftIndexerSensor() && !(f_indexer.getindexerSensor())){
-      f_indexer.halfIntake();      
-    } else if (!(f_indexer.getLeftIndexerSensor()) && !(f_indexer.getindexerSensor())){
+    } else if (f_indexer.getLeftIndexerSensor() && !(f_indexer.getindexerSensor())) {
+      f_indexer.halfIntake();
+    } else if (!(f_indexer.getLeftIndexerSensor()) && !(f_indexer.getindexerSensor())) {
       f_indexer.intake();
     }
   }

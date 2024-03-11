@@ -2,6 +2,7 @@ package com.team841.betaSwerve2024.Constants;
 
 import com.ctre.phoenix6.configs.*;
 import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 public class SC {
 
@@ -157,6 +158,9 @@ public class SC {
     private static Slot0Configs k_slot0 =
         new Slot0Configs().withKP(0.6).withKI(0).withKD(0).withKV(0).withKS(0);
 
+    private static MotorOutputConfigs k_motorOutput =
+            new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake);
+
     public static TalonFXConfiguration k_ArmConfiguration =
         new TalonFXConfiguration()
             .withAudio(k_audio)
@@ -164,7 +168,8 @@ public class SC {
             .withCurrentLimits(k_currentLimitsConfig)
             .withCustomParams(k_customParamConfigs)
             .withMotionMagic(k_ArmMotionMagicConfig)
-            .withSlot0(k_slot0);
+            .withSlot0(k_slot0)
+                .withMotorOutput(k_motorOutput);
   }
 
   public static class Hanger {}

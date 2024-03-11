@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "S-AMP to Starting line"
+            "pathName": "BLUE_S-AMP to Starting line"
           }
         },
         {
@@ -54,7 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Left to middle"
+                  "pathName": "BLUE_Left to middle"
                 }
               },
               {
@@ -97,7 +97,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Copy of Middle to Right"
+                  "pathName": "BLUE_FMR"
                 }
               },
               {

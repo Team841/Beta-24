@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.5,
-        "y": 2.71
+        "x": 9.5,
+        "y": 2.75
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.780002818463013,
-        "y": 7.435653417798465
+        "x": 5.983586228468753,
+        "y": 0.8755038852670298
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 3.4
       },
       "prevControl": {
-        "x": 3.5651207270078853,
-        "y": 1.4683977680748785
+        "x": 4.261811023622047,
+        "y": 2.1454981937741655
       },
       "nextControl": null,
       "isLocked": false,
@@ -39,8 +39,8 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 135.0,
-    "rotateFast": true
+    "rotation": 140.0,
+    "rotateFast": false
   },
   "reversed": false,
   "folder": "Rush M in",

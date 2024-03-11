@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 9.5,
-        "y": 4.52
+        "x": 1.3718163667254561,
+        "y": 4.6116048643482275
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.814698703656666,
-        "y": 4.91784370031703
+        "x": 2.0038627753311844,
+        "y": 4.062521893382989
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.55,
-        "y": 3.4
+        "x": 2.63367409925703,
+        "y": 3.4029989427500227
       },
       "prevControl": {
-        "x": 3.9799133811230587,
-        "y": 2.2554780618820502
+        "x": 1.9540012942995368,
+        "y": 3.9927537374147524
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,8 +32,8 @@
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.5,
-    "maxAcceleration": 4.2,
+    "maxVelocity": 3.5,
+    "maxAcceleration": 3.25,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
@@ -43,10 +43,10 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Rush M in",
+  "folder": "Playoff",
   "previewStartingState": {
-    "rotation": 179.82693635139458,
+    "rotation": 180.0,
     "velocity": 0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

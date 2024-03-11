@@ -2,6 +2,7 @@ package com.team841.betaSwerve2024.Superstructure;
 
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.StaticBrake;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.SC;
@@ -29,6 +30,10 @@ public class Arm extends SubsystemBase {
 
   public void stop() {
     this.rightArmJoint.stopMotor();
+  }
+
+  public void hardStop() {
+    this.rightArmJoint.setControl(new StaticBrake());
   }
 
   @Override

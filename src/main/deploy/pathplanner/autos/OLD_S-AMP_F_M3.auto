@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "S-AMP to Starting line"
+            "pathName": "BLUE_S-AMP to Starting line"
           }
         },
         {
@@ -54,7 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": " Left on Start line_FL"
+                  "pathName": " BLUE_Left on Start line_FL"
                 }
               },
               {
@@ -91,7 +91,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Left to middle"
+                  "pathName": "BLUE_Left to middle"
                 }
               },
               {
@@ -192,7 +192,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "6th to speaker"
+            "pathName": "FM_M3"
           }
         },
         {

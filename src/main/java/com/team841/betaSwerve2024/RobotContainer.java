@@ -65,9 +65,14 @@ public class RobotContainer {
                                 .MaxAngularRate) // Drive counterclockwise with negative X (left)
             ));
 
-    // joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
-    // joystick.circle().whileTrue(drivetrain.applyRequest(() -> point.withModuleDirection(new
-    // Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+    joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
+    joystick
+        .circle()
+        .whileTrue(
+            drivetrain.applyRequest(
+                () ->
+                    point.withModuleDirection(
+                        new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
     joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
@@ -117,6 +122,13 @@ public class RobotContainer {
         .onFalse(
             new SequentialCommandGroup(
                 new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
+    cojoystick.a().whileTrue(new InstantCommand(arm::forward)).onFalse(new InstantCommand(arm::hardStop));
+    cojoystick.y().whileTrue(new InstantCommand(arm::backward)).onFalse(new InstantCommand(arm::hardStop));
+    /* cojoystick
+        .y()
+        .onTrue(new InstantCommand(shooter::trapShot))
+        .onFalse(new InstantCommand(shooter::stopShooter)); */
+
   }
 
   public RobotContainer() {
@@ -146,6 +158,11 @@ public class RobotContainer {
         "JustStop",
         new ParallelCommandGroup(
             new InstantCommand(indexer::stopIndexer), new InstantCommand(shooter::stopShooter)));
+    NamedCommands.registerCommand("sam", new ParallelCommandGroup(
+            new InstantCommand(intake::intake),
+            new InstantCommand(shooter::ampShot),
+            new InstantCommand(indexer::Pass))
+            .withTimeout(2.5));
 
     configureBindings();
     configureCoBindings();

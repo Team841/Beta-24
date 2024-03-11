@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.33,
-        "y": 6.7
+        "x": 2.55,
+        "y": 3.4
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0011620070746092,
-        "y": 6.756582444281278
+        "x": 4.110369054071441,
+        "y": 2.4672330594661185
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.05,
-        "y": 5.546821904454621
+        "x": 7.13006071845477,
+        "y": 0.8092982852632371
       },
       "prevControl": {
-        "x": 1.7713323852082652,
-        "y": 5.596361216475402
+        "x": 4.926787249407831,
+        "y": 1.267725347950696
       },
       "nextControl": null,
       "isLocked": false,
@@ -38,15 +38,12 @@
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 0.0,
-    "rotation": 180.0,
+    "velocity": 0,
+    "rotation": 0,
     "rotateFast": true
   },
   "reversed": false,
-  "folder": null,
-  "previewStartingState": {
-    "rotation": 180.0,
-    "velocity": 0
-  },
+  "folder": "Playoff",
+  "previewStartingState": null,
   "useDefaultConstraints": false
 }

@@ -3,6 +3,7 @@
   "robotLength": 0.9779,
   "holonomicMode": true,
   "pathFolders": [
+    "Playoff",
     "Rush M in",
     "Rush M out"
   ],

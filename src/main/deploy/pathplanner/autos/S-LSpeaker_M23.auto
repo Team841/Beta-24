@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.56,
-      "y": 4.08
+      "x": 1.37,
+      "y": 4.61
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "S-LSpeaker_Score"
+            "pathName": "Playoff S-LSpeaker_Score"
           }
         },
         {
@@ -42,7 +42,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "race",
           "data": {
             "commands": [
               {
@@ -91,13 +91,7 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
-          "type": "parallel",
+          "type": "race",
           "data": {
             "commands": [
               {
@@ -122,22 +116,9 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Rush_M2_in"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "IntakeOn"
-                }
-              }
-            ]
+            "pathName": "Rush_M2_in"
           }
         },
         {
@@ -156,6 +137,12 @@
           "type": "named",
           "data": {
             "name": "JustStop"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Back off"
           }
         }
       ]

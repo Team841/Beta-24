@@ -41,6 +41,13 @@ public class Shooter extends SubsystemBase {
         new MotionMagicVelocityVoltage(20).withFeedForward(6).withAcceleration(200).withSlot(0));
   }
 
+  public void trapShot() {
+    topShooter.setControl(
+        new MotionMagicVelocityVoltage(10).withFeedForward(6).withAcceleration(200).withSlot(0));
+    bottomShooter.setControl(
+        new MotionMagicVelocityVoltage(100).withFeedForward(6).withAcceleration(200).withSlot(0));
+  }
+
   protected double getMotorVoltage() {
     return topShooter.getMotorVoltage().getValue();
   }

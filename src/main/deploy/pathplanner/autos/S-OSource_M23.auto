@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Copy of 6th to speaker"
+            "pathName": "S-OSource_Score"
           }
         },
         {
@@ -42,7 +42,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "race",
           "data": {
             "commands": [
               {
@@ -97,7 +97,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "race",
           "data": {
             "commands": [
               {
@@ -122,22 +122,9 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Rush_M2_in"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "IntakeOn"
-                }
-              }
-            ]
+            "pathName": "Rush_M2_in"
           }
         },
         {
@@ -156,6 +143,12 @@
           "type": "named",
           "data": {
             "name": "JustStop"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Back off"
           }
         }
       ]
