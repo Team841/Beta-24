@@ -2,7 +2,7 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.4,
+      "x": 1.2,
       "y": 7.3
     },
     "rotation": 180.0
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "BLUE_S-AMP to Starting line"
+            "pathName": "Turn to speaker to Left Start"
           }
         },
         {
@@ -54,7 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": " BLUE_Left on Start line_FL"
+                  "pathName": " Left on Start line to left note"
                 }
               },
               {
@@ -64,12 +64,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
           }
         },
         {
@@ -97,7 +91,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "BLUE_Left to middle"
+                  "pathName": "Left to middle"
                 }
               },
               {
@@ -140,7 +134,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "BLUE_FMR"
+                  "pathName": "Copy of Middle to Right"
                 }
               },
               {
@@ -150,6 +144,55 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustStop"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "3 to 6th note"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOn"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "6th to speaker"
           }
         },
         {

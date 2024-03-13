@@ -11,6 +11,8 @@ import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 import com.team841.betaSwerve2024.Constants.Swerve;
+import com.team841.betaSwerve2024.Superstructure.LimelightHelpers;
+
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
@@ -18,8 +20,12 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import java.util.function.Supplier;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends SwerveDrivetrain implements Subsystem {
+  private final boolean UseLimelight = false;
   private static final double kSimLoopPeriod = 0.005; // 5 ms
   private Notifier m_simNotifier = null;
   private double m_lastSimTime;
@@ -121,5 +127,26 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   }
 
   @Override
-  public void periodic() {}
+  public void periodic() {
+    // read values periodically
+    /*double x = tx.getDouble(0.0);
+    double y = ty.getDouble(0.0);
+    double area = ta.getDouble(0.0);
+
+    //post to smart dashboard periodically
+    SmartDashboard.putNumber("LimelightX", x);
+    SmartDashboard.putNumber("LimelightY", y);
+    SmartDashboard.putNumber("LimelightArea", area);*/
+
+     if (UseLimelight) {    
+      var lastResult = LimelightHelpers.getLatestResults("limelight").targetingResults;
+
+      Pose2d llPose = lastResult.getBotPose2d_wpiBlue();
+      SmartDashboard.putString("String", llPose.toString());
+
+      if (lastResult.valid) {
+        this.addVisionMeasurement(llPose, Timer.getFPGATimestamp());
+      }
+    }
+  }
 }
