@@ -134,7 +134,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Middle to Right"
+                  "pathName": "FMR"
                 }
               },
               {
@@ -192,7 +192,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "FM_M3"
+            "pathName": "M3_FM"
           }
         },
         {

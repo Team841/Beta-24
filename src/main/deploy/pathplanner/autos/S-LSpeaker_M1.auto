@@ -48,7 +48,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "8 note path"
+                  "pathName": "Rush_M1_out"
                 }
               },
               {
@@ -69,7 +69,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "8 note to speaker"
+            "pathName": "Rush_M1_in"
           }
         },
         {

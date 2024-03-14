@@ -128,7 +128,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Middle to Right"
+                  "pathName": "FMR"
                 }
               },
               {
@@ -149,7 +149,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right to middle"
+            "pathName": "FRM"
           }
         },
         {
