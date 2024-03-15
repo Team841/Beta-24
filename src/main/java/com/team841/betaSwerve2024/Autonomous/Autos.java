@@ -1,18 +1,13 @@
 package com.team841.betaSwerve2024.Autonomous;
 
-import com.choreo.lib.Choreo;
-import com.choreo.lib.ChoreoTrajectory;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.Indexer;
 import com.team841.betaSwerve2024.Superstructure.Intake;
 import com.team841.betaSwerve2024.Superstructure.Shooter;
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-
-import java.nio.file.Path;
 
 public class Autos {
   public static class FourNoteCenterStart extends CoreAutonomousSequence {
@@ -60,9 +55,8 @@ public class Autos {
       super(drive, intake, indexer, shooter);
 
       addCommands(
-              new InstantCommand(() -> ResetStartingPoseFromTrajectory(startingPath)),
-              FollowPath(oneMeterPath)
-      );
+          new InstantCommand(() -> ResetStartingPoseFromTrajectory(startingPath)),
+          FollowPath(oneMeterPath));
     }
   }
 }

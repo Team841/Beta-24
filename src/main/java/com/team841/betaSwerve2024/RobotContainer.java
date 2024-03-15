@@ -1,7 +1,6 @@
 package com.team841.betaSwerve2024;
 
 import com.ctre.phoenix6.Utils;
-import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -38,40 +37,41 @@ public class RobotContainer {
 
   private final Hanger hanger = Manifest.SubsystemManifest.hanger;
 
-  private final SwerveRequest.FieldCentric drive =
-      new SwerveRequest.FieldCentric()
-          .withDeadband(Swerve.MaxSpeed * 0.1)
-          .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
-          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
-
   // driving in open loop
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
-  private final Telemetry logger = new Telemetry(Swerve.MaxSpeed);
+  private final Telemetry logger = new Telemetry(Swerve.Controls.MaxSpeed);
 
   private final SendableChooser<Command> autoChooser;
 
-  private void configureBindings() {
-    drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
-        drivetrain.applyRequest(
+  private void configureDriverBindings() {
+    drivetrain.setDefaultCommand(
+        new RunCommand(
             () ->
-                drive
-                    .withVelocityX(-joystick.getLeftY() * Swerve.MaxSpeed) // Drive forward with
-                    // negative Y (forward)
-                    .withVelocityY(
-                        -joystick.getLeftX() * Swerve.MaxSpeed) // Drive left with negative X (left)
-                    .withRotationalRate(
-                        -joystick.getRightX()
-                            * Swerve
-                                .MaxAngularRate) // Drive counterclockwise with negative X (left)
-            ));
+                drivetrain.JoystickDrive(
+                    -joystick.getLeftX(), -joystick.getLeftY(), -joystick.getRightX()),
+            drivetrain));
 
-    // joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
-    // joystick.circle().whileTrue(drivetrain.applyRequest(() -> point.withModuleDirection(new
-    // Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+    joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
+    joystick
+        .circle()
+        .whileTrue(
+            drivetrain.applyRequest(
+                () ->
+                    point.withModuleDirection(
+                        new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
-    // reset the field-centric heading on left bumper press
+    joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
+    joystick
+        .circle()
+        .whileTrue(
+            drivetrain.applyRequest(
+                () ->
+                    point.withModuleDirection(
+                        new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
     joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
+    joystick.L1().onTrue(new InstantCommand(drivetrain::toggleDriveMode));
+    joystick.L2().onTrue(new InstantCommand(drivetrain::seedTemp));
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
@@ -118,8 +118,6 @@ public class RobotContainer {
         .onFalse(
             new SequentialCommandGroup(
                 new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
-
-    cojoystick.y().onTrue(new InstantCommand(()-> System.exit(404)));
   }
 
   public RobotContainer() {
@@ -150,13 +148,14 @@ public class RobotContainer {
         new ParallelCommandGroup(
             new InstantCommand(indexer::stopIndexer), new InstantCommand(shooter::stopShooter)));
 
-    configureBindings();
+    configureDriverBindings();
     configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     autoChooser.addOption(
         "Choreo 4 Note auto test 1",
         new Autos.FourNoteCenterStart(drivetrain, intake, indexer, shooter));
-    autoChooser.addOption("Choreo i meter test", new Autos.OneMeterTest(drivetrain, intake, indexer, shooter));
+    autoChooser.addOption(
+        "Choreo i meter test", new Autos.OneMeterTest(drivetrain, intake, indexer, shooter));
     SmartDashboard.putData("Auto Mode", autoChooser);
   }
 

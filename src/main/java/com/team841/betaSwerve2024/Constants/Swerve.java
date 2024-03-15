@@ -153,10 +153,21 @@ public class Swerve {
           Units.inchesToMeters(kBackRightXPosInches),
           Units.inchesToMeters(kBackRightYPosInches),
           kInvertRightSide);
-
-  public static double MaxAngularRate =
-      4 * Math.PI; // 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
-  public static double MaxSpeed = kSpeedAt12VoltsMps;
   protected static final Drivetrain DriveTrain =
       new Drivetrain(DrivetrainConstants, FrontLeft, FrontRight, BackLeft, BackRight);
+
+  public static class Controls {
+    public static double MaxAngularRate =
+        4 * Math.PI; // 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
+    public static double MaxSpeed = kSpeedAt12VoltsMps;
+
+    public static final double kDriveDeadBand = MaxSpeed * 0.1; // 10% Deadband
+    public static final double kAzimuthDeadband = MaxAngularRate * 0.1; // 10% Deadband
+
+    public static enum DRIVE_MODE {
+      SpeakerCentric,
+      GenericFieldCentric,
+      RobotCentric
+    }
+  }
 }
