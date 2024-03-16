@@ -1,7 +1,9 @@
 package com.team841.betaSwerve2024;
 
 import com.ctre.phoenix6.Utils;
+import com.ctre.phoenix6.mechanisms.swerve.SwerveModule;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
+import com.ctre.phoenix6.mechanisms.swerve.utility.PhoenixPIDController;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.betaSwerve2024.Autonomous.Autos;
@@ -38,6 +40,27 @@ public class RobotContainer {
   private final Hanger hanger = Manifest.SubsystemManifest.hanger;
 
   // driving in open loop
+  private final SwerveRequest.FieldCentric GenericFieldCentricControl =
+      new SwerveRequest.FieldCentric()
+          .withDeadband(Swerve.Controls.kDriveDeadBand) // Add a 10% deadband
+          .withRotationalDeadband(Swerve.Controls.kAzimuthDeadband) // Add a 10% deadband
+          .withDriveRequestType(
+              SwerveModule.DriveRequestType.OpenLoopVoltage); // I want field-centric
+
+  private final SwerveRequest.FieldCentricFacingAngle SpeakerCentricFacingAngleControl =
+      new SwerveRequest.FieldCentricFacingAngle();
+          /*.withDeadband(Swerve.Controls.kDriveDeadBand)
+          .withRotationalDeadband(Swerve.Controls.kAzimuthDeadband)
+          .withDriveRequestType(SwerveModule.DriveRequestType.OpenLoopVoltage)
+              .withSteerRequestType(SwerveModule.SteerRequestType.MotionMagic);
+           */
+
+  private final SwerveRequest.RobotCentric RobotCentricControl =
+      new SwerveRequest.RobotCentric()
+          .withDeadband(Swerve.Controls.kDriveDeadBand)
+          .withRotationalDeadband(Swerve.Controls.kAzimuthDeadband)
+          .withDriveRequestType(SwerveModule.DriveRequestType.OpenLoopVoltage);
+
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
   private final Telemetry logger = new Telemetry(Swerve.Controls.MaxSpeed);
@@ -46,11 +69,41 @@ public class RobotContainer {
 
   private void configureDriverBindings() {
     drivetrain.setDefaultCommand(
-        new RunCommand(
-            () ->
-                drivetrain.JoystickDrive(
-                    -joystick.getLeftX(), -joystick.getLeftY(), -joystick.getRightX()),
-            drivetrain));
+        new ConditionalCommand(
+            new ConditionalCommand(
+                drivetrain.applyRequest(
+                    () -> {
+                      return SpeakerCentricFacingAngleControl.withVelocityX(
+                              -joystick.getLeftY() * Swerve.Controls.MaxSpeed) // Drive forward with
+                          // negative Y (forward)
+                          .withVelocityY(
+                              -joystick.getLeftX()
+                                  * Swerve.Controls.MaxSpeed) // Drive left with negative X (left)
+                          .withTargetDirection(drivetrain.getHeading.get());
+                    }),
+                drivetrain.applyRequest(
+                    () -> {
+                      return GenericFieldCentricControl.withVelocityX(
+                              -joystick.getLeftY() * Swerve.Controls.MaxSpeed) // Drive forward with
+                          // negative Y (forward)
+                          .withVelocityY(
+                              -joystick.getLeftX()
+                                  * Swerve.Controls.MaxSpeed) // Drive left with negative X (left)
+                          .withRotationalRate(-joystick.getRightX() * Swerve.Controls.MaxSpeed);
+                    }),
+                () -> drivetrain.getDriveMode() == Swerve.Controls.DRIVE_MODE.SpeakerCentric),
+            drivetrain.applyRequest(
+                () -> {
+                  drivetrain.setDriveMode(Swerve.Controls.DRIVE_MODE.GenericFieldCentric);
+                  return GenericFieldCentricControl.withVelocityX(
+                          -joystick.getLeftY() * Swerve.Controls.MaxSpeed) // Drive forward with
+                      // negative Y (forward)
+                      .withVelocityY(
+                          -joystick.getLeftX()
+                              * Swerve.Controls.MaxSpeed) // Drive left with negative X (left)
+                      .withRotationalRate(-joystick.getRightX() * Swerve.Controls.MaxSpeed);
+                }),
+            () -> Math.abs(-joystick.getRightX()) > 0.1));
 
     joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick
@@ -70,7 +123,8 @@ public class RobotContainer {
                     point.withModuleDirection(
                         new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
     joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
-    joystick.L1().onTrue(new InstantCommand(drivetrain::toggleDriveMode));
+    joystick.L1().onTrue(new RunCommand(drivetrain::toggleDriveMode, drivetrain));
+
     joystick.L2().onTrue(new InstantCommand(drivetrain::seedTemp));
 
     if (Utils.isSimulation()) {
@@ -147,6 +201,8 @@ public class RobotContainer {
         "JustStop",
         new ParallelCommandGroup(
             new InstantCommand(indexer::stopIndexer), new InstantCommand(shooter::stopShooter)));
+
+    // SpeakerCentricFacingAngleControl.HeadingController = new PhoenixPIDController(100, 0, 0);
 
     configureDriverBindings();
     configureCoBindings();

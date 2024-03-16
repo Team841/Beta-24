@@ -4,16 +4,13 @@ import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
-import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
-import com.ctre.phoenix6.mechanisms.swerve.utility.PhoenixPIDController;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.util.GeometryUtil;
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
-import com.team841.Util.FieldGeometry;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Field;
 import com.team841.betaSwerve2024.Constants.Swerve;
@@ -36,24 +33,6 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
   private DRIVE_MODE driveMode = DRIVE_MODE.GenericFieldCentric;
 
-  private final SwerveRequest.FieldCentric GenericFieldCentricControl =
-      new SwerveRequest.FieldCentric()
-          .withDeadband(Swerve.Controls.kDriveDeadBand) // Add a 10% deadband
-          .withRotationalDeadband(Swerve.Controls.kAzimuthDeadband) // Add a 10% deadband
-          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
-
-  private final SwerveRequest.FieldCentricFacingAngle SpeakerCentricFacingAngleControl =
-      new SwerveRequest.FieldCentricFacingAngle()
-          .withDeadband(Swerve.Controls.kDriveDeadBand)
-          .withRotationalDeadband(Swerve.Controls.kAzimuthDeadband)
-          .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
-
-  private final SwerveRequest.RobotCentric RobotCentricControl =
-      new SwerveRequest.RobotCentric()
-          .withDeadband(Swerve.Controls.kDriveDeadBand)
-          .withRotationalDeadband(Swerve.Controls.kAzimuthDeadband)
-          .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
-
   private final SwerveRequest.ApplyChassisSpeeds autoRequest =
       new SwerveRequest.ApplyChassisSpeeds();
 
@@ -66,7 +45,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
-    this.SpeakerCentricFacingAngleControl.HeadingController = new PhoenixPIDController(10, 0, 0);
+    this.setOperatorPerspectiveForward(
+        ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
 
     ConfigureMotors();
     configurePathplanner();
@@ -79,7 +59,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
-    this.SpeakerCentricFacingAngleControl.HeadingController = new PhoenixPIDController(10, 0, 0);
+    this.setOperatorPerspectiveForward(
+        ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
 
     ConfigureMotors();
     configurePathplanner();
@@ -156,55 +137,14 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   public Supplier<Rotation2d> getHeading =
       () -> {
         // this.getState().Pose.getRotation().minus(Field.kRedSpeakerPose2d.getRotation());
-        double rot = Math.atan(
-                  (this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY())
-                      / (this.getState().Pose.getX() - Field.kBlueSpeakerPose2d.getX()));
         if (Math.abs(this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY()) < 0.5) {
           return new Rotation2d(Math.PI);
         } else if (ConstantsIO.isRedAlliance.get()) {
-          return FieldGeometry.flipFieldRotation(new Rotation2d(rot));
+          return new Rotation2d(this.getState().Pose.getX() - Field.kRedSpeakerPose2d.getX(), this.getState().Pose.getY() - Field.kRedSpeakerPose2d.getY());
         } else {
-          return new Rotation2d(rot);
+          return new Rotation2d(this.getState().Pose.getX() - Field.kBlueSpeakerPose2d.getX(), this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY());
         }
       };
-
-  public void JoystickDrive(double VelocityX, double VelocityY, Double RotationalRate) {
-    if (!(Math.abs(RotationalRate) < 0.05)) {
-      switch (this.driveMode) {
-        case SpeakerCentric:
-          this.setControl(
-              SpeakerCentricFacingAngleControl.withVelocityX(
-                      VelocityY * Swerve.Controls.MaxSpeed) // Drive forward with
-                  // negative Y (forward)
-                  .withVelocityY(
-                      VelocityX * Swerve.Controls.MaxSpeed) // Drive left with negative X (left)
-                  .withTargetDirection(
-                      getHeading.get())); // Drive counterclockwise with negative X (left))
-          break;
-        case GenericFieldCentric:
-          this.setControl(
-              GenericFieldCentricControl.withVelocityX(
-                      VelocityY * Swerve.Controls.MaxSpeed) // Drive forward with
-                  // negative Y (forward)
-                  .withVelocityY(
-                      VelocityX * Swerve.Controls.MaxSpeed) // Drive left with negative X (left)
-                  .withRotationalRate(RotationalRate.doubleValue() * Swerve.Controls.MaxSpeed));
-          break;
-        default:
-          break;
-      }
-    } else {
-      this.setControl(
-          GenericFieldCentricControl.withVelocityX(
-                  VelocityY * Swerve.Controls.MaxSpeed) // Drive forward with
-              // negative Y (forward)
-              .withVelocityY(
-                  VelocityX * Swerve.Controls.MaxSpeed) // Drive left with negative X (left)
-              .withRotationalRate(
-                  RotationalRate.doubleValue()
-                      * Swerve.Controls.MaxSpeed)); // Drive counterclockwise with negative X (left)
-    }
-  }
 
   public void seedTemp() {
     this.seedFieldRelative(GeometryUtil.flipFieldPose(Field.S_OSpeakerC));
