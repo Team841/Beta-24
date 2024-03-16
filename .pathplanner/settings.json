@@ -2,7 +2,11 @@
   "robotWidth": 0.84,
   "robotLength": 0.9779,
   "holonomicMode": true,
-  "pathFolders": [],
+  "pathFolders": [
+    "Playoff",
+    "Rush M in",
+    "Rush M out"
+  ],
   "autoFolders": [],
   "defaultMaxVel": 3.5,
   "defaultMaxAccel": 3.25,

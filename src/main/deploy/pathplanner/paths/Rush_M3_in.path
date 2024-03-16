@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.56,
-        "y": 4.12
+        "x": 9.5,
+        "y": 4.52
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.35364650909482,
-        "y": 4.566883368000971
+        "x": 5.814698703656666,
+        "y": 4.91784370031703
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.56,
-        "y": 5.528332498106438
+        "x": 2.55,
+        "y": 3.4
       },
       "prevControl": {
-        "x": 1.6908371948275422,
-        "y": 5.6268461374760586
+        "x": 3.9799133811230587,
+        "y": 2.2554780618820502
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,21 +32,21 @@
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 3.25,
+    "maxVelocity": 4.5,
+    "maxAcceleration": 4.2,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.04310078060323,
+    "rotation": 140.0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Rush M in",
   "previewStartingState": {
-    "rotation": -179.29019161757964,
+    "rotation": 179.82693635139458,
     "velocity": 0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

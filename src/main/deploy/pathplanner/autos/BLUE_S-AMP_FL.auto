@@ -2,7 +2,7 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.2,
+      "x": 1.4,
       "y": 7.3
     },
     "rotation": 180.0
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Turn to speaker to Left Start"
+            "pathName": "BLUE_S-AMP to Starting line"
           }
         },
         {
@@ -54,7 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": " Left on Start line to left note"
+                  "pathName": " BLUE_Left on Start line_FL"
                 }
               },
               {

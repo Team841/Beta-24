@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.2,
-      "y": 7.3
+      "x": 0.57,
+      "y": 2.08
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Turn to speaker to Left Start"
+            "pathName": "S-OSource_Score"
           }
         },
         {
@@ -32,13 +32,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.3
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "JustStop"
+            "name": "JustShoot"
           }
         }
       ]

@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.32,
-      "y": 3.28
+      "x": 1.37,
+      "y": 4.61
     },
-    "rotation": -179.3579682055393
+    "rotation": 180.0
   },
   "command": {
     "type": "sequential",
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "p1 source race to midline"
+            "pathName": "Playoff S-LSpeaker_Score"
           }
         },
         {
@@ -30,40 +30,27 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "JustStop"
           }
         },
         {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "p2 source race to midline"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "IntakeOn"
-                }
-              }
-            ]
-          }
-        },
-        {
           "type": "named",
           "data": {
-            "name": "SpinUp"
+            "name": "sam"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "p3 source race to midline"
+            "pathName": "Sam's idea"
           }
         }
       ]
