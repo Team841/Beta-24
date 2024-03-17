@@ -65,4 +65,19 @@ public class Autos {
       );
     }
   }
+
+  public static class test extends CoreAutonomousSequence {
+    private final String startingPath = "test";
+
+    private final PathPlannerPath run = PathPlannerPath.fromChoreoTrajectory(startingPath);
+
+    public test(Drivetrain drivetrain, Intake intake, Indexer indexer, Shooter shooter){
+      super(drivetrain, intake, indexer, shooter);
+
+      addCommands(
+              new InstantCommand(() -> ResetStartingPoseFromTrajectory(startingPath)),
+              FollowPath(run)
+      );
+    }
+  }
 }

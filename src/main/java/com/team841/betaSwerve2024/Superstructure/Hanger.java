@@ -29,13 +29,13 @@ public class Hanger extends SubsystemBase {
   }
 
   public void ExtendHanger() {
-    LeftHangerMotor.set(1.00);
-    RightHangerMotor.set(-1.00);
+    LeftHangerMotor.set(-1.00);
+    RightHangerMotor.set(1.00);
   }
 
   public void RetractHanger() {
-    LeftHangerMotor.set(-.45);
-    RightHangerMotor.set(.45);
+    LeftHangerMotor.set(.8);
+    RightHangerMotor.set(-.8);
   }
 
   public void StopHanger() {

@@ -30,7 +30,7 @@ public class RobotContainer {
 
   private final Indexer indexer = Manifest.SubsystemManifest.indexer;
 
-  private final Shooter shooter = Manifest.SubsystemManifest.shooter;
+  private final Shooter shooter = Manifest.SubsystemManifest.shooter            ;
 
   private final Arm arm = Manifest.SubsystemManifest.arm;
 
@@ -157,6 +157,7 @@ public class RobotContainer {
         "Choreo 4 Note auto test 1",
         new Autos.FourNoteCenterStart(drivetrain, intake, indexer, shooter));
     autoChooser.addOption("Choreo i meter test", new Autos.OneMeterTest(drivetrain, intake, indexer, shooter));
+    autoChooser.addOption("OMGOMGOMGOMGOMG", new Autos.test(drivetrain, intake, indexer, shooter));
     SmartDashboard.putData("Auto Mode", autoChooser);
   }
 

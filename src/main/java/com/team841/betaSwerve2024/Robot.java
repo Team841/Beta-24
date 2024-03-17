@@ -1,5 +1,6 @@
 package com.team841.betaSwerve2024;
 
+import com.ctre.phoenix6.SignalLogger;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -19,7 +20,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_robotContainer = new RobotContainer();
 
-    // SignalLogger.setPath("/media/sda1/");
+    SignalLogger.setPath("/media/sda1/");
   }
 
   @Override
@@ -61,7 +62,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    //  SignalLogger.start();
+    SignalLogger.start();
 
   }
 
@@ -70,7 +71,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopExit() {
-    // SignalLogger.stop();
+    SignalLogger.stop();
   }
 
   @Override

@@ -26,7 +26,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   private Notifier m_simNotifier = null;
   private double m_lastSimTime;
 
-  private final SwerveRequest.ApplyChassisSpeeds autoRequest =
+  public final SwerveRequest.ApplyChassisSpeeds autoRequest =
       new SwerveRequest.ApplyChassisSpeeds();
 
   public Drivetrain(
