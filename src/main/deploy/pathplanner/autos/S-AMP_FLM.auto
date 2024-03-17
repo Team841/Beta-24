@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.4,
-      "y": 7.3
+      "x": 1.39,
+      "y": 7.33
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "BLUE_S-AMP to Starting line"
+            "pathName": "S-Amp_AmpSidePreloadShot"
           }
         },
         {
@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.3
           }
         },
         {
@@ -54,7 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": " BLUE_Left on Start line_FL"
+                  "pathName": "S-Amp_AmpSidePreloadShot_FL"
                 }
               },
               {
@@ -75,7 +75,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustStop"
           }
         },
         {
@@ -89,15 +95,15 @@
           "data": {
             "commands": [
               {
-                "type": "path",
-                "data": {
-                  "pathName": "BLUE_Left to middle"
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "IntakeOn"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "FL_FM"
                 }
               }
             ]
@@ -112,7 +118,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.3
           }
         },
         {

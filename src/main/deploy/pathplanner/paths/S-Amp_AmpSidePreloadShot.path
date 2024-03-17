@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.55,
-        "y": 3.4
+        "x": 1.39,
+        "y": 7.33
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.110369054071441,
-        "y": 2.4672330594661185
+        "x": 1.4398388508035915,
+        "y": 7.334011103411448
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.13006071845477,
-        "y": 0.8092982852632371
+        "x": 2.16,
+        "y": 7.3
       },
       "prevControl": {
-        "x": 4.926787249407831,
-        "y": 1.267725347950696
+        "x": 2.2100000000000004,
+        "y": 7.3
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,18 +32,21 @@
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 3.25,
+    "maxVelocity": 4.5,
+    "maxAcceleration": 3.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
-    "rotateFast": true
+    "rotation": -140.0,
+    "rotateFast": false
   },
   "reversed": false,
-  "folder": "Playoff",
-  "previewStartingState": null,
+  "folder": "S-Amp",
+  "previewStartingState": {
+    "rotation": 180.0,
+    "velocity": 0
+  },
   "useDefaultConstraints": false
 }
