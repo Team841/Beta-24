@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "S-Amp_AmpSidePreloadShot"
+            "pathName": "A_Preload"
           }
         },
         {
@@ -54,13 +54,13 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "S-Amp_AmpSidePreloadShot_FL"
+                  "pathName": "A_Preload_3"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "IntakeOn"
+                  "name": "aIntake"
                 }
               }
             ]
@@ -97,13 +97,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "IntakeOn"
+                  "name": "aIntake"
                 }
               },
               {
                 "type": "path",
                 "data": {
-                  "pathName": "FL_FM"
+                  "pathName": "3-2"
                 }
               }
             ]
