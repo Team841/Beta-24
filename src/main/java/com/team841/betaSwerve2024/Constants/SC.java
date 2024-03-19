@@ -119,7 +119,7 @@ public class SC {
   }
 
   public static class Intake {
-    public static final TalonFXConfiguration kCurrentLimit = 60; // in amps
+    public static final int kCurrentLimit = 60; // in amps
 
     public static final int kBlinkingID = 4;
 
