@@ -122,6 +122,8 @@ public class SC {
     public static final int kCurrentLimit = 60; // in amps
 
     public static final int kBlinkingID = 4;
+
+    public static final TalonFXConfiguration k_MotorOutputConfig = null;
   }
 
   public static class Arm {

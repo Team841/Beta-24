@@ -14,7 +14,7 @@ public class ConstantsIO {
 
   public static final class CANID {
 
-    public static final int kIntake = 2;
+    public static final int kIntake = 17;
 
     public static final int kIndexerTalon = 10;
 
