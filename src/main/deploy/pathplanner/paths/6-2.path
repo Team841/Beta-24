@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 3.05,
+        "x": 2.46,
         "y": 5.56
       },
       "prevControl": {
-        "x": 4.203198642508396,
-        "y": 3.970023824306908
+        "x": 3.8410277862222393,
+        "y": 4.195884225101784
       },
       "nextControl": null,
       "isLocked": false,
@@ -40,7 +40,7 @@
   "goalEndState": {
     "velocity": 0,
     "rotation": 180.0,
-    "rotateFast": false
+    "rotateFast": true
   },
   "reversed": false,
   "folder": "Middle In",

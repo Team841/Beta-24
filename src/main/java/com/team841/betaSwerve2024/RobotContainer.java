@@ -87,6 +87,8 @@ public class RobotContainer {
   // xbox
   public void configureCoBindings() {
 
+    // shooter.setDefaultCommand(shooter.idleBack());
+
     Command c_command = new IntakeCommand(intake, indexer);
     cojoystick.leftBumper().whileTrue(c_command);
     cojoystick
