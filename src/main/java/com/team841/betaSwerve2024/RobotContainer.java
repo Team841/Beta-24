@@ -110,6 +110,7 @@ public class RobotContainer {
     cojoystick.povUp().whileTrue(new InstantCommand(hanger::ExtendHanger));
     cojoystick.povDown().whileTrue(new InstantCommand(hanger::RetractHanger));
     cojoystick.povCenter().whileTrue(new InstantCommand(hanger::StopHanger));
+    cojoystick.povLeft().whileTrue(new InstantCommand(hanger::toggleHanger));
     cojoystick
         .x()
         .onTrue(new InstantCommand(shooter::ampShot))
@@ -122,12 +123,18 @@ public class RobotContainer {
         .onFalse(
             new SequentialCommandGroup(
                 new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
-    cojoystick.a().whileTrue(new InstantCommand(arm::forward)).onFalse(new InstantCommand(arm::hardStop));
-    cojoystick.y().whileTrue(new InstantCommand(arm::backward)).onFalse(new InstantCommand(arm::hardStop));
-    /* cojoystick
+    cojoystick
+        .a()
+        .whileTrue(new InstantCommand(arm::forward))
+        .onFalse(new InstantCommand(arm::hardStop));
+    cojoystick
         .y()
-        .onTrue(new InstantCommand(shooter::trapShot))
-        .onFalse(new InstantCommand(shooter::stopShooter)); */
+        .whileTrue(new InstantCommand(arm::backward))
+        .onFalse(new InstantCommand(arm::hardStop));
+    /* cojoystick
+    .y()
+    .onTrue(new InstantCommand(shooter::trapShot))
+    .onFalse(new InstantCommand(shooter::stopShooter)); */
 
   }
 
@@ -158,10 +165,12 @@ public class RobotContainer {
         "JustStop",
         new ParallelCommandGroup(
             new InstantCommand(indexer::stopIndexer), new InstantCommand(shooter::stopShooter)));
-    NamedCommands.registerCommand("sam", new ParallelCommandGroup(
-            new InstantCommand(intake::intake),
-            new InstantCommand(shooter::ampShot),
-            new InstantCommand(indexer::Pass))
+    NamedCommands.registerCommand(
+        "sam",
+        new ParallelCommandGroup(
+                new InstantCommand(intake::intake),
+                new InstantCommand(shooter::ampShot),
+                new InstantCommand(indexer::Pass))
             .withTimeout(2.5));
 
     configureBindings();
