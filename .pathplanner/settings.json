@@ -12,7 +12,11 @@
     "Middle Out",
     "B-123"
   ],
-  "autoFolders": [],
+  "autoFolders": [
+    "A",
+    "B",
+    "C"
+  ],
   "defaultMaxVel": 4.5,
   "defaultMaxAccel": 3.5,
   "defaultMaxAngVel": 540.0,

@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.39,
-      "y": 7.33
+      "x": 1.4014420821634435,
+      "y": 1.5531101332472939
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "A_Preload"
+            "pathName": "C_Preload"
           }
         },
         {
@@ -42,19 +42,13 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A_Preload_3"
+                  "pathName": "C_Preload_4"
                 }
               },
               {
@@ -64,6 +58,18 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "4_Preload"
           }
         },
         {
@@ -87,6 +93,6 @@
       ]
     }
   },
-  "folder": "A",
+  "folder": "C",
   "choreoAuto": false
 }

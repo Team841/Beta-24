@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 2.9,
-      "y": 5.55
+      "x": 1.4014420821634435,
+      "y": 1.5531101332472939
     },
     "rotation": 180.0
   },
@@ -89,10 +89,28 @@
           "data": {
             "name": "JustStop"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "4_Preload_5"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "5_preload"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "5_Preload_6"
+          }
         }
       ]
     }
   },
-  "folder": null,
+  "folder": "C",
   "choreoAuto": false
 }
