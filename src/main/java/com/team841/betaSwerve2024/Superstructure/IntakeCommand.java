@@ -16,17 +16,17 @@ public class IntakeCommand extends Command {
   @Override
   public void initialize() {
     f_intake.intake();
-    f_indexer.intake();
+    f_indexer.halfIntake();
   }
 
   @Override
   public void execute() {
     if (f_indexer.getindexerSensor() && !(f_indexer.getLeftIndexerSensor())) {
-      f_indexer.halfIntake();
+      f_indexer.quarterIntake();
     } else if (f_indexer.getLeftIndexerSensor() && !(f_indexer.getindexerSensor())) {
-      f_indexer.halfIntake();
+      f_indexer.quarterIntake();
     } else if (!(f_indexer.getLeftIndexerSensor()) && !(f_indexer.getindexerSensor())) {
-      f_indexer.intake();
+      f_indexer.halfIntake();
     }
   }
 

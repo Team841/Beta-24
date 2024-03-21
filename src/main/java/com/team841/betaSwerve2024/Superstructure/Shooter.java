@@ -37,9 +37,9 @@ public class Shooter extends SubsystemBase {
 
   public void ampShot() {
     topShooter.setControl(
-        new MotionMagicVelocityVoltage(1).withFeedForward(6).withAcceleration(200).withSlot(0));
+        new MotionMagicVelocityVoltage(1.5).withFeedForward(6).withAcceleration(200).withSlot(0));
     bottomShooter.setControl(
-        new MotionMagicVelocityVoltage(10).withFeedForward(6).withAcceleration(200).withSlot(0));
+        new MotionMagicVelocityVoltage(12.5).withFeedForward(6).withAcceleration(200).withSlot(0));
   }
 
   public Command idleBack(){
