@@ -5,10 +5,12 @@
   "pathFolders": [
     "A",
     "A-123",
+    "B",
     "C",
+    "C-123",
     "Middle In",
     "Middle Out",
-    "C-123"
+    "B-123"
   ],
   "autoFolders": [],
   "defaultMaxVel": 4.5,
