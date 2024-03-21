@@ -14,6 +14,8 @@ public class Hanger extends SubsystemBase {
   private TalonFX LeftHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMotorLeft, "rio");
   private TalonFX RightHangerMotor = new TalonFX(ConstantsIO.CANID.kHangerMotorRight, "rio");
 
+  private boolean FlipHanger = true;
+
   /** Creates a new Hanger. */
   public Hanger() {
 
@@ -29,13 +31,27 @@ public class Hanger extends SubsystemBase {
   }
 
   public void ExtendHanger() {
-    LeftHangerMotor.set(1.00);
-    RightHangerMotor.set(-1.00);
+    if (FlipHanger) {
+      LeftHangerMotor.set(1.00);
+      RightHangerMotor.set(-1.00);
+    } else {
+      LeftHangerMotor.set(-1.00);
+      RightHangerMotor.set(1.00);
+    }
   }
 
   public void RetractHanger() {
-    LeftHangerMotor.set(-.80);
-    RightHangerMotor.set(.80);
+    if (FlipHanger) {
+      LeftHangerMotor.set(-.80);
+      RightHangerMotor.set(.80);
+    } else {
+      LeftHangerMotor.set(.80);
+      RightHangerMotor.set(-.80);
+    }
+  }
+
+  public void toggleHanger() {
+    FlipHanger = FlipHanger ? false : true;
   }
 
   public void StopHanger() {

@@ -161,7 +161,7 @@ public class SC {
         new Slot0Configs().withKP(0.6).withKI(0).withKD(0).withKV(0).withKS(0);
 
     private static MotorOutputConfigs k_motorOutput =
-            new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake);
+        new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake);
 
     public static TalonFXConfiguration k_ArmConfiguration =
         new TalonFXConfiguration()
@@ -171,7 +171,7 @@ public class SC {
             .withCustomParams(k_customParamConfigs)
             .withMotionMagic(k_ArmMotionMagicConfig)
             .withSlot0(k_slot0)
-                .withMotorOutput(k_motorOutput);
+            .withMotorOutput(k_motorOutput);
   }
 
   public static class Hanger {}
