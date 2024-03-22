@@ -176,6 +176,10 @@ public class RobotContainer {
             .withTimeout(2.5));
     NamedCommands.registerCommand("aIntake", new IntakeAuto(intake, indexer));
     NamedCommands.registerCommand("stopIndexer", new InstantCommand(indexer::stopIndexer));
+    NamedCommands.registerCommand("CountShot", new ParallelCommandGroup(
+        new InstantCommand(shooter::spinUp),
+        new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(indexer::Pass)))
+    .withTimeout(0.8));
 
     configureBindings();
     configureCoBindings();
