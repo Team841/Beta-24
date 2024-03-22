@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "A_Preload"
+            "pathName": "A_Preload - Blue"
           }
         },
         {
@@ -42,111 +42,19 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A_Preload_3"
+                  "pathName": "A_Preload_1 - Blue"
                 }
               },
               {
                 "type": "named",
                 "data": {
                   "name": "aIntake"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "JustShoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.08
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "stopIndexer"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "aIntake"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "3-2"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "JustShoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.08
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "stopIndexer"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "aIntake"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "2-1"
                 }
               }
             ]
@@ -183,22 +91,10 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "1-6"
+                  "pathName": "1-2 - Blue"
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "6-2"
           }
         },
         {
@@ -222,6 +118,6 @@
       ]
     }
   },
-  "folder": "A",
+  "folder": "A - Blue",
   "choreoAuto": false
 }

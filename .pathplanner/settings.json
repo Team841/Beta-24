@@ -3,19 +3,27 @@
   "robotLength": 0.9779,
   "holonomicMode": true,
   "pathFolders": [
-    "A",
-    "A-123",
-    "B",
-    "C",
-    "C-123",
-    "Middle In",
-    "Middle Out",
-    "B-123"
+    "B-123-Blue",
+    "Middle Out - Red",
+    "Middle Out - Blue",
+    "Middle In - Red",
+    "Middle In - Blue",
+    "C-Red",
+    "C-Blue",
+    "C-123-Red",
+    "B-Red",
+    "B-Blue",
+    "B-123-Red",
+    "A-Red",
+    "A-Blue",
+    "A-123-Red",
+    "A-123-Blue"
   ],
   "autoFolders": [
-    "A",
-    "B",
-    "C"
+    "A - Red",
+    "B - Red",
+    "C - Red",
+    "A - Blue"
   ],
   "defaultMaxVel": 4.5,
   "defaultMaxAccel": 3.5,

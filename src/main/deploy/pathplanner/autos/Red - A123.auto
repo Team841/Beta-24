@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "A_Preload"
+            "pathName": "A_Preload - Red"
           }
         },
         {
@@ -32,19 +32,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 0.08
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "JustStop"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
+            "name": "stopIndexer"
           }
         },
         {
@@ -54,7 +48,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A_Preload_3"
+                  "pathName": "A_Preload_1 - Red"
                 }
               },
               {
@@ -75,19 +69,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 0.08
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "JustStop"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
+            "name": "stopIndexer"
           }
         },
         {
@@ -103,7 +91,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "3-2"
+                  "pathName": "1-2 - Red"
                 }
               }
             ]
@@ -118,19 +106,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 0.08
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "JustStop"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
+            "name": "stopIndexer"
           }
         },
         {
@@ -146,7 +128,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "2-1"
+                  "pathName": "2-3 - Red"
                 }
               }
             ]
@@ -161,7 +143,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 0.08
           }
         },
         {
@@ -173,6 +155,6 @@
       ]
     }
   },
-  "folder": "A",
+  "folder": "A - Red",
   "choreoAuto": false
 }
