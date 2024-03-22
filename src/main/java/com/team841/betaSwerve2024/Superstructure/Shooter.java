@@ -6,6 +6,7 @@ import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.SC;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
@@ -36,9 +37,15 @@ public class Shooter extends SubsystemBase {
 
   public void ampShot() {
     topShooter.setControl(
-        new MotionMagicVelocityVoltage(2).withFeedForward(6).withAcceleration(200).withSlot(0));
+        new MotionMagicVelocityVoltage(1.5).withFeedForward(6).withAcceleration(200).withSlot(0));
     bottomShooter.setControl(
-        new MotionMagicVelocityVoltage(20).withFeedForward(6).withAcceleration(200).withSlot(0));
+        new MotionMagicVelocityVoltage(12.5).withFeedForward(6).withAcceleration(200).withSlot(0));
+  }
+
+  public Command idleBack(){
+    return new RunCommand(() -> {topShooter.set(
+            -0.05);
+      bottomShooter.set(-0.015);}, this);
   }
 
   public void trapShot() {
@@ -56,9 +63,14 @@ public class Shooter extends SubsystemBase {
     return this.topShooter.getVelocity().getValue() > 0;
   }
 
-  public void stopShooter() {
+  /* public void stopShooter() {
     topShooter.stopMotor();
     bottomShooter.stopMotor();
+  } */
+
+  public void stopShooter(){
+    bottomShooter.set(-0.05);
+    topShooter.set(-0.05);
   }
 
   public Command runShooter(double velocity) {

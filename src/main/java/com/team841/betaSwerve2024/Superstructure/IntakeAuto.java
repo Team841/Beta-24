@@ -16,7 +16,7 @@ public class IntakeAuto extends Command {
   @Override
   public void initialize() {
     f_intake.intake();
-    f_indexer.intake();
+    f_indexer.halfIntake();
   }
 
   @Override

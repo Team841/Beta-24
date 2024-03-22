@@ -3,13 +3,27 @@
   "robotLength": 0.9779,
   "holonomicMode": true,
   "pathFolders": [
-    "Playoff",
-    "Rush M in",
-    "Rush M out"
+    "A - BLUE - 123",
+    "A - RED - 123",
+    "B - BLUE - 123",
+    "B - RED - 123",
+    "C - BLUE - 123",
+    "C - RED - 123",
+    "Middle In - Blue",
+    "Middle In - Red",
+    "Middle Out - Blue",
+    "Middle Out - Red"
   ],
-  "autoFolders": [],
-  "defaultMaxVel": 3.5,
-  "defaultMaxAccel": 3.25,
+  "autoFolders": [
+    "A - Blue",
+    "A - Red",
+    "B - Blue",
+    "B - Red",
+    "C - Red",
+    "C - Blue"
+  ],
+  "defaultMaxVel": 4.5,
+  "defaultMaxAccel": 3.5,
   "defaultMaxAngVel": 540.0,
   "defaultMaxAngAccel": 720.0,
   "maxModuleSpeed": 5.0

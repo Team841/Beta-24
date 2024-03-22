@@ -30,6 +30,10 @@ public class Indexer extends SubsystemBase {
     setDutyCyle(-0.3);
   }
 
+  public void quarterIntake(){
+    setDutyCyle(-0.15);
+  }
+
   public void stopIndexer() {
     indexerTalon.stopMotor();
   }
