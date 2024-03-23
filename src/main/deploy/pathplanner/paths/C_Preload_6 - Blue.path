@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3420084233067526,
-        "y": 1.8190206692913387
+        "x": 4.032561497488018,
+        "y": 1.9096434370979074
       },
       "isLocked": false,
       "linkedName": "C-Preload - Blue"
@@ -17,11 +17,11 @@
     {
       "anchor": {
         "x": 8.4,
-        "y": 3.9
+        "y": 4.15
       },
       "prevControl": {
-        "x": 4.970677772928315,
-        "y": 4.730817409111345
+        "x": 4.577738968418077,
+        "y": 4.481889178713804
       },
       "nextControl": null,
       "isLocked": false,
