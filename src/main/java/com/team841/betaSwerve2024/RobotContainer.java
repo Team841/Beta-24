@@ -125,14 +125,9 @@ public class RobotContainer {
         .onFalse(
             new SequentialCommandGroup(
                 new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
+
     cojoystick
-        .a()
-        .whileTrue(new InstantCommand(arm::forward))
-        .onFalse(new InstantCommand(arm::hardStop));
-    cojoystick
-        .y()
-        .whileTrue(new InstantCommand(arm::backward))
-        .onFalse(new InstantCommand(arm::hardStop));
+    .y().whileTrue(new InstantCommand(shooter::flyShot)).onFalse(new InstantCommand(shooter::stopShooter));
     /* cojoystick
     .y()
     .onTrue(new InstantCommand(shooter::trapShot))

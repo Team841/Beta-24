@@ -4,24 +4,24 @@
     {
       "anchor": {
         "x": 2.3,
-        "y": 3.7
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3921353266708882,
-        "y": 2.7839825177889788
+        "x": 3.9243450207851116,
+        "y": 0.864372374284655
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "C-Preload - Blue"
     },
     {
       "anchor": {
-        "x": 8.39,
-        "y": 0.55
+        "x": 8.397204250394415,
+        "y": 2.35
       },
       "prevControl": {
-        "x": 4.087579755265144,
-        "y": 0.3697768164315677
+        "x": 6.294718119805958,
+        "y": 2.4712221709948112
       },
       "nextControl": null,
       "isLocked": false,
@@ -43,7 +43,7 @@
     "rotateFast": true
   },
   "reversed": false,
-  "folder": "Middle Out - Red",
+  "folder": "Middle Out - Blue",
   "previewStartingState": null,
   "useDefaultConstraints": false
 }

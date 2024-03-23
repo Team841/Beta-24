@@ -17,15 +17,15 @@
     {
       "anchor": {
         "x": 2.3,
-        "y": 3.7
+        "y": 4.0
       },
       "prevControl": {
         "x": 3.141500809850211,
-        "y": 2.2294394302697054
+        "y": 2.529439430269705
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "C-Preload - Blue"
     }
   ],
   "rotationTargets": [],

@@ -3,7 +3,7 @@
   "startingPose": {
     "position": {
       "x": 1.38,
-      "y": 4.61
+      "y": 1.59
     },
     "rotation": 180.0
   },
@@ -20,7 +20,25 @@
         {
           "type": "path",
           "data": {
-            "pathName": "B-Preload-FAST - Blue"
+            "pathName": "C-Preload - Red"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "stopIndexer"
           }
         },
         {
@@ -36,26 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "B_Preload_4 - Blue"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "JustShoot"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "stopIndexer"
-                      }
-                    }
-                  ]
+                  "pathName": "C_Preload_4 - Blue"
                 }
               }
             ]
@@ -64,13 +63,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "4_in - Blue"
+            "pathName": "4_in - Red"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "CountShot"
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
           }
         },
         {
@@ -86,7 +91,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "B_Preload_5 - Blue"
+                  "pathName": "C_Preload_5 - Red"
                 }
               },
               {
@@ -101,13 +106,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "5_in - Blue"
+            "pathName": "5_in - Red"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "CountShot"
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
           }
         },
         {
@@ -123,7 +134,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "B_Preload_6 - Blue"
+                  "pathName": "C_Preload_6 - Red"
                 }
               },
               {
@@ -144,6 +155,6 @@
       ]
     }
   },
-  "folder": "B - Blue",
+  "folder": "C - Red",
   "choreoAuto": false
 }

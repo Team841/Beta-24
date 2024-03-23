@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 8.39,
-        "y": 0.55
+        "y": 0.7
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.688187768981171,
-        "y": 1.4137966025345203
+        "x": 6.204853701520783,
+        "y": 1.2394899650421374
       },
       "isLocked": false,
       "linkedName": null
@@ -17,15 +17,15 @@
     {
       "anchor": {
         "x": 2.3,
-        "y": 3.7
+        "y": 4.0
       },
       "prevControl": {
-        "x": 3.1127972804654527,
-        "y": 3.082127632124983
+        "x": 3.192082722927183,
+        "y": 3.2706912406195707
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "C-Preload - Red"
     }
   ],
   "rotationTargets": [],
