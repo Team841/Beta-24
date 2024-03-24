@@ -128,10 +128,10 @@ public class RobotContainer {
 
     cojoystick
     .y().whileTrue(new InstantCommand(shooter::flyShot)).onFalse(new InstantCommand(shooter::stopShooter));
-    /* cojoystick
-    .y()
+    cojoystick
+    .a()
     .onTrue(new InstantCommand(shooter::trapShot))
-    .onFalse(new InstantCommand(shooter::stopShooter)); */
+    .onFalse(new InstantCommand(shooter::stopShooter));
 
   }
 

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.3,
-        "y": 4.0
+        "x": 2.1195110773437507,
+        "y": 3.7697610606488827
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.032561497488018,
-        "y": 1.9096434370979074
+        "x": 3.852072574831769,
+        "y": 1.6794044977467901
       },
       "isLocked": false,
       "linkedName": "C-Preload - Blue"
@@ -33,7 +33,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 6.0,
-    "maxAcceleration": 5.0,
+    "maxAcceleration": 4.25,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
