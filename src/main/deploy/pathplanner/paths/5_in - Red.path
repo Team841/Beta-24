@@ -4,28 +4,28 @@
     {
       "anchor": {
         "x": 8.4,
-        "y": 3.9
+        "y": 2.35
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.2819660112501055,
-        "y": 3.9
+        "x": 4.634046420381573,
+        "y": 1.1019340402119775
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.803163170880332,
-        "y": 5.551882435924497
+        "x": 2.3,
+        "y": 4.0
       },
       "prevControl": {
-        "x": 4.184190957102564,
-        "y": 4.187766661026282
+        "x": 3.869933442625101,
+        "y": 3.2413051966655577
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "C-Preload - Red"
     }
   ],
   "rotationTargets": [],
@@ -38,12 +38,12 @@
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": 180.0,
-    "rotateFast": true
+    "velocity": 0.0,
+    "rotation": 140.0,
+    "rotateFast": false
   },
   "reversed": false,
-  "folder": "Middle In - Blue",
+  "folder": "Middle In - Red",
   "previewStartingState": null,
   "useDefaultConstraints": false
 }

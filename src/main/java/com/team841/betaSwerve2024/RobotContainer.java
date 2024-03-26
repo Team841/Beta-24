@@ -125,18 +125,13 @@ public class RobotContainer {
         .onFalse(
             new SequentialCommandGroup(
                 new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
+
     cojoystick
-        .a()
-        .whileTrue(new InstantCommand(arm::forward))
-        .onFalse(new InstantCommand(arm::hardStop));
+    .y().whileTrue(new InstantCommand(shooter::flyShot)).onFalse(new InstantCommand(shooter::stopShooter));
     cojoystick
-        .y()
-        .whileTrue(new InstantCommand(arm::backward))
-        .onFalse(new InstantCommand(arm::hardStop));
-    /* cojoystick
-    .y()
+    .a()
     .onTrue(new InstantCommand(shooter::trapShot))
-    .onFalse(new InstantCommand(shooter::stopShooter)); */
+    .onFalse(new InstantCommand(shooter::stopShooter));
 
   }
 
@@ -176,6 +171,10 @@ public class RobotContainer {
             .withTimeout(2.5));
     NamedCommands.registerCommand("aIntake", new IntakeAuto(intake, indexer));
     NamedCommands.registerCommand("stopIndexer", new InstantCommand(indexer::stopIndexer));
+    NamedCommands.registerCommand("CountShot", new ParallelCommandGroup(
+        new InstantCommand(shooter::spinUp),
+        new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(indexer::Pass)))
+    .withTimeout(0.8));
 
     configureBindings();
     configureCoBindings();

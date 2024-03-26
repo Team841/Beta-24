@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.39,
-      "y": 7.33
+      "x": 1.38,
+      "y": 4.61
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "A_Preload - Blue"
+            "pathName": "B-Preload - Blue"
           }
         },
         {
@@ -32,44 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "stopIndexer"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "A_Preload_1 - Blue"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "aIntake"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "JustShoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.05
+            "waitTime": 0.08
           }
         },
         {
@@ -91,7 +54,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "1-2 - Blue"
+                  "pathName": "B-Preload_3 - Blue"
                 }
               }
             ]
@@ -106,7 +69,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.08
           }
         },
         {
@@ -128,7 +91,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "2-3 - Blue"
+                  "pathName": "3-2 - Blue"
                 }
               }
             ]
@@ -143,50 +106,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "stopIndexer"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "aIntake"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "1-6 - Blue"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "6-2 - Blue"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "JustShoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.05
+            "waitTime": 0.08
           }
         },
         {
@@ -198,6 +118,6 @@
       ]
     }
   },
-  "folder": "A - Blue",
+  "folder": "B - Blue",
   "choreoAuto": false
 }

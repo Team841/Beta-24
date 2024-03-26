@@ -3,32 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.69,
-        "y": 4.23
+        "x": 2.3,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.484083330666661,
-        "y": 6.0868182869699075
+        "x": 3.197239499672661,
+        "y": 2.1652377334449504
       },
       "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 4.928610273887214,
-        "y": 4.47756270512541
-      },
-      "prevControl": {
-        "x": 3.9272279399206793,
-        "y": 4.881278420903939
-      },
-      "nextControl": {
-        "x": 6.513878444423555,
-        "y": 3.8384485002303337
-      },
-      "isLocked": false,
-      "linkedName": null
+      "linkedName": "C-Preload - Red"
     },
     {
       "anchor": {
@@ -36,8 +20,8 @@
         "y": 3.9
       },
       "prevControl": {
-        "x": 6.966200494897208,
-        "y": 3.772518586702104
+        "x": 4.841189592150311,
+        "y": 4.524394669387931
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,7 +33,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 6.0,
-    "maxAcceleration": 4.5,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
@@ -59,7 +43,7 @@
     "rotateFast": true
   },
   "reversed": false,
-  "folder": "Middle Out - Blue",
+  "folder": "Middle Out - Red",
   "previewStartingState": null,
   "useDefaultConstraints": false
 }

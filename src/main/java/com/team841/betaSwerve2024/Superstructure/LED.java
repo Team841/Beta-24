@@ -15,6 +15,8 @@ public class LED extends SubsystemBase {
 
   private Indexer indexer = Manifest.SubsystemManifest.indexer;
 
+  private int count = 0;
+
   /** Creates a new LED. */
   public LED() {}
 
@@ -27,10 +29,19 @@ public class LED extends SubsystemBase {
 
   @Override
   public void periodic() {
-    if (indexer.getindexerSensor()) {
+    if (indexer.getindexerSensor() && indexer.getLeftIndexerSensor()) {
       setColor("Green");
-    } else {
+      if (count == 0)
+        count += 1;
+    }
+    
+    if (count > 0){ 
+      count += 1;
+    }
+
+    if (count > 200){
       setColor("Violet");
+      count = 0;
     }
   }
 }
