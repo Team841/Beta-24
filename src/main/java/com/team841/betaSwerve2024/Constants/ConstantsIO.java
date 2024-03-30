@@ -1,6 +1,20 @@
 package com.team841.betaSwerve2024.Constants;
 
+import java.util.function.Supplier;
+
+import edu.wpi.first.wpilibj.DriverStation;
+
 public class ConstantsIO {
+
+  public static Supplier<Boolean> isRedAlliance =
+      () -> {
+        var alliance = DriverStation.getAlliance();
+        if (alliance.isPresent()) {
+          return alliance.get() == DriverStation.Alliance.Red;
+        }
+        return false;
+      };
+
 
   public static boolean rumbleNeedsPing = false;
 

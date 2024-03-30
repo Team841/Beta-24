@@ -11,6 +11,12 @@
         "open": true
       },
       "SmartDashboard": {
+        "Auto Mode": {
+          "open": true,
+          "string[]##v_/SmartDashboard/Auto Mode/options": {
+            "open": true
+          }
+        },
         "open": true
       }
     },
@@ -28,6 +34,7 @@
     "visible": true
   },
   "NetworkTables Settings": {
+    "dsClient": false,
     "mode": "Client (NT4)",
     "serverTeam": "841"
   }

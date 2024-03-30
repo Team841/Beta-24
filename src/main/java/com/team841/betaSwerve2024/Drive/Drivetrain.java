@@ -1,5 +1,6 @@
 package com.team841.betaSwerve2024.Drive;
 
+import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
@@ -7,13 +8,20 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.util.GeometryUtil;
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
+import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Swerve;
-import com.team841.betaSwerve2024.Superstructure.LimelightHelpers;
+import com.team841.betaSwerve2024.Vision.LimelightHelpers;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.struct.Pose2dStruct;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.networktables.*;
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.struct.Struct;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
@@ -23,8 +31,37 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import java.util.function.Supplier;
 
+import edu.wpi.first.math.geometry.struct.Pose2dStruct;
+
 public class Drivetrain extends SwerveDrivetrain implements Subsystem {
-  private final boolean UseLimelight = false;
+
+  /*
+  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTable table = inst.getTable("LimelightTest");
+
+  //final StructPublisher<Pose2d> lime = table.getStructTopic("Limelight Pose", ).publish();
+
+  Topic genLime = inst.getTopic("LimelightTest");
+  Topic poseTgen = inst.getTopic("LimelightTest");
+
+  StructTopic limeT = inst.getStructTopic("LimeT", genLime.get)
+
+  final StructPublisher<Pose2d> poseP;
+  final StructPublisher<Pose2d> limeP;
+
+   */
+
+  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTable poseTest = inst.getTable("Pose Test");
+
+  StructTopic<Pose2d> limeT = poseTest.getStructTopic("Limelight Pose", Pose2d.struct);
+  StructTopic<Pose2d> ctreT = poseTest.getStructTopic("CTRE Pose", Pose2d.struct);
+  StructTopic<Pose2d> shotT = poseTest.getStructTopic("SHOOOTER LIME LIGHT YEEEEEE", Pose2d.struct);
+
+  StructPublisher<Pose2d> limeP = limeT.publish();
+  StructPublisher<Pose2d> ctreP = ctreT.publish();
+  StructPublisher<Pose2d> shotP = shotT.publish();
+
   private static final double kSimLoopPeriod = 0.005; // 5 ms
   private Notifier m_simNotifier = null;
   private double m_lastSimTime;
@@ -51,6 +88,9 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     if (Utils.isSimulation()) {
       startSimThread();
     }
+
+    this.setOperatorPerspectiveForward(
+        ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
 
     ConfigureMotors();
     configurePathplanner();
@@ -125,27 +165,20 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     m_simNotifier.startPeriodic(kSimLoopPeriod);
   }
 
+  public void seedTemp() {
+    this.seedFieldRelative(GeometryUtil.flipFieldPose(new Pose2d(1.3865381479263306, 4.631037712097168, new Rotation2d(3.14159))));
+  }
+
   @Override
   public void periodic() {
-    // read values periodically
-    /*double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
+    /*
+    SmartDashboard.putString("CTRE POSE", this.getState().Pose.toString());
+    SmartDashboard.putString("Limelight POSE", LimelightHelpers.getBotPose2d_wpiRed("limelight").toString());
+     */
+    ctreP.set(this.getState().Pose);
+    limeP.set(LimelightHelpers.getBotPose2d_wpiBlue("limelight-front"));
+    shotP.set(LimelightHelpers.getBotPose2d_wpiBlue("limelight-back"));
 
-    //post to smart dashboard periodically
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);*/
-
-    if (UseLimelight) {
-      var lastResult = LimelightHelpers.getLatestResults("limelight").targetingResults;
-
-      Pose2d llPose = lastResult.getBotPose2d_wpiBlue();
-      SmartDashboard.putString("String", llPose.toString());
-
-      if (lastResult.valid) {
-        this.addVisionMeasurement(llPose, Timer.getFPGATimestamp());
-      }
-    }
-  }
+    //this.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue("limelight"), Timer.getFPGATimestamp());
+  } 
 }
