@@ -1,6 +1,5 @@
 package com.team841.betaSwerve2024.Drive;
 
-import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
@@ -15,13 +14,14 @@ import com.pathplanner.lib.util.ReplanningConfig;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Vision.LimelightHelpers;
+import edu.wpi.first.math.Matrix;
+import edu.wpi.first.math.Nat;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.struct.Pose2dStruct;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.numbers.N1;
+import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.networktables.*;
-import edu.wpi.first.util.sendable.Sendable;
-import edu.wpi.first.util.struct.Struct;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
@@ -30,8 +30,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import java.util.function.Supplier;
-
-import edu.wpi.first.math.geometry.struct.Pose2dStruct;
 
 public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
@@ -62,6 +60,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   StructPublisher<Pose2d> ctreP = ctreT.publish();
   StructPublisher<Pose2d> shotP = shotT.publish();
 
+  public static Matrix<N3, N1> kVisionStdDevs = new Matrix<>(Nat.N3(), Nat.N1());
+
   private static final double kSimLoopPeriod = 0.005; // 5 ms
   private Notifier m_simNotifier = null;
   private double m_lastSimTime;
@@ -78,6 +78,12 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
+    //this.setOperatorPerspectiveForward(ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
+
+    kVisionStdDevs.set(0,0, 2);
+    kVisionStdDevs.set(1,0,2);
+    kVisionStdDevs.set(2, 0, Math.PI*2);
+
     ConfigureMotors();
     configurePathplanner();
   }
@@ -89,8 +95,11 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
-    this.setOperatorPerspectiveForward(
-        ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
+    //this.setOperatorPerspectiveForward(ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
+
+    kVisionStdDevs.set(0,0, 2);
+    kVisionStdDevs.set(1,0,2);
+    kVisionStdDevs.set(2, 0, Math.PI*2);
 
     ConfigureMotors();
     configurePathplanner();
@@ -166,19 +175,21 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   }
 
   public void seedTemp() {
-    this.seedFieldRelative(GeometryUtil.flipFieldPose(new Pose2d(1.3865381479263306, 4.631037712097168, new Rotation2d(3.14159))));
+    this.seedFieldRelative(
+        GeometryUtil.flipFieldPose(
+            new Pose2d(1.3865381479263306, 4.631037712097168, new Rotation2d(3.14159))));
   }
 
   @Override
   public void periodic() {
-    /*
-    SmartDashboard.putString("CTRE POSE", this.getState().Pose.toString());
-    SmartDashboard.putString("Limelight POSE", LimelightHelpers.getBotPose2d_wpiRed("limelight").toString());
-     */
+    if (LimelightHelpers.getTV(Swerve.Vision.kLimelightFrontName)){
+      this.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue(Swerve.Vision.kLimelightFrontName), Timer.getFPGATimestamp(), kVisionStdDevs);
+    }
+
     ctreP.set(this.getState().Pose);
     limeP.set(LimelightHelpers.getBotPose2d_wpiBlue("limelight-front"));
     shotP.set(LimelightHelpers.getBotPose2d_wpiBlue("limelight-back"));
 
-    //this.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue("limelight"), Timer.getFPGATimestamp());
-  } 
+    SmartDashboard.putString("vison matrix", kVisionStdDevs.toString());
+  }
 }

@@ -31,15 +31,14 @@ public class LED extends SubsystemBase {
   public void periodic() {
     if (indexer.getindexerSensor() && indexer.getLeftIndexerSensor()) {
       setColor("Green");
-      if (count == 0)
-        count += 1;
+      if (count == 0) count += 1;
     }
-    
-    if (count > 0){ 
+
+    if (count > 0) {
       count += 1;
     }
 
-    if (count > 200){
+    if (count > 200) {
       setColor("Violet");
       count = 0;
     }

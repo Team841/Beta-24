@@ -42,10 +42,13 @@ public class Shooter extends SubsystemBase {
         new MotionMagicVelocityVoltage(12.5).withFeedForward(6).withAcceleration(200).withSlot(0));
   }
 
-  public Command idleBack(){
-    return new RunCommand(() -> {topShooter.set(
-            -0.05);
-      bottomShooter.set(-0.015);}, this);
+  public Command idleBack() {
+    return new RunCommand(
+        () -> {
+          topShooter.set(-0.05);
+          bottomShooter.set(-0.015);
+        },
+        this);
   }
 
   public void trapShot() {
@@ -54,12 +57,13 @@ public class Shooter extends SubsystemBase {
     topShooter.setControl(
         new MotionMagicVelocityVoltage(top).withFeedForward(6).withAcceleration(200).withSlot(0));
     bottomShooter.setControl(
-        new MotionMagicVelocityVoltage(bottom).withFeedForward(6).withAcceleration(200).withSlot(0));
-    
+        new MotionMagicVelocityVoltage(bottom)
+            .withFeedForward(6)
+            .withAcceleration(200)
+            .withSlot(0));
   }
 
-
-  public void flyShot(){
+  public void flyShot() {
     topShooter.setControl(
         new MotionMagicVelocityVoltage(60).withFeedForward(6).withAcceleration(200).withSlot(0));
     bottomShooter.setControl(
@@ -79,7 +83,7 @@ public class Shooter extends SubsystemBase {
     bottomShooter.stopMotor();
   } */
 
-  public void stopShooter(){
+  public void stopShooter() {
     bottomShooter.set(-0.05);
     topShooter.set(-0.05);
   }

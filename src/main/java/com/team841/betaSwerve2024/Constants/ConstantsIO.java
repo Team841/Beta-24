@@ -1,8 +1,7 @@
 package com.team841.betaSwerve2024.Constants;
 
-import java.util.function.Supplier;
-
 import edu.wpi.first.wpilibj.DriverStation;
+import java.util.function.Supplier;
 
 public class ConstantsIO {
 
@@ -14,7 +13,6 @@ public class ConstantsIO {
         }
         return false;
       };
-
 
   public static boolean rumbleNeedsPing = false;
 
