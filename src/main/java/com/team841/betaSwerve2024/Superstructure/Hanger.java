@@ -37,7 +37,9 @@ public class Hanger extends SubsystemBase {
     } else {
       LeftHangerMotor.set(1.00);
       RightHangerMotor.set(1.00);
-    }
+    }*/
+    LeftHangerMotor.set(-1.00);
+    RightHangerMotor.set(-1.00);
   }
 
   public void RetractHanger() {
@@ -47,7 +49,9 @@ public class Hanger extends SubsystemBase {
     } else {
       LeftHangerMotor.set(-.98);
       RightHangerMotor.set(-.98);
-    }
+    }*/
+    LeftHangerMotor.set(1.00);
+    RightHangerMotor.set(1.00);
   }
 
   public void toggleHanger() {

@@ -15,6 +15,8 @@ public class LED extends SubsystemBase {
 
   private Indexer indexer = Manifest.SubsystemManifest.indexer;
 
+  private Intake intake = Manifest.SubsystemManifest.intake;
+
   private int count = 0;
 
   /** Creates a new LED. */
@@ -24,6 +26,7 @@ public class LED extends SubsystemBase {
     switch (color) {
       case "Violet" -> LED.set(0.91);
       case "Green" -> LED.set(.77);
+      case "Orange" -> LED.set(.65);
     }
   }
 
@@ -44,3 +47,4 @@ public class LED extends SubsystemBase {
     }
   }
 }
+
