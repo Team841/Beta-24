@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 9.005476401504446,
-        "y": 0.8209568641848551
+        "x": 9.01,
+        "y": 0.5
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.160892159622156,
-        "y": 1.211056115805926
+        "x": 7.16541575811771,
+        "y": 0.8900992516210711
       },
       "isLocked": false,
       "linkedName": "C-Preload_4 - Blue"

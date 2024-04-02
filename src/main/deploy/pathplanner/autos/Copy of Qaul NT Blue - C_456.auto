@@ -104,6 +104,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "5_in - Blue"
