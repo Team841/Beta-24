@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "New Starting position"
+            "pathName": "D"
           }
         },
         {
@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.15
+            "waitTime": 0.07
           }
         },
         {
@@ -75,7 +75,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.15
+            "waitTime": 0.08
           }
         },
         {
@@ -104,12 +104,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "5_in - Blue"
@@ -124,13 +118,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.15
+            "waitTime": 0.08
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "JustStop"
+            "name": "stopIndexer"
           }
         },
         {
@@ -140,15 +134,27 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "5_in_driveout - Blue"
+                  "pathName": "C_Preload_6 - Blue"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "aIntake"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustStop"
           }
         }
       ]
     }
   },
-  "folder": null,
+  "folder": "D - Blue",
   "choreoAuto": false
 }
