@@ -12,6 +12,12 @@
     "data": {
       "commands": [
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "SpinUp"
@@ -104,12 +110,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "SpinUp"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "5_in - Blue"
@@ -125,6 +125,31 @@
           "type": "wait",
           "data": {
             "waitTime": 0.05
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "stopIndexer"
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "C_Preload_6 - Blue"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "aIntake"
+                }
+              }
+            ]
           }
         },
         {

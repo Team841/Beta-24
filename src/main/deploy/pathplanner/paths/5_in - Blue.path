@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.658534073824903,
-        "y": 2.6809639204863998
+        "x": 8.787959918262178,
+        "y": 2.32966519987094
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.5556332546136415,
-        "y": 0.9685727837029523
+        "x": 5.685059099050917,
+        "y": 0.6172740630874927
       },
       "isLocked": false,
       "linkedName": "C_Preload_5 - Blue"
@@ -39,7 +39,7 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 140.0,
+    "rotation": 132.26373801376522,
     "rotateFast": false
   },
   "reversed": false,

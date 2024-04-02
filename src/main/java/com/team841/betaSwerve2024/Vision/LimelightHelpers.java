@@ -27,7 +27,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class LimelightHelpers {
 
-//Estimating Distance
+/*Estimating Distance
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   NetworkTableEntry ty = table.getEntry("ty");
   double targetOffsetAngle_Vertical = ty.getDouble(-0.43);
@@ -46,7 +46,7 @@ public class LimelightHelpers {
 
   //calculate distance
   double distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches) / Math.tan(angleToGoalRadians);
-
+*/
   //LimelightHelpers v1.4.0 (March 21, 2024)
     public static class LimelightTarget_Retro {
 

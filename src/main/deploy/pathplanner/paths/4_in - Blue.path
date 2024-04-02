@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 9.01,
-        "y": 0.5
+        "y": 0.4
       },
       "prevControl": null,
       "nextControl": {
         "x": 7.16541575811771,
-        "y": 0.8900992516210711
+        "y": 0.790099251621071
       },
       "isLocked": false,
       "linkedName": "C-Preload_4 - Blue"

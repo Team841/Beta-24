@@ -182,9 +182,9 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
   @Override
   public void periodic() {
-    if (LimelightHelpers.getTV(Swerve.Vision.kLimelightFrontName)){
-      this.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue(Swerve.Vision.kLimelightFrontName), Timer.getFPGATimestamp(), kVisionStdDevs);
-    }
+    //if (LimelightHelpers.getTV(Swerve.Vision.kLimelightFrontName)){
+      //this.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue(Swerve.Vision.kLimelightFrontName), Timer.getFPGATimestamp(), kVisionStdDevs);
+    //}
 
     ctreP.set(this.getState().Pose);
     limeP.set(LimelightHelpers.getBotPose2d_wpiBlue("limelight-front"));
@@ -193,3 +193,4 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     SmartDashboard.putString("vison matrix", kVisionStdDevs.toString());
   }
 }
+
