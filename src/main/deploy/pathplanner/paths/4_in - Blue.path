@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 9.005476401504446,
-        "y": 0.8209568641848551
+        "x": 9.01,
+        "y": 0.4
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.303664170485616,
-        "y": 1.6847534667193753
+        "x": 7.16541575811771,
+        "y": 0.790099251621071
       },
       "isLocked": false,
       "linkedName": "C-Preload_4 - Blue"
     },
     {
       "anchor": {
-        "x": 2.2980265546798697,
-        "y": 3.695973652217258
+        "x": 2.17,
+        "y": 3.78
       },
       "prevControl": {
-        "x": 2.7035522246807404,
-        "y": 1.6970740415952665
+        "x": 3.6479049534675645,
+        "y": 1.9876111824295724
       },
       "nextControl": null,
       "isLocked": false,
@@ -40,7 +40,7 @@
   "goalEndState": {
     "velocity": 0,
     "rotation": 140.0,
-    "rotateFast": true
+    "rotateFast": false
   },
   "reversed": false,
   "folder": "Middle In - Blue",
