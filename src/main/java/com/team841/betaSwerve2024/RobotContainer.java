@@ -82,7 +82,7 @@ public class RobotContainer {
 
     joystick.L2().onTrue(new InstantCommand(drivetrain::seedTemp));
 
-    joystick.R2().onTrue(autoAim);
+    joystick.R2().whileTrue(autoAim);
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));

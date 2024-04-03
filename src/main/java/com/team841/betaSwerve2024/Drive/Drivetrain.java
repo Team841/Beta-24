@@ -175,18 +175,34 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
   public Supplier<Rotation2d> getHeadingToSpeaker =
       () -> {
-        // this.getState().Pose.getRotation().minus(Field.kRedSpeakerPose2d.getRotation());
-        if (Math.abs(this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY()) < 0.5) {
-          return new Rotation2d(Math.PI);
-        } else if (ConstantsIO.isRedAlliance.get()) {
-          return new Rotation2d(
-              this.getState().Pose.getX() - Field.kRedSpeakerPose2d.getX(),
-              this.getState().Pose.getY() - Field.kRedSpeakerPose2d.getY());
-        } else {
-          return new Rotation2d(
-              this.getState().Pose.getX() - Field.kBlueSpeakerPose2d.getX(),
-              this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY());
+        Rotation2d aimGoal;
+
+        if (ConstantsIO.isRedAlliance.get()) { // Red side
+          if (Math.abs(this.getState().Pose.getY() - Field.kRedSpeakerPose2d.getY()) < 0.15) {
+            //aimGoal = new Rotation2d(Math.toRadians(-1 * this.getState().Pose.getRotation().getDegrees()));
+            aimGoal = new Rotation2d(0);
+          } else {
+            aimGoal =
+                new Rotation2d(
+                    Math.atan(
+                            (Field.kRedSpeakerPose2d.getY() - this.getState().Pose.getY())
+                                    / (Field.kRedSpeakerPose2d.getX() - this.getState().Pose.getX())));
+          }
+        } else { // blue side
+          if (Math.abs(this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY()) < 0.15) {
+            //aimGoal = new Rotation2d(Math.toRadians(this.getState().Pose.getRotation().getDegrees() - 180));
+            aimGoal = new Rotation2d(Math.PI);
+          } else {
+            aimGoal =
+                new Rotation2d(
+                    Math.atan(
+                            (Field.kBlueSpeakerPose2d.getY() - this.getState().Pose.getY())
+                                    / (Field.kBlueSpeakerPose2d.getX() - this.getState().Pose.getX()))
+                            + 180);
+          }
         }
+
+        return aimGoal;
       };
 
   @Override
@@ -202,5 +218,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     limeP.set(PoseEstimate.pose);
 
     SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
+
+    SmartDashboard.putNumber("Turn angle", getHeadingToSpeaker.get().getDegrees());
+    SmartDashboard.putNumber("Facing", this.getState().Pose.getRotation().getDegrees());
   }
 }
