@@ -32,6 +32,7 @@ public class LED extends SubsystemBase {
 
   @Override
   public void periodic() {
+    //if (intake.)
     if (indexer.getindexerSensor() && indexer.getLeftIndexerSensor()) {
       setColor("Green");
       if (count == 0) count += 1;
