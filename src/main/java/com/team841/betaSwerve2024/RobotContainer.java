@@ -7,6 +7,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
+import com.team841.betaSwerve2024.Drive.AutoShoot;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -46,6 +47,8 @@ public class RobotContainer {
   // driving in open loop
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
+
+  private final AutoShoot autoAim = new AutoShoot(drivetrain, indexer, shooter);
   private final Telemetry logger = new Telemetry(Swerve.MaxSpeed);
 
   private final SendableChooser<Command> autoChooser;
@@ -78,6 +81,8 @@ public class RobotContainer {
     joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
 
     joystick.L2().onTrue(new InstantCommand(drivetrain::seedTemp));
+
+    joystick.R2().onTrue(autoAim);
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));

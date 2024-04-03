@@ -12,20 +12,17 @@ import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
+import com.team841.betaSwerve2024.Constants.Field;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Vision.LimelightHelpers;
-import edu.wpi.first.math.Matrix;
-import edu.wpi.first.math.Nat;
+import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.numbers.N1;
-import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -60,8 +57,6 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   StructPublisher<Pose2d> ctreP = ctreT.publish();
   StructPublisher<Pose2d> shotP = shotT.publish();
 
-  public static Matrix<N3, N1> kVisionStdDevs = new Matrix<>(Nat.N3(), Nat.N1());
-
   private static final double kSimLoopPeriod = 0.005; // 5 ms
   private Notifier m_simNotifier = null;
   private double m_lastSimTime;
@@ -78,11 +73,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
-    //this.setOperatorPerspectiveForward(ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
-
-    kVisionStdDevs.set(0,0, 2);
-    kVisionStdDevs.set(1,0,2);
-    kVisionStdDevs.set(2, 0, Math.PI*2);
+    this.setOperatorPerspectiveForward(
+        ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
 
     ConfigureMotors();
     configurePathplanner();
@@ -95,11 +87,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       startSimThread();
     }
 
-    //this.setOperatorPerspectiveForward(ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
-
-    kVisionStdDevs.set(0,0, 2);
-    kVisionStdDevs.set(1,0,2);
-    kVisionStdDevs.set(2, 0, Math.PI*2);
+    this.setOperatorPerspectiveForward(
+        ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
 
     ConfigureMotors();
     configurePathplanner();
@@ -180,16 +169,38 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
             new Pose2d(1.3865381479263306, 4.631037712097168, new Rotation2d(3.14159))));
   }
 
+  public LimelightHelpers.PoseEstimate getLimeLightPoses() {
+    return LimelightHelpers.getBotPoseEstimate_wpiBlue(Swerve.Vision.kLimelightFrontName);
+  }
+
+  public Supplier<Rotation2d> getHeadingToSpeaker =
+      () -> {
+        // this.getState().Pose.getRotation().minus(Field.kRedSpeakerPose2d.getRotation());
+        if (Math.abs(this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY()) < 0.5) {
+          return new Rotation2d(Math.PI);
+        } else if (ConstantsIO.isRedAlliance.get()) {
+          return new Rotation2d(
+              this.getState().Pose.getX() - Field.kRedSpeakerPose2d.getX(),
+              this.getState().Pose.getY() - Field.kRedSpeakerPose2d.getY());
+        } else {
+          return new Rotation2d(
+              this.getState().Pose.getX() - Field.kBlueSpeakerPose2d.getX(),
+              this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY());
+        }
+      };
+
   @Override
   public void periodic() {
-    if (LimelightHelpers.getTV(Swerve.Vision.kLimelightFrontName)){
-      this.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue(Swerve.Vision.kLimelightFrontName), Timer.getFPGATimestamp(), kVisionStdDevs);
+    var PoseEstimate =
+        LimelightHelpers.getBotPoseEstimate_wpiBlue(Swerve.Vision.kLimelightFrontName);
+    if (PoseEstimate.tagCount >= 2) {
+      this.setVisionMeasurementStdDevs(VecBuilder.fill(0.7, 0.7, Math.PI));
+      this.addVisionMeasurement(PoseEstimate.pose, PoseEstimate.timestampSeconds);
     }
 
     ctreP.set(this.getState().Pose);
-    limeP.set(LimelightHelpers.getBotPose2d_wpiBlue("limelight-front"));
-    shotP.set(LimelightHelpers.getBotPose2d_wpiBlue("limelight-back"));
+    limeP.set(PoseEstimate.pose);
 
-    SmartDashboard.putString("vison matrix", kVisionStdDevs.toString());
+    SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
   }
 }

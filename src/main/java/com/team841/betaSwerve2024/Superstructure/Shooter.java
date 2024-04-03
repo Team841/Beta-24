@@ -78,6 +78,10 @@ public class Shooter extends SubsystemBase {
     return this.topShooter.getVelocity().getValue() > 0;
   }
 
+  public boolean isHighShot() {
+    return this.topShooter.getVelocity().getValue() > 90;
+  }
+
   /* public void stopShooter() {
     topShooter.stopMotor();
     bottomShooter.stopMotor();
