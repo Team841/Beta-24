@@ -7,10 +7,6 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants.SteerFeedbackType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstantsFactory;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
-import edu.wpi.first.math.Matrix;
-import edu.wpi.first.math.Nat;
-import edu.wpi.first.math.numbers.N1;
-import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
 
 public class Swerve {
@@ -164,7 +160,7 @@ public class Swerve {
   protected static final Drivetrain DriveTrain =
       new Drivetrain(DrivetrainConstants, FrontLeft, FrontRight, BackLeft, BackRight);
 
-  public static class Vision{
+  public static class Vision {
     public static String kLimelightFrontName = "limelight-front";
   }
 }
