@@ -7,6 +7,8 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants.SteerFeedbackType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstantsFactory;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 
 public class Swerve {
@@ -159,6 +161,12 @@ public class Swerve {
   public static double MaxSpeed = kSpeedAt12VoltsMps;
   protected static final Drivetrain DriveTrain =
       new Drivetrain(DrivetrainConstants, FrontLeft, FrontRight, BackLeft, BackRight);
+
+  public static final ProfiledPIDController TurnController =
+      new ProfiledPIDController(7, 0.0, 0.0, new TrapezoidProfile.Constraints(0, 0));
+
+  public static final TrapezoidProfile.Constraints rotationConstraints =
+      new TrapezoidProfile.Constraints(Math.toRadians(720), Math.toRadians(540 - 180));
 
   public static class Vision {
     public static String kLimelightFrontName = "limelight-front";

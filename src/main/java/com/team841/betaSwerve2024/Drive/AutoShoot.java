@@ -1,6 +1,7 @@
 package com.team841.betaSwerve2024.Drive;
 
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
+import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Superstructure.Indexer;
 import com.team841.betaSwerve2024.Superstructure.Shooter;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -13,14 +14,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class AutoShoot extends Command {
 
-  private ProfiledPIDController TurnController =
-      new ProfiledPIDController(
-          7, 0.0, 0.0, new TrapezoidProfile.Constraints(0, 0));
+  private ProfiledPIDController TurnController = Swerve.TurnController;
 
-  private TrapezoidProfile.State turnState;
-
-  private TrapezoidProfile.Constraints rotationConstraints =
-          new TrapezoidProfile.Constraints(Math.toRadians(720), Math.toRadians(540-180));
+  private TrapezoidProfile.Constraints rotationConstraints = Swerve.rotationConstraints;
 
   private SwerveRequest.ApplyChassisSpeeds turnSpeeds = new SwerveRequest.ApplyChassisSpeeds();
 
@@ -70,12 +66,12 @@ public class AutoShoot extends Command {
     SmartDashboard.putNumber("RotationFF", rotationFF);
 
     f_Drivetrain.setControl(
-            turnSpeeds.withSpeeds(
-                ChassisSpeeds.fromFieldRelativeSpeeds(
-                    0.0,
-                    0.0,
-                    rotationFeedback + rotationFF,
-                    f_Drivetrain.getState().Pose.getRotation())));
+        turnSpeeds.withSpeeds(
+            ChassisSpeeds.fromFieldRelativeSpeeds(
+                0.0,
+                0.0,
+                rotationFeedback + rotationFF,
+                f_Drivetrain.getState().Pose.getRotation())));
 
     // Math.abs(f_Drivetrain.getState().Pose.getRotation().getDegrees() - aimGoal.getDegrees()) < 10
     if (TurnController.atGoal() && f_Shooter.isHighShot()) {
@@ -95,6 +91,6 @@ public class AutoShoot extends Command {
 
   @Override
   public boolean isFinished() {
-    return this.passStartTime != -1 && Timer.getFPGATimestamp() - passStartTime > 1;
+    return this.passStartTime != -1 && Timer.getFPGATimestamp() - passStartTime > 0.8;
   }
 }

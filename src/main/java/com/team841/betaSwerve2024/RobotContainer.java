@@ -8,6 +8,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Drive.AutoShoot;
+import com.team841.betaSwerve2024.Drive.BioControl;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -38,8 +39,15 @@ public class RobotContainer {
 
   private final Hanger hanger = Manifest.SubsystemManifest.hanger;
 
+  /*
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
+          .withDeadband(Swerve.MaxSpeed * 0.1)
+          .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
+          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric */
+
+  private final BioControl drive =
+      new BioControl()
           .withDeadband(Swerve.MaxSpeed * 0.1)
           .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
           .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
@@ -66,7 +74,8 @@ public class RobotContainer {
                         -joystick.getRightX()
                             * Swerve
                                 .MaxAngularRate) // Drive counterclockwise with negative X (left)
-            ));
+                    .withSpeakerCentricMode(joystick.L2().getAsBoolean())
+                    .withTargetDirection(drivetrain.getHeadingToSpeaker.get())));
 
     joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick
@@ -79,8 +88,6 @@ public class RobotContainer {
 
     // reset the field-centric heading on left bumper press
     joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
-
-    joystick.L2().onTrue(new InstantCommand(drivetrain::seedTemp));
 
     joystick.R2().whileTrue(autoAim);
 

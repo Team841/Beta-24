@@ -179,26 +179,28 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
         if (ConstantsIO.isRedAlliance.get()) { // Red side
           if (Math.abs(this.getState().Pose.getY() - Field.kRedSpeakerPose2d.getY()) < 0.15) {
-            //aimGoal = new Rotation2d(Math.toRadians(-1 * this.getState().Pose.getRotation().getDegrees()));
+            // aimGoal = new Rotation2d(Math.toRadians(-1 *
+            // this.getState().Pose.getRotation().getDegrees()));
             aimGoal = new Rotation2d(0);
           } else {
             aimGoal =
                 new Rotation2d(
                     Math.atan(
-                            (Field.kRedSpeakerPose2d.getY() - this.getState().Pose.getY())
-                                    / (Field.kRedSpeakerPose2d.getX() - this.getState().Pose.getX())));
+                        (Field.kRedSpeakerPose2d.getY() - this.getState().Pose.getY())
+                            / (Field.kRedSpeakerPose2d.getX() - this.getState().Pose.getX())));
           }
         } else { // blue side
           if (Math.abs(this.getState().Pose.getY() - Field.kBlueSpeakerPose2d.getY()) < 0.15) {
-            //aimGoal = new Rotation2d(Math.toRadians(this.getState().Pose.getRotation().getDegrees() - 180));
+            // aimGoal = new
+            // Rotation2d(Math.toRadians(this.getState().Pose.getRotation().getDegrees() - 180));
             aimGoal = new Rotation2d(Math.PI);
           } else {
             aimGoal =
                 new Rotation2d(
                     Math.atan(
                             (Field.kBlueSpeakerPose2d.getY() - this.getState().Pose.getY())
-                                    / (Field.kBlueSpeakerPose2d.getX() - this.getState().Pose.getX()))
-                            + 180);
+                                / (Field.kBlueSpeakerPose2d.getX() - this.getState().Pose.getX()))
+                        + 180);
           }
         }
 
@@ -223,4 +225,3 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     SmartDashboard.putNumber("Facing", this.getState().Pose.getRotation().getDegrees());
   }
 }
-
