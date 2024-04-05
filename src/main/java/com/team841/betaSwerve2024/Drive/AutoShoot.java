@@ -44,9 +44,9 @@ public class AutoShoot extends Command {
     this.aimGoal = f_Drivetrain.getHeadingToSpeaker.get();
     this.f_Shooter.spinUp();
     // this.TurnController.setIntegratorRange(-1.0, 1.0);
-    this.TurnController.enableContinuousInput(-Math.PI, Math.PI);
-    this.TurnController.setTolerance(0.5, 0.5);
-    this.TurnController.setIntegratorRange(-1, 1);
+    Swerve.TurnController.enableContinuousInput(-Math.PI, Math.PI);
+    Swerve.TurnController.setTolerance(0.5, 0.5);
+    Swerve.TurnController.setIntegratorRange(-1, 1);
     this.TurnController.reset(f_Drivetrain.getState().Pose.getRotation().getRadians());
   }
 

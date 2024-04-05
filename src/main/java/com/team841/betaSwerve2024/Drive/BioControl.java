@@ -6,10 +6,13 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.utility.PhoenixPIDController;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Field;
+import com.team841.betaSwerve2024.Constants.Swerve;
+import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 
 public class BioControl implements SwerveRequest {
 
@@ -42,6 +45,8 @@ public class BioControl implements SwerveRequest {
   /** The rotational deadband of the request. */
   public double RotationalDeadband = 0;
 
+  private double count = -1;
+
   /**
    * The center of rotation the robot should rotate around. This is (0,0) by default, which will
    * rotate around the center of the robot.
@@ -61,7 +66,11 @@ public class BioControl implements SwerveRequest {
   /** The last applied state in case we don't have anything to drive. */
   protected SwerveModuleState[] m_lastAppliedState = null;
 
-  public PhoenixPIDController HeadingController = new PhoenixPIDController(13, 0, 0);
+  //public PhoenixPIDController HeadingController = new PhoenixPIDController(13, 0, 0);
+
+  private ProfiledPIDController TurnController = Swerve.BioControlController;
+
+  private TrapezoidProfile.Constraints rotationConstraints = Swerve.rotationConstraints;
 
   public StatusCode apply(
       SwerveControlRequestParameters parameters, SwerveModule... modulesToApply) {
@@ -87,12 +96,23 @@ public class BioControl implements SwerveRequest {
                       / (Field.kBlueSpeakerPose2d.getX() - parameters.currentPose.getX())) + 180;
     }
 
-    double ControllerResult =
-        HeadingController.calculate(
-            parameters.currentPose.getRotation().getRadians(), angleToFace, parameters.timestamp);
+    if (this.count == 0){
+      this.TurnController.reset(parameters.currentPose.getRotation().getRadians());
+      this.count += 1;
+    }
+
+    // double ControllerResult = HeadingController.calculate(parameters.currentPose.getRotation().getRadians(), angleToFace, parameters.timestamp);
 
     if (InSpeakerCentric) {
-      toApplyOmega = ControllerResult;
+      // toApplyOmega = ControllerResult;
+      double rotationFeedback =
+              TurnController.calculate(
+                      parameters.currentPose.getRotation().getRadians(),
+                      new TrapezoidProfile.State(angleToFace, 0),
+                      rotationConstraints);
+
+      double rotationFF = TurnController.getSetpoint().velocity;
+      toApplyOmega = rotationFeedback + rotationFF;
     }
 
     if (Math.sqrt(toApplyX * toApplyX + toApplyY * toApplyY) < Deadband) {
@@ -210,8 +230,22 @@ public class BioControl implements SwerveRequest {
   }
 
   public BioControl withSpeakerCentricMode(Boolean mode) {
-    this.InSpeakerCentric = mode;
-    return this;
+    if(mode){
+      if(this.InSpeakerCentric){
+        return this;
+      } else{
+        this.TurnController.enableContinuousInput(-Math.PI, Math.PI);
+        this.TurnController.setTolerance(0.5, 0.5);
+        this.TurnController.setIntegratorRange(-1, 1);
+        count += 1;
+        this.InSpeakerCentric = true;
+        return this;
+      }
+    } else{
+      count = -1;
+      this.InSpeakerCentric = false;
+      return this;
+    }
   }
 
   public BioControl withTargetDirection(Rotation2d direction) {

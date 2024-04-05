@@ -16,6 +16,7 @@ import com.team841.betaSwerve2024.Constants.Field;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Vision.LimelightHelpers;
 import edu.wpi.first.math.VecBuilder;
+import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -62,7 +63,10 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   private Notifier m_simNotifier = null;
   private double m_lastSimTime;
 
-  private final SwerveRequest.ApplyChassisSpeeds autoRequest = new SwerveRequest.ApplyChassisSpeeds();
+  private ProfiledPIDController TurnController = Swerve.BioControlController;
+
+  private final SwerveRequest.ApplyChassisSpeeds autoRequest =
+      new SwerveRequest.ApplyChassisSpeeds();
 
   public Drivetrain(
       SwerveDrivetrainConstants driveTrainConstants,
@@ -89,6 +93,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
     this.setOperatorPerspectiveForward(
         ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
+
 
     ConfigureMotors();
     configurePathplanner();
@@ -203,6 +208,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     return aimGoal;
   };
 
+  protected Supplier<Pose2d> ComputeThreadGetPose = ()->{return this.getState().Pose;};
+
   @Override
   public void periodic() {
    boolean doRejectUpdate = false;
@@ -224,9 +231,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
     SmartDashboard.putBoolean("2 tags", mt2.tagCount >= 2);
 
-    SmartDashboard.putNumber("Turn angle", getHeadingToSpeaker.get().getDegrees());
-    SmartDashboard.putNumber("Facing", this.getState().Pose.getRotation().getDegrees());
-
-    
+    //SmartDashboard.putNumber("Turn angle", getHeadingToSpeaker.get().getDegrees());
+    //SmartDashboard.putNumber("Facing", this.getState().Pose.getRotation().getDegrees());
+  }
 }
 }

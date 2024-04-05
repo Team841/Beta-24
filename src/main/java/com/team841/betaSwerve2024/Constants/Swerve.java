@@ -168,6 +168,9 @@ public class Swerve {
   public static final TrapezoidProfile.Constraints rotationConstraints =
       new TrapezoidProfile.Constraints(Math.toRadians(720), Math.toRadians(540 - 180));
 
+  public static final ProfiledPIDController BioControlController =
+          new ProfiledPIDController(14, 0.0, 0.0, new TrapezoidProfile.Constraints(0, 0));
+
   public static class Vision {
     public static String kLimelightFrontName = "limelight-front";
   }
