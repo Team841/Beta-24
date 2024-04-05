@@ -3,9 +3,6 @@ package com.team841.betaSwerve2024.Drive;
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
-import com.ctre.phoenix6.mechanisms.swerve.utility.PhoenixPIDController;
-import com.team841.betaSwerve2024.Constants.ConstantsIO;
-import com.team841.betaSwerve2024.Constants.Field;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -51,7 +48,7 @@ public class BioControl implements SwerveRequest {
 
   /** The type of control request to use for the drive motor. */
   public SwerveModule.DriveRequestType DriveRequestType =
-          SwerveModule.DriveRequestType.OpenLoopVoltage;
+      SwerveModule.DriveRequestType.OpenLoopVoltage;
 
   /** The type of control request to use for the steer motor. */
   public SwerveModule.SteerRequestType SteerRequestType = SwerveModule.SteerRequestType.MotionMagic;
@@ -62,9 +59,8 @@ public class BioControl implements SwerveRequest {
   /** The last applied state in case we don't have anything to drive. */
   protected SwerveModuleState[] m_lastAppliedState = null;
 
-
   public StatusCode apply(
-          SwerveControlRequestParameters parameters, SwerveModule... modulesToApply) {
+      SwerveControlRequestParameters parameters, SwerveModule... modulesToApply) {
     double toApplyX = VelocityX;
     double toApplyY = VelocityY;
     if (ForwardReference == SwerveRequest.ForwardReference.OperatorPerspective) {
@@ -79,7 +75,7 @@ public class BioControl implements SwerveRequest {
     if (InSpeakerCentric) {
       Manifest.SubsystemManifest.drivetrain.compute.isSpeakerCentric(true);
       toApplyOmega = Manifest.SubsystemManifest.drivetrain.compute.getHeading.get();
-    } else{
+    } else {
       Manifest.SubsystemManifest.drivetrain.compute.isSpeakerCentric(false);
     }
 
@@ -92,10 +88,10 @@ public class BioControl implements SwerveRequest {
     }
 
     ChassisSpeeds speeds =
-            ChassisSpeeds.discretize(
-                    ChassisSpeeds.fromFieldRelativeSpeeds(
-                            toApplyX, toApplyY, toApplyOmega, parameters.currentPose.getRotation()),
-                    parameters.updatePeriod);
+        ChassisSpeeds.discretize(
+            ChassisSpeeds.fromFieldRelativeSpeeds(
+                toApplyX, toApplyY, toApplyOmega, parameters.currentPose.getRotation()),
+            parameters.updatePeriod);
 
     var states = parameters.kinematics.toSwerveModuleStates(speeds, CenterOfRotation);
 
