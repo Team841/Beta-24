@@ -5,7 +5,7 @@
       "x": 1.3863435819357188,
       "y": 4.0705018156526815
     },
-    "rotation": 178.1509306666028
+    "rotation": 180.0
   },
   "command": {
     "type": "sequential",
@@ -32,7 +32,50 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.08
+            "waitTime": 0.04
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "stopIndexer"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "c-3"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "aIntake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.04
           }
         },
         {
@@ -75,7 +118,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.08
+            "waitTime": 0.04
           }
         },
         {
@@ -118,7 +161,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.08
+            "waitTime": 0.04
           }
         },
         {
@@ -161,7 +204,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.08
+            "waitTime": 0.06
           }
         },
         {
@@ -180,12 +223,6 @@
           "type": "parallel",
           "data": {
             "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "c-6124"
-                }
-              },
               {
                 "type": "named",
                 "data": {
