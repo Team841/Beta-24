@@ -7,6 +7,8 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
+import com.team841.betaSwerve2024.Drive.AutoShoot;
+import com.team841.betaSwerve2024.Drive.BioControl;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -37,8 +39,15 @@ public class RobotContainer {
 
   private final Hanger hanger = Manifest.SubsystemManifest.hanger;
 
+  /*
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
+          .withDeadband(Swerve.MaxSpeed * 0.1)
+          .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
+          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric */
+
+  private final BioControl drive =
+      new BioControl()
           .withDeadband(Swerve.MaxSpeed * 0.1)
           .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
           .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
@@ -46,6 +55,8 @@ public class RobotContainer {
   // driving in open loop
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
+
+  private final AutoShoot autoAim = new AutoShoot(drivetrain, indexer, shooter);
   private final Telemetry logger = new Telemetry(Swerve.MaxSpeed);
 
   private final SendableChooser<Command> autoChooser;
@@ -63,7 +74,8 @@ public class RobotContainer {
                         -joystick.getRightX()
                             * Swerve
                                 .MaxAngularRate) // Drive counterclockwise with negative X (left)
-            ));
+                    .withSpeakerCentricMode(joystick.L2().getAsBoolean())
+                    .withTargetDirection(drivetrain.getHeadingToSpeaker.get())));
 
     joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick
@@ -76,6 +88,8 @@ public class RobotContainer {
 
     // reset the field-centric heading on left bumper press
     joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
+
+    joystick.R2().whileTrue(autoAim);
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
@@ -127,12 +141,13 @@ public class RobotContainer {
                 new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
 
     cojoystick
-    .y().whileTrue(new InstantCommand(shooter::flyShot)).onFalse(new InstantCommand(shooter::stopShooter));
+        .y()
+        .whileTrue(new InstantCommand(shooter::flyShot))
+        .onFalse(new InstantCommand(shooter::stopShooter));
     cojoystick
-    .a()
-    .onTrue(new InstantCommand(shooter::trapShot))
-    .onFalse(new InstantCommand(shooter::stopShooter));
-
+        .a()
+        .onTrue(new InstantCommand(shooter::trapShot))
+        .onFalse(new InstantCommand(shooter::stopShooter));
   }
 
   public RobotContainer() {
@@ -171,10 +186,12 @@ public class RobotContainer {
             .withTimeout(2.5));
     NamedCommands.registerCommand("aIntake", new IntakeAuto(intake, indexer));
     NamedCommands.registerCommand("stopIndexer", new InstantCommand(indexer::stopIndexer));
-    NamedCommands.registerCommand("CountShot", new ParallelCommandGroup(
-        new InstantCommand(shooter::spinUp),
-        new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(indexer::Pass)))
-    .withTimeout(0.8));
+    NamedCommands.registerCommand(
+        "CountShot",
+        new ParallelCommandGroup(
+                new InstantCommand(shooter::spinUp),
+                new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(indexer::Pass)))
+            .withTimeout(0.8));
 
     configureBindings();
     configureCoBindings();

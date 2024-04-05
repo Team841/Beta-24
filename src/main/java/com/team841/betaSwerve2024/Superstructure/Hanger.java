@@ -32,20 +32,20 @@ public class Hanger extends SubsystemBase {
 
   public void ExtendHanger() {
     if (FlipHanger) {
-      LeftHangerMotor.set(1.00);
+      LeftHangerMotor.set(-1.00);
       RightHangerMotor.set(-1.00);
     } else {
-      LeftHangerMotor.set(-1.00);
+      LeftHangerMotor.set(1.00);
       RightHangerMotor.set(1.00);
     }
   }
 
   public void RetractHanger() {
     if (FlipHanger) {
-      LeftHangerMotor.set(-.98);
+      LeftHangerMotor.set(.98);
       RightHangerMotor.set(.98);
     } else {
-      LeftHangerMotor.set(.98);
+      LeftHangerMotor.set(-.98);
       RightHangerMotor.set(-.98);
     }
   }

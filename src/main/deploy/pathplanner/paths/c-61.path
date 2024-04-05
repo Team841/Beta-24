@@ -3,71 +3,65 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.05,
-        "y": 7.3
+        "x": 2.573413830101682,
+        "y": 6.222705114449376
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.1803280195223738,
-        "y": 5.836071276932047
+        "x": 1.9811793925408403,
+        "y": 6.361225428856838
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "6shot"
     },
     {
       "anchor": {
-        "x": 2.8772918365965836,
-        "y": 7.024786793851757
+        "x": 2.6770772616689738,
+        "y": 6.938798881727102
       },
       "prevControl": {
-        "x": 2.8385597359624657,
-        "y": 6.9931667941606035
+        "x": 1.8534519698398872,
+        "y": 6.487839298707769
       },
       "nextControl": {
-        "x": 2.9160239372307015,
-        "y": 7.056406793542911
+        "x": 3.5007025534980603,
+        "y": 7.389758464746436
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.461761381856097,
-        "y": 6.653363619227238
+        "x": 2.445240785019321,
+        "y": 6.7948042654791685
       },
       "prevControl": {
-        "x": 2.481454374590198,
-        "y": 6.607405094042299
+        "x": 3.16355463851388,
+        "y": 7.198784535030627
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 1,
-      "rotationDegrees": -150.0,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 3.25,
+    "maxVelocity": 5.5,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -153.0,
+    "rotation": -151.3270983917419,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "A - BLUE - 123",
+  "folder": "C - BLUE - 123",
   "previewStartingState": {
-    "rotation": -135.0,
+    "rotation": -161.0534953108734,
     "velocity": 0
   },
   "useDefaultConstraints": false

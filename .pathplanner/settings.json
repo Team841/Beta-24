@@ -12,15 +12,17 @@
     "Middle In - Blue",
     "Middle In - Red",
     "Middle Out - Blue",
-    "Middle Out - Red"
+    "Middle Out - Red",
+    "D - BLUE - 123"
   ],
   "autoFolders": [
     "A - Blue",
     "A - Red",
     "B - Blue",
     "B - Red",
+    "C - Blue",
     "C - Red",
-    "C - Blue"
+    "D - Blue"
   ],
   "defaultMaxVel": 4.5,
   "defaultMaxAccel": 3.5,
