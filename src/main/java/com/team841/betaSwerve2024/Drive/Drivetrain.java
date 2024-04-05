@@ -1,5 +1,6 @@
 package com.team841.betaSwerve2024.Drive;
 
+import com.ctre.phoenix6.Timestamp;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
@@ -13,6 +14,7 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Field;
+import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Vision.LimelightHelpers;
 import edu.wpi.first.math.VecBuilder;
@@ -24,6 +26,7 @@ import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -68,6 +71,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   private final SwerveRequest.ApplyChassisSpeeds autoRequest =
       new SwerveRequest.ApplyChassisSpeeds();
 
+  public ComputeThread compute;
+
   public Drivetrain(
       SwerveDrivetrainConstants driveTrainConstants,
       double OdometryUpdateFrequency,
@@ -79,6 +84,9 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
     this.setOperatorPerspectiveForward(
         ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
+
+    this.compute = new ComputeThread();
+    this.compute.start();
 
     ConfigureMotors();
     configurePathplanner();
@@ -94,6 +102,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     this.setOperatorPerspectiveForward(
         ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
 
+    this.compute = new ComputeThread();
+    this.compute.start();
 
     ConfigureMotors();
     configurePathplanner();
@@ -212,24 +222,18 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
   @Override
   public void periodic() {
-   boolean doRejectUpdate = false;
-      LimelightHelpers.SetRobotOrientation("limelight", this.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
-      LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
-        if(Math.abs(this.getState().speeds.omegaRadiansPerSecond) > 4 * Math.PI || mt2.tagCount <2) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
-      {
-        doRejectUpdate = true;
-      }
-        if(!doRejectUpdate)
-      {
-        this.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,Math.PI*1.5));
-        this.addVisionMeasurement(
-            mt2.pose,
-            mt2.timestampSeconds);
-  }
-    ctreP.set(this.getState().Pose);
-    limeP.set(mt2.pose);
+    var PoseEstimate =
+            LimelightHelpers.getBotPoseEstimate_wpiBlue(Swerve.Vision.kLimelightFrontName);
+    if (PoseEstimate.tagCount >= 2) {
+      this.setVisionMeasurementStdDevs(VecBuilder.fill(0.7, 0.7, Math.PI));
+      this.addVisionMeasurement(PoseEstimate.pose, PoseEstimate.timestampSeconds);
+    }
 
-    SmartDashboard.putBoolean("2 tags", mt2.tagCount >= 2);
+    ctreP.set(this.getState().Pose);
+    limeP.set(PoseEstimate.pose);
+
+    SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
+    Manifest.SubsystemManifest.drivetrain.compute.update(this.getState().Pose, Timer.getFPGATimestamp());
 
     //SmartDashboard.putNumber("Turn angle", getHeadingToSpeaker.get().getDegrees());
     //SmartDashboard.putNumber("Facing", this.getState().Pose.getRotation().getDegrees());
