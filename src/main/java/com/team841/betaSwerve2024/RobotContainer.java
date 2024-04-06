@@ -8,7 +8,6 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Drive.AutoShoot;
-import com.team841.betaSwerve2024.Drive.BioControl;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -45,15 +44,6 @@ public class RobotContainer {
           .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
           .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
 
-  /*
-  private final BioControl drive =
-      new BioControl()
-          .withDeadband(Swerve.MaxSpeed * 0.1)
-          .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
-          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
-
-   */
-
   // driving in open loop
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
@@ -76,8 +66,7 @@ public class RobotContainer {
                         -joystick.getRightX()
                             * Swerve
                                 .MaxAngularRate))); // Drive counterclockwise with negative X (left)
-                    //.withSpeakerCentricMode(joystick.L2().getAsBoolean())
-                    //.withTargetDirection(drivetrain.getHeadingToSpeaker.get())));
+
 
     joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick
