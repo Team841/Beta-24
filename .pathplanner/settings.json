@@ -4,27 +4,11 @@
   "holonomicMode": true,
   "pathFolders": [
     "A - BLUE - 123",
-    "A - RED - 123",
-    "B - BLUE - 123",
-    "B - RED - 123",
     "C - BLUE - 123",
-    "C - RED - 123",
     "Middle In - Blue",
-    "Middle In - Red",
-    "Middle Out - Blue",
-    "Middle Out - Red",
-    "D - BLUE - 123"
+    "Middle Out - Blue"
   ],
-  "autoFolders": [
-    "A - Blue",
-    "A - Red",
-    "B - Blue",
-    "B - Red",
-    "C - Blue",
-    "C - Red",
-    "D - Blue",
-    "D - Red"
-  ],
+  "autoFolders": [],
   "defaultMaxVel": 4.5,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,

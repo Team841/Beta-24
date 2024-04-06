@@ -143,11 +143,11 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
             this.setControl(
                 autoRequest.withSpeeds(speeds)), // Consumer of ChassisSpeeds to drive the robot
         new HolonomicPathFollowerConfig(
-            new PIDConstants(7, 0, 0),
+            new PIDConstants(10, 0, 0),
             new PIDConstants(10, 0, .5),
             Swerve.kSpeedAt12VoltsMps,
             driveBaseRadius,
-            new ReplanningConfig()),
+            new ReplanningConfig(false, false)),
         () -> {
           var alliance = DriverStation.getAlliance();
           if (alliance.isPresent()) {

@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.04
+            "waitTime": 0.06
           }
         },
         {
@@ -75,7 +75,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.04
+            "waitTime": 0.06
           }
         },
         {
@@ -118,7 +118,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.04
+            "waitTime": 0.06
           }
         },
         {
@@ -161,7 +161,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.04
+            "waitTime": 0.06
           }
         },
         {
@@ -217,19 +217,6 @@
           "type": "named",
           "data": {
             "name": "SpinUp"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "aIntake"
-                }
-              }
-            ]
           }
         }
       ]

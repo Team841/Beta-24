@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.08
           }
         },
         {
@@ -75,7 +75,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.08
           }
         },
         {
@@ -118,7 +118,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.08
           }
         },
         {
@@ -130,6 +130,6 @@
       ]
     }
   },
-  "folder": "C - Blue",
+  "folder": null,
   "choreoAuto": false
 }
