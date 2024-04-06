@@ -137,8 +137,8 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
             this.setControl(
                 autoRequest.withSpeeds(speeds)), // Consumer of ChassisSpeeds to drive the robot
         new HolonomicPathFollowerConfig(
-            new PIDConstants(10, 0, 0),
-            new PIDConstants(10, 0, 0),
+            new PIDConstants(7, 0, 0),
+            new PIDConstants(5, 0, 1),
             Swerve.kSpeedAt12VoltsMps,
             driveBaseRadius,
             new ReplanningConfig()),
@@ -229,7 +229,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
   @Override
   public void periodic() {
-    var PoseEstimate =
+    /*var PoseEstimate =
         LimelightHelpers.getBotPoseEstimate_wpiBlue(Swerve.Vision.kLimelightFrontName);
     if (PoseEstimate.tagCount >= 2) {
       this.setVisionMeasurementStdDevs(VecBuilder.fill(0.7, 0.7, Math.PI));
@@ -242,7 +242,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
     Manifest.SubsystemManifest.drivetrain.compute.update(
         this.getState().Pose, Timer.getFPGATimestamp());
-
+*/
     // SmartDashboard.putNumber("Turn angle", getHeadingToSpeaker.get().getDegrees());
     // SmartDashboard.putNumber("Facing", this.getState().Pose.getRotation().getDegrees());
   }
