@@ -120,7 +120,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
           .getConfigurator()
           .apply(
               new CurrentLimitsConfigs()
-                  .withSupplyCurrentLimit(60)
+                  .withSupplyCurrentLimit(50)
                   .withSupplyCurrentLimitEnable(true));
       CurrentModule.getSteerMotor()
           .getConfigurator()
@@ -144,7 +144,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
                 autoRequest.withSpeeds(speeds)), // Consumer of ChassisSpeeds to drive the robot
         new HolonomicPathFollowerConfig(
             new PIDConstants(7, 0, 0),
-            new PIDConstants(5, 0, 1),
+            new PIDConstants(10, 0, .5),
             Swerve.kSpeedAt12VoltsMps,
             driveBaseRadius,
             new ReplanningConfig()),
