@@ -39,18 +39,20 @@ public class RobotContainer {
 
   private final Hanger hanger = Manifest.SubsystemManifest.hanger;
 
-  /*
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
           .withDeadband(Swerve.MaxSpeed * 0.1)
           .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
-          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric */
+          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
 
+  /*
   private final BioControl drive =
       new BioControl()
           .withDeadband(Swerve.MaxSpeed * 0.1)
           .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
           .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
+
+   */
 
   // driving in open loop
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
@@ -73,9 +75,9 @@ public class RobotContainer {
                     .withRotationalRate(
                         -joystick.getRightX()
                             * Swerve
-                                .MaxAngularRate) // Drive counterclockwise with negative X (left)
-                    .withSpeakerCentricMode(joystick.L2().getAsBoolean())
-                    .withTargetDirection(drivetrain.getHeadingToSpeaker.get())));
+                                .MaxAngularRate))); // Drive counterclockwise with negative X (left)
+                    //.withSpeakerCentricMode(joystick.L2().getAsBoolean())
+                    //.withTargetDirection(drivetrain.getHeadingToSpeaker.get())));
 
     joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick

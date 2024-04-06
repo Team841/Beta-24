@@ -70,7 +70,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   private final SwerveRequest.ApplyChassisSpeeds autoRequest =
       new SwerveRequest.ApplyChassisSpeeds();
 
-  public ComputeThread compute;
+  //public ComputeThread compute;
 
   public Drivetrain(
       SwerveDrivetrainConstants driveTrainConstants,
@@ -84,8 +84,11 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     this.setOperatorPerspectiveForward(
         ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
 
+    /*
     this.compute = new ComputeThread();
     this.compute.start();
+
+     */
 
     ConfigureMotors();
     configurePathplanner();
@@ -101,8 +104,11 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     this.setOperatorPerspectiveForward(
         ConstantsIO.isRedAlliance.get() ? new Rotation2d(Math.PI) : new Rotation2d(0.0));
 
+    /*
     this.compute = new ComputeThread();
     this.compute.start();
+
+     */
 
     ConfigureMotors();
     configurePathplanner();
