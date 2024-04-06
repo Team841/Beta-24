@@ -26,7 +26,7 @@
     "D - Red"
   ],
   "defaultMaxVel": 4.5,
-  "defaultMaxAccel": 3.5,
+  "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,
   "defaultMaxAngAccel": 720.0,
   "maxModuleSpeed": 5.0
