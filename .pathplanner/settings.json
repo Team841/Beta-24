@@ -6,7 +6,8 @@
     "A - BLUE - 123",
     "C - BLUE - 123",
     "Middle In - Blue",
-    "Middle Out - Blue"
+    "Middle Out - Blue",
+    "C - RED -123"
   ],
   "autoFolders": [],
   "defaultMaxVel": 4.5,
