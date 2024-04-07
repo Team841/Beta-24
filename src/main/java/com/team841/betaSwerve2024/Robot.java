@@ -1,5 +1,6 @@
 package com.team841.betaSwerve2024;
 
+import com.ctre.phoenix6.SignalLogger;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -20,6 +21,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     // SignalLogger.setPath("/media/sda1/");
+    SignalLogger.enableAutoLogging(false);
   }
 
   @Override
