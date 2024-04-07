@@ -44,6 +44,18 @@
         {
           "type": "named",
           "data": {
+            "name": "stopIndexer"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "New Path"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "JustStop"
           }
         }
