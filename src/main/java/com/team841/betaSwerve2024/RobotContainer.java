@@ -161,9 +161,8 @@ public class RobotContainer {
         "ALLSYSTEMSGO",
         new ParallelCommandGroup(
                 new InstantCommand(intake::intake),
-                new InstantCommand(shooter::spinUp),
-                new InstantCommand(indexer::Pass))
-            .withTimeout(2.5));
+                new InstantCommand(shooter::ampShot),
+                new InstantCommand(indexer::Pass)));
     NamedCommands.registerCommand(
         "FunnyInake",
         new ParallelCommandGroup(
@@ -188,6 +187,8 @@ public class RobotContainer {
                 new InstantCommand(shooter::spinUp),
                 new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(indexer::Pass)))
             .withTimeout(0.8));
+    NamedCommands.registerCommand("STOPALL", new ParallelCommandGroup(
+            new InstantCommand(indexer::stopIndexer), new InstantCommand(shooter::stopShooter), new InstantCommand(intake::stopIntake)));
 
     configureBindings();
     configureCoBindings();
