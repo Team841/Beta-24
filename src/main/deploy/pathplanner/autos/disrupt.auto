@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.39,
-      "y": 7.33
+      "x": 1.53,
+      "y": 3.33
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "A_Preload - Blue"
+            "pathName": "D"
           }
         },
         {
@@ -32,13 +32,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.08
+            "waitTime": 0.15
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "stopIndexer"
+            "name": "JustStop"
           }
         },
         {
@@ -48,13 +48,26 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A_Preload_1 - Blue"
+                  "pathName": "New Path"
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "aIntake"
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "ALLSYSTEMSGO"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -63,24 +76,12 @@
         {
           "type": "named",
           "data": {
-            "name": "JustShoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "JustStop"
+            "name": "STOPALL"
           }
         }
       ]
     }
   },
-  "folder": "A - Blue",
+  "folder": null,
   "choreoAuto": false
 }

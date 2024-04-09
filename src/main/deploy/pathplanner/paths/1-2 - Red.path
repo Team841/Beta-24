@@ -32,12 +32,12 @@
     },
     {
       "anchor": {
-        "x": 2.5,
-        "y": 5.556508368004999
+        "x": 2.75,
+        "y": 5.56
       },
       "prevControl": {
-        "x": 2.451081008805015,
-        "y": 5.546167560470528
+        "x": 2.701081008805015,
+        "y": 5.549659192465529
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,7 +59,7 @@
     "rotateFast": true
   },
   "reversed": false,
-  "folder": "A - RED - 123",
+  "folder": "A - RED -123",
   "previewStartingState": null,
   "useDefaultConstraints": false
 }

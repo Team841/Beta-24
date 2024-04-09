@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.17,
-        "y": 3.78
+        "x": 2.167438767095844,
+        "y": 3.7804537889005365
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.376664447022588,
-        "y": 0.42525634600818807
+        "x": 5.543172982097138,
+        "y": 0.804499458758309
       },
       "isLocked": false,
       "linkedName": "C-Preload - Blue"
     },
     {
       "anchor": {
-        "x": 8.787959918262178,
-        "y": 2.32966519987094
+        "x": 9.019619620078442,
+        "y": 2.771924760398817
       },
       "prevControl": {
-        "x": 5.988242330262735,
-        "y": 0.8819305602543446
+        "x": 5.62911474487855,
+        "y": 2.1788195997166655
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,7 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.7,
-      "rotationDegrees": -160.0,
+      "rotationDegrees": -169.62627155199976,
       "rotateFast": false
     }
   ],
@@ -39,7 +39,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 6.0,
-    "maxAcceleration": 3.75,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },

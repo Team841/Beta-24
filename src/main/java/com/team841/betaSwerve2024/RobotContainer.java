@@ -5,10 +5,10 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Drive.AutoShoot;
-import com.team841.betaSwerve2024.Drive.BioControl;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -39,15 +39,8 @@ public class RobotContainer {
 
   private final Hanger hanger = Manifest.SubsystemManifest.hanger;
 
-  /*
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
-          .withDeadband(Swerve.MaxSpeed * 0.1)
-          .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
-          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric */
-
-  private final BioControl drive =
-      new BioControl()
           .withDeadband(Swerve.MaxSpeed * 0.1)
           .withRotationalDeadband(Swerve.MaxAngularRate * 0.1) // Add a 10% deadband
           .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
@@ -61,6 +54,8 @@ public class RobotContainer {
 
   private final SendableChooser<Command> autoChooser;
 
+  private final Command BackOffTrap = AutoBuilder.buildAuto("Drive Off");
+
   private void configureBindings() {
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
         drivetrain.applyRequest(
@@ -73,9 +68,8 @@ public class RobotContainer {
                     .withRotationalRate(
                         -joystick.getRightX()
                             * Swerve
-                                .MaxAngularRate) // Drive counterclockwise with negative X (left)
-                    .withSpeakerCentricMode(joystick.L2().getAsBoolean())
-                    .withTargetDirection(drivetrain.getHeadingToSpeaker.get())));
+                                .MaxAngularRate))); // Drive counterclockwise with negative X (left)
+
 
     joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick
@@ -90,6 +84,8 @@ public class RobotContainer {
     joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
 
     joystick.R2().whileTrue(autoAim);
+
+    joystick.triangle().whileTrue(BackOffTrap);
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
@@ -165,9 +161,8 @@ public class RobotContainer {
         "ALLSYSTEMSGO",
         new ParallelCommandGroup(
                 new InstantCommand(intake::intake),
-                new InstantCommand(shooter::spinUp),
-                new InstantCommand(indexer::Pass))
-            .withTimeout(2.5));
+                new InstantCommand(shooter::ampShot),
+                new InstantCommand(indexer::Pass)));
     NamedCommands.registerCommand(
         "FunnyInake",
         new ParallelCommandGroup(
@@ -192,6 +187,8 @@ public class RobotContainer {
                 new InstantCommand(shooter::spinUp),
                 new SequentialCommandGroup(new WaitCommand(1), new InstantCommand(indexer::Pass)))
             .withTimeout(0.8));
+    NamedCommands.registerCommand("STOPALL", new ParallelCommandGroup(
+            new InstantCommand(indexer::stopIndexer), new InstantCommand(shooter::stopShooter), new InstantCommand(intake::stopIntake)));
 
     configureBindings();
     configureCoBindings();

@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.39,
-      "y": 7.33
+      "x": 1.53,
+      "y": 3.33
     },
     "rotation": 180.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "A_Preload - Blue"
+            "pathName": "D"
           }
         },
         {
@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.08
+            "waitTime": 0.15
           }
         },
         {
@@ -42,13 +42,13 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "race",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A_Preload_1 - Blue"
+                  "pathName": "C_Preload_5 - Blue"
                 }
               },
               {
@@ -63,38 +63,13 @@
         {
           "type": "named",
           "data": {
-            "name": "JustShoot"
+            "name": "SpinUp"
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 0.08
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "stopIndexer"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "aIntake"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "1-2 - Blue"
-                }
-              }
-            ]
+            "pathName": "5_in - Blue"
           }
         },
         {
@@ -106,7 +81,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.08
+            "waitTime": 0.15
           }
         },
         {
@@ -114,10 +89,23 @@
           "data": {
             "name": "JustStop"
           }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "5_in_driveout - Blue"
+                }
+              }
+            ]
+          }
         }
       ]
     }
   },
-  "folder": "A - Blue",
+  "folder": null,
   "choreoAuto": false
 }

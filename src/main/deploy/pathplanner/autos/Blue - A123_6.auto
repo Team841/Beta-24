@@ -12,6 +12,12 @@
     "data": {
       "commands": [
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "SpinUp"
@@ -32,7 +38,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.15
           }
         },
         {
@@ -69,7 +75,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.15
           }
         },
         {
@@ -106,7 +112,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.15
           }
         },
         {
@@ -143,7 +149,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.15
           }
         },
         {
@@ -186,7 +192,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.05
+            "waitTime": 0.15
           }
         },
         {
@@ -198,6 +204,6 @@
       ]
     }
   },
-  "folder": "A - Blue",
+  "folder": null,
   "choreoAuto": false
 }
