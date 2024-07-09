@@ -22,8 +22,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
 
-  public final CommandPS5Controller joystick = Manifest.JoystickManifest.joystick; // My joystick
-  public final CommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick;
+  public final CommandXboxController joystick = Manifest.JoystickManifest.joystick; // My joystick
+  //public final CommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick;
 
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final Drivetrain drivetrain = Manifest.SubsystemManifest.drivetrain; // My drivetrain
@@ -71,21 +71,21 @@ public class RobotContainer {
                                 .MaxAngularRate))); // Drive counterclockwise with negative X (left)
 
 
-    joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
-    joystick
+    //joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
+    /*joystick
         .circle()
         .whileTrue(
             drivetrain.applyRequest(
                 () ->
                     point.withModuleDirection(
-                        new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
+                        new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));*/
 
     // reset the field-centric heading on left bumper press
-    joystick.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
+    joystick.start().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
 
-    joystick.R2().whileTrue(autoAim);
+    //joystick.R2().whileTrue(autoAim);
 
-    joystick.triangle().whileTrue(BackOffTrap);
+    //joystick.triangle().whileTrue(BackOffTrap);
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
@@ -100,12 +100,12 @@ public class RobotContainer {
     // shooter.setDefaultCommand(shooter.idleBack());
 
     Command c_command = new IntakeCommand(intake, indexer);
-    cojoystick.leftBumper().whileTrue(c_command);
-    cojoystick
+    joystick.leftBumper().whileTrue(c_command);
+    joystick
         .leftTrigger()
         .onTrue(new InstantCommand(shooter::spinUp))
         .onFalse(new InstantCommand(shooter::stopShooter));
-    cojoystick
+    joystick
         .rightTrigger()
         .onTrue(
             new ConditionalCommand(
@@ -113,21 +113,21 @@ public class RobotContainer {
                 new InstantCommand(indexer::stopIndexer),
                 () -> shooter.isShooting()))
         .onFalse(new InstantCommand(indexer::stopIndexer));
-    cojoystick
-        .rightBumper()
+    joystick
+        .x()
         .onTrue(
             new SequentialCommandGroup(
                 new InstantCommand(indexer::stopIndexer),
                 new InstantCommand(shooter::stopShooter)));
-    cojoystick.povUp().whileTrue(new InstantCommand(hanger::ExtendHanger));
-    cojoystick.povDown().whileTrue(new InstantCommand(hanger::RetractHanger));
-    cojoystick.povCenter().whileTrue(new InstantCommand(hanger::StopHanger));
-    cojoystick.povLeft().whileTrue(new InstantCommand(hanger::toggleHanger));
-    cojoystick
-        .x()
+    joystick.rightStick().whileTrue(new InstantCommand(hanger::ExtendHanger)).onFalse(new InstantCommand(hanger::StopHanger));
+    joystick.leftStick().whileTrue(new InstantCommand(hanger::RetractHanger)).onFalse(new InstantCommand(hanger::StopHanger));
+    joystick.povCenter().whileTrue(new InstantCommand(hanger::StopHanger));
+    joystick.povLeft().whileTrue(new InstantCommand(hanger::toggleHanger));
+    joystick
+        .y()
         .onTrue(new InstantCommand(shooter::ampShot))
         .onFalse(new InstantCommand(shooter::stopShooter));
-    cojoystick
+    joystick
         .b()
         .onTrue(
             new ParallelCommandGroup(
@@ -136,14 +136,14 @@ public class RobotContainer {
             new SequentialCommandGroup(
                 new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
 
-    cojoystick
-        .y()
+    joystick
+        .rightBumper()
         .whileTrue(new InstantCommand(shooter::flyShot))
         .onFalse(new InstantCommand(shooter::stopShooter));
-    cojoystick
+    /*joystick
         .a()
         .onTrue(new InstantCommand(shooter::trapShot))
-        .onFalse(new InstantCommand(shooter::stopShooter));
+        .onFalse(new InstantCommand(shooter::stopShooter));*/
   }
 
   public RobotContainer() {

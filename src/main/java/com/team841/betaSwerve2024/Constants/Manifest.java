@@ -23,10 +23,9 @@ public class Manifest {
   }
 
   public class JoystickManifest {
-    public static final CommandPS5Controller joystick =
-        new CommandPS5Controller(ConstantsIO.OI.driverPortLeft); // My joystick
-    public static final CommandXboxController cojoystick =
-        new CommandXboxController(ConstantsIO.OI.codriverPort);
+    public static final CommandXboxController joystick =
+        new CommandXboxController(ConstantsIO.OI.driverPortLeft); // My joystick
+    //public static final CommandXboxController cojoystick = new CommandXboxController(ConstantsIO.OI.codriverPort);
 
     public static final FeedBack FEED_BACK = new FeedBack();
   }
