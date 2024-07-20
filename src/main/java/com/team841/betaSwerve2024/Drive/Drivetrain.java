@@ -50,7 +50,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
    *
    */
 
-  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  /*NetworkTableInstance inst = NetworkTableInstance.getDefault();
   NetworkTable poseTest = inst.getTable("Pose Test");
 
   StructTopic<Pose2d> limeT = poseTest.getStructTopic("Limelight Pose", Pose2d.struct);
@@ -59,7 +59,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
   StructPublisher<Pose2d> limeP = limeT.publish();
   StructPublisher<Pose2d> ctreP = ctreT.publish();
-  StructPublisher<Pose2d> shotP = shotT.publish();
+  StructPublisher<Pose2d> shotP = shotT.publish();*/
 
   private static final double kSimLoopPeriod = 0.005; // 5 ms
   private Notifier m_simNotifier = null;

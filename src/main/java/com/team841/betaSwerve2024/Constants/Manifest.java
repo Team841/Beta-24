@@ -3,6 +3,7 @@ package com.team841.betaSwerve2024.Constants;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.FeedBack;
 import com.team841.betaSwerve2024.Superstructure.*;
+import com.team841.betaSwerve2024.Vision.NoteDetection;
 import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
@@ -20,6 +21,8 @@ public class Manifest {
     public static final LED led = new LED();
 
     public static final Hanger hanger = new Hanger();
+
+    public static final NoteDetection noteDetection = new NoteDetection();
   }
 
   public class JoystickManifest {

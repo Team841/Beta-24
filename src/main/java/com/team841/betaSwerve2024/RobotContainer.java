@@ -11,6 +11,7 @@ import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Drive.AutoShoot;
 import com.team841.betaSwerve2024.Drive.Drivetrain;
 import com.team841.betaSwerve2024.Superstructure.*;
+import com.team841.betaSwerve2024.Vision.NoteDetection;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -38,6 +39,8 @@ public class RobotContainer {
   private final LED led = Manifest.SubsystemManifest.led;
 
   private final Hanger hanger = Manifest.SubsystemManifest.hanger;
+
+  private final NoteDetection noteDetection = Manifest.SubsystemManifest.noteDetection;
 
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
