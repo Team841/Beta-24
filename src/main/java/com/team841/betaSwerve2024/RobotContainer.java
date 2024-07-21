@@ -161,7 +161,7 @@ public class RobotContainer {
         "ALLSYSTEMSGO",
         new ParallelCommandGroup(
                 new InstantCommand(intake::intake),
-                new InstantCommand(shooter::ampShot),
+                new InstantCommand(shooter::disruptshot),
                 new InstantCommand(indexer::Pass)));
     NamedCommands.registerCommand(
         "FunnyInake",
