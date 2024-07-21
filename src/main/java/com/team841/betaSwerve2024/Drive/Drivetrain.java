@@ -235,7 +235,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
   @Override
   public void periodic() {
-    /*var PoseEstimate =
+    var PoseEstimate =
         LimelightHelpers.getBotPoseEstimate_wpiBlue(Swerve.Vision.kLimelightFrontName);
     if (PoseEstimate.tagCount >= 2) {
       this.setVisionMeasurementStdDevs(VecBuilder.fill(0.7, 0.7, Math.PI));
@@ -244,7 +244,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
     ctreP.set(this.getState().Pose);
     limeP.set(PoseEstimate.pose);
-
+/*
     SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
     Manifest.SubsystemManifest.drivetrain.compute.update(
         this.getState().Pose, Timer.getFPGATimestamp());
