@@ -1,0 +1,49 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 9.55,
+        "y": 4.35
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 5.092165366255615,
+        "y": 4.665144340558634
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.167438767095844,
+        "y": 3.7804537889005365
+      },
+      "prevControl": {
+        "x": 3.927871346059593,
+        "y": 2.211959473801577
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "C-Preload - Blue"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 4.5,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 140.0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": null,
+  "previewStartingState": null,
+  "useDefaultConstraints": false
+}
