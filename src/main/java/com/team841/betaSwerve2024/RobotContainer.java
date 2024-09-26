@@ -22,8 +22,10 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
 
-  public final CommandXboxController joystick = Manifest.JoystickManifest.joystick; // My joystick
+  //public final CommandXboxController joystick = Manifest.JoystickManifest.joystick; // My joystick
   //public final CommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick;
+  public final CommandPS5Controller duoStickDrive = Manifest.JoystickManifest.joystick;
+  public final CommandXboxController duoStickCoDrive = Manifest.JoystickManifest.cojoystick;
 
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final Drivetrain drivetrain = Manifest.SubsystemManifest.drivetrain; // My drivetrain
@@ -56,97 +58,91 @@ public class RobotContainer {
 
   private final Command BackOffTrap = AutoBuilder.buildAuto("Drive Off");
 
-  private void configureBindings() {
+  private void configureDuoStick() {
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
-        drivetrain.applyRequest(
-            () ->
-                drive
-                    .withVelocityX(-joystick.getLeftY() * Swerve.MaxSpeed) // Drive forward with
-                    // negative Y (forward)
-                    .withVelocityY(
-                        -joystick.getLeftX() * Swerve.MaxSpeed) // Drive left with negative X (left)
-                    .withRotationalRate(
-                        -joystick.getRightX()
-                            * Swerve
-                                .MaxAngularRate))); // Drive counterclockwise with negative X (left)
-
-
-    //joystick.cross().whileTrue(drivetrain.applyRequest(() -> brake));
-    /*joystick
-        .circle()
-        .whileTrue(
             drivetrain.applyRequest(
-                () ->
-                    point.withModuleDirection(
-                        new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));*/
+                    () ->
+                            drive
+                                    .withVelocityX(-duoStickDrive.getLeftY() * Swerve.MaxSpeed) // Drive forward with
+                                    // negative Y (forward)
+                                    .withVelocityY(
+                                            -duoStickDrive.getLeftX() * Swerve.MaxSpeed) // Drive left with negative X (left)
+                                    .withRotationalRate(
+                                            -duoStickDrive.getRightX()
+                                                    * Swerve
+                                                    .MaxAngularRate))); // Drive counterclockwise with negative X (left)
+
+
+    duoStickDrive.cross().whileTrue(drivetrain.applyRequest(() -> brake));
+    duoStickDrive
+            .circle()
+            .whileTrue(
+                    drivetrain.applyRequest(
+                            () ->
+                                    point.withModuleDirection(
+                                            new Rotation2d(-duoStickDrive.getLeftY(), -duoStickDrive.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
-    joystick.start().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
+    duoStickDrive.touchpad().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
 
-    //joystick.R2().whileTrue(autoAim);
+    //duoStickDrive.R2().whileTrue(autoAim);
 
-    //joystick.triangle().whileTrue(BackOffTrap);
+    //duoStickDrive.triangle().whileTrue(BackOffTrap);
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
     } else {
       drivetrain.registerTelemetry(logger::telemeterize);
     }
-  }
-
-  // xbox
-  public void configureCoBindings() {
-
-    // shooter.setDefaultCommand(shooter.idleBack());
 
     Command c_command = new IntakeCommand(intake, indexer);
-    joystick.leftBumper().whileTrue(c_command);
-    joystick
-        .leftTrigger()
-        .onTrue(new InstantCommand(shooter::spinUp))
-        .onFalse(new InstantCommand(shooter::stopShooter));
-    joystick
-        .rightTrigger()
-        .onTrue(
-            new ConditionalCommand(
-                new InstantCommand(indexer::Pass),
-                new InstantCommand(indexer::stopIndexer),
-                () -> shooter.isShooting()))
-        .onFalse(new InstantCommand(indexer::stopIndexer));
-    joystick
-        .x()
-        .onTrue(
-            new SequentialCommandGroup(
-                new InstantCommand(indexer::stopIndexer),
-                new InstantCommand(shooter::stopShooter)));
-    joystick.rightStick().whileTrue(new InstantCommand(hanger::ExtendHanger)).onFalse(new InstantCommand(hanger::StopHanger));
-    joystick.leftStick().whileTrue(new InstantCommand(hanger::RetractHanger)).onFalse(new InstantCommand(hanger::StopHanger));
-    joystick.povCenter().whileTrue(new InstantCommand(hanger::StopHanger));
-    joystick.povLeft().whileTrue(new InstantCommand(hanger::toggleHanger));
-    joystick
-        .y()
-        .onTrue(new InstantCommand(shooter::ampShot))
-        .onFalse(new InstantCommand(shooter::stopShooter));
-    joystick
-        .b()
-        .onTrue(
-            new ParallelCommandGroup(
-                new InstantCommand(intake::outTake), new InstantCommand(indexer::reverseIndexer)))
-        .onFalse(
-            new SequentialCommandGroup(
-                new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
+    duoStickCoDrive.leftBumper().whileTrue(c_command);
+    duoStickCoDrive
+            .leftTrigger()
+            .onTrue(new InstantCommand(shooter::spinUp))
+            .onFalse(new InstantCommand(shooter::stopShooter));
+    duoStickCoDrive
+            .rightTrigger()
+            .onTrue(
+                    new ConditionalCommand(
+                            new InstantCommand(indexer::Pass),
+                            new InstantCommand(indexer::stopIndexer),
+                            () -> shooter.isShooting()))
+            .onFalse(new InstantCommand(indexer::stopIndexer));
+    duoStickCoDrive
+            .rightBumper()
+            .onTrue(
+                    new SequentialCommandGroup(
+                            new InstantCommand(indexer::stopIndexer),
+                            new InstantCommand(shooter::stopShooter)));
+    //duoStickCoDrive.povUp().whileTrue(new InstantCommand(hanger::ExtendHanger));
+    //duoStickCoDrive.povDown().whileTrue(new InstantCommand(hanger::RetractHanger));
+    duoStickCoDrive.povCenter().whileTrue(new InstantCommand(hanger::StopHanger));
+    duoStickCoDrive.povLeft().whileTrue(new InstantCommand(hanger::toggleHanger));
+    duoStickCoDrive
+            .x()
+            .onTrue(new InstantCommand(shooter::ampShot))
+            .onFalse(new InstantCommand(shooter::stopShooter));
+    duoStickCoDrive
+            .b()
+            .onTrue(
+                    new ParallelCommandGroup(
+                            new InstantCommand(intake::outTake), new InstantCommand(indexer::reverseIndexer)))
+            .onFalse(
+                    new SequentialCommandGroup(
+                            new InstantCommand(indexer::stopIndexer), new InstantCommand(intake::stopIntake)));
 
-    joystick
-        .rightBumper()
-        .whileTrue(new InstantCommand(shooter::flyShot))
-        .onFalse(new InstantCommand(shooter::stopShooter));
-    /*joystick
-        .a()
-        .onTrue(new InstantCommand(shooter::trapShot))
-        .onFalse(new InstantCommand(shooter::stopShooter));*/
+    duoStickCoDrive
+            .y()
+            .whileTrue(new InstantCommand(shooter::flyShot))
+            .onFalse(new InstantCommand(shooter::stopShooter));
+    duoStickCoDrive
+            .a()
+            .onTrue(new InstantCommand(shooter::trapShot))
+            .onFalse(new InstantCommand(shooter::stopShooter));
   }
 
-  public RobotContainer() {
+   public RobotContainer() {
     // Register Named Commands
     NamedCommands.registerCommand("IntakeOn", new IntakeAuto(intake, indexer));
     NamedCommands.registerCommand(
@@ -190,8 +186,9 @@ public class RobotContainer {
     NamedCommands.registerCommand("STOPALL", new ParallelCommandGroup(
             new InstantCommand(indexer::stopIndexer), new InstantCommand(shooter::stopShooter), new InstantCommand(intake::stopIntake)));
 
-    configureBindings();
-    configureCoBindings();
+    configureDuoStick();
+    //configureBindings();
+    //configureCoBindings();
     autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
     SmartDashboard.putData("Auto Mode", autoChooser);
   }
