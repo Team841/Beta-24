@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class FeedBack {
-  private final CommandXboxController cojoystick = Manifest.JoystickManifest.joystick; // My joystick
+  private final CommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick; // My joystick
   //private final CommandXboxController cojoystick = Manifest.JoystickManifest.cojoystick;
 
   private int count = 0;
