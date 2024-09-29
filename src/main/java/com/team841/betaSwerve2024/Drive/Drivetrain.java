@@ -246,7 +246,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     ctreP.set(this.getState().Pose);
     limeP.set(PoseEstimate.pose);
 
-    boolean close = false:
+    boolean close = false;
     double dis;
     if (ConstantsIO.isRedAlliance.get()){
       Transform2d trans = this.getState().Pose.minus(Field.kRedSpeakerPose2d);
