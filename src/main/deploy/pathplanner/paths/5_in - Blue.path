@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.355919329796406,
-        "y": 1.4830339138377817
+        "x": 4.832376127715218,
+        "y": -0.1327240848926141
       },
       "isLocked": false,
       "linkedName": "C_Preload_5 - Blue"
@@ -20,8 +20,8 @@
         "y": 3.78
       },
       "prevControl": {
-        "x": 3.6844075713914335,
-        "y": 1.8669862765195022
+        "x": 4.83682995606732,
+        "y": 1.6209559826527067
       },
       "nextControl": null,
       "isLocked": false,

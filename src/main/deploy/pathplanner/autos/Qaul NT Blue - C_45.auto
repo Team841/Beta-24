@@ -1,0 +1,135 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.38,
+      "y": 1.59
+    },
+    "rotation": 180.0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "C-Preload - Blue"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "stopIndexer"
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "aIntake"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "C_Preload_4 - Blue"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "4_in - Blue"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "stopIndexer"
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "C_Preload_5 - Blue"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "aIntake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "5_in - Blue"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "JustStop"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

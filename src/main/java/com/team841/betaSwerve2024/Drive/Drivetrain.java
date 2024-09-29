@@ -120,13 +120,13 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
           .getConfigurator()
           .apply(
               new CurrentLimitsConfigs()
-                  .withSupplyCurrentLimit(50)
+                  .withSupplyCurrentLimit(40)
                   .withSupplyCurrentLimitEnable(true));
       CurrentModule.getSteerMotor()
           .getConfigurator()
           .apply(
               new CurrentLimitsConfigs()
-                  .withSupplyCurrentLimit(60)
+                  .withSupplyCurrentLimit(40)
                   .withSupplyCurrentLimitEnable(true));
     }
   }

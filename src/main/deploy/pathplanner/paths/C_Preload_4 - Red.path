@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.53,
-        "y": 3.33
+        "x": 2.3,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.540112629774809,
-        "y": 3.3465825490209546
+        "x": 3.3921353266708882,
+        "y": 3.0839825177889786
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "C-Preload - Red"
     },
     {
       "anchor": {
-        "x": 2.17,
-        "y": 3.78
+        "x": 8.39,
+        "y": 0.7
       },
       "prevControl": {
-        "x": 2.1872418519611814,
-        "y": 3.790328301377324
+        "x": 4.087579755265144,
+        "y": 0.5197768164315676
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,21 +32,18 @@
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.5,
-    "maxAcceleration": 3.5,
+    "maxVelocity": 6.0,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 139.2344447363497,
-    "rotateFast": false
+    "rotation": 180.0,
+    "rotateFast": true
   },
   "reversed": false,
-  "folder": "D - BLUE - 123",
-  "previewStartingState": {
-    "rotation": 179.9254867280696,
-    "velocity": 0
-  },
-  "useDefaultConstraints": true
+  "folder": "Middle Out - Red",
+  "previewStartingState": null,
+  "useDefaultConstraints": false
 }
