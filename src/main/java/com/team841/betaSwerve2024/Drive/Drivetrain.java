@@ -20,6 +20,7 @@ import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -244,6 +245,19 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
     ctreP.set(this.getState().Pose);
     limeP.set(PoseEstimate.pose);
+
+    boolean close = false:
+    double dis;
+    if (ConstantsIO.isRedAlliance.get()){
+      Transform2d trans = this.getState().Pose.minus(Field.kRedSpeakerPose2d);
+      dis = Math.sqrt(Math.pow(trans.getX(), 2) + Math.pow(trans.getY(),2));
+    } else {
+      Transform2d trans = this.getState().Pose.minus(Field.kBlueSpeakerPose2d);
+      dis = Math.sqrt(Math.pow(trans.getX(), 2) + Math.pow(trans.getY(),2));
+    }
+
+    close = (dis < 20 && dis > 10);
+    SmartDashboard.putBoolean("IN RANGE", close);
 /*
     SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
     Manifest.SubsystemManifest.drivetrain.compute.update(

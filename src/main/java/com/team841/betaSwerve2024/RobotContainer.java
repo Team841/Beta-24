@@ -57,6 +57,7 @@ public class RobotContainer {
   private final SendableChooser<Command> autoChooser;
 
   private final Command BackOffTrap = AutoBuilder.buildAuto("Drive Off");
+  private final AutoShoot autoShoot = new AutoShoot(this.drivetrain, this.indexer, this.shooter);
 
   private void configureDuoStick() {
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
@@ -136,10 +137,7 @@ public class RobotContainer {
             .y()
             .whileTrue(new InstantCommand(shooter::flyShot))
             .onFalse(new InstantCommand(shooter::stopShooter));
-    duoStickCoDrive
-            .a()
-            .onTrue(new InstantCommand(shooter::trapShot))
-            .onFalse(new InstantCommand(shooter::stopShooter));
+    duoStickCoDrive.a().whileTrue(autoShoot);
   }
 
    public RobotContainer() {
