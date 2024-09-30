@@ -95,12 +95,6 @@
           "data": {
             "commands": [
               {
-                "type": "path",
-                "data": {
-                  "pathName": "c-6alt"
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "aIntake"
