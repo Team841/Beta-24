@@ -115,10 +115,10 @@ public class RobotContainer {
                     new SequentialCommandGroup(
                             new InstantCommand(indexer::stopIndexer),
                             new InstantCommand(shooter::stopShooter)));
-    //duoStickCoDrive.povUp().whileTrue(new InstantCommand(hanger::ExtendHanger));
-    //duoStickCoDrive.povDown().whileTrue(new InstantCommand(hanger::RetractHanger));
+    duoStickCoDrive.povUp().whileTrue(new InstantCommand(hanger::ExtendHanger)).onFalse(new InstantCommand(hanger::StopHanger));
+    duoStickCoDrive.povDown().whileTrue(new InstantCommand(hanger::RetractHanger)).onFalse(new InstantCommand(hanger::StopHanger));
     duoStickCoDrive.povCenter().whileTrue(new InstantCommand(hanger::StopHanger));
-    duoStickCoDrive.povLeft().whileTrue(new InstantCommand(hanger::toggleHanger));
+    //duoStickCoDrive.povLeft().whileTrue(new InstantCommand(hanger::toggleHanger));
     duoStickCoDrive
             .x()
             .onTrue(new InstantCommand(shooter::ampShot))

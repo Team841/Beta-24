@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.39,
-      "y": 7.33
+      "x": 1.53,
+      "y": 3.33
     },
     "rotation": 180.0
   },
@@ -11,12 +11,6 @@
     "type": "sequential",
     "data": {
       "commands": [
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 13.0
-          }
-        },
         {
           "type": "named",
           "data": {
@@ -26,7 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "A_Preload - Blue"
+            "pathName": "D"
           }
         },
         {
@@ -38,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.15
+            "waitTime": 0.04
           }
         },
         {
@@ -48,13 +42,19 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A_Preload_1 - Blue"
+                  "pathName": "c-3"
                 }
               },
               {
@@ -75,13 +75,19 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.15
+            "waitTime": 0.04
           }
         },
         {
           "type": "named",
           "data": {
             "name": "stopIndexer"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
           }
         },
         {
@@ -92,12 +98,6 @@
                 "type": "named",
                 "data": {
                   "name": "aIntake"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "1-2 - Blue"
                 }
               }
             ]
@@ -112,7 +112,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.15
+            "waitTime": 0.04
           }
         },
         {
@@ -122,19 +122,25 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "path",
                 "data": {
-                  "name": "aIntake"
+                  "pathName": "c-62"
                 }
               },
               {
-                "type": "path",
+                "type": "named",
                 "data": {
-                  "pathName": "2-3 - Blue"
+                  "name": "aIntake"
                 }
               }
             ]
@@ -149,13 +155,19 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.15
+            "waitTime": 0.04
           }
         },
         {
           "type": "named",
           "data": {
             "name": "stopIndexer"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
           }
         },
         {
@@ -167,20 +179,8 @@
                 "data": {
                   "name": "aIntake"
                 }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "1-6 - Blue"
-                }
               }
             ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "6-2 - Blue"
           }
         },
         {
@@ -192,13 +192,32 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.15
+            "waitTime": 0.06
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "JustStop"
+            "name": "stopIndexer"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinUp"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "aIntake"
+                }
+              }
+            ]
           }
         }
       ]
