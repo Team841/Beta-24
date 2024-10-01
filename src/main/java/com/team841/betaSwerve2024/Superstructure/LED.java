@@ -17,34 +17,35 @@ public class LED extends SubsystemBase {
 
   private Intake intake = Manifest.SubsystemManifest.intake;
 
-  private int count = 0;
+  private int msCount = 0;
 
   /** Creates a new LED. */
   public LED() {}
 
-  public void setColor(String color) {
-    switch (color) {
-      case "Violet" -> LED.set(0.91);
-      case "Green" -> LED.set(.77);
-      case "Orange" -> LED.set(.65);
-    }
-  }
+  // public void setColor(String color) {
+  //   switch (color) {
+  //     case "Violet" -> LED.set(0.91);
+  //     case "Green" -> LED.set(.77);
+  //     case "Orange" -> LED.set(.65);
+  //   }
+  // }
 
   @Override
   public void periodic() {
     // if (intake.)
+    
     if (indexer.getindexerSensor() && indexer.getLeftIndexerSensor()) {
-      setColor("Green");
-      if (count == 0) count += 1;
+      msCount = 0;
     }
-
-    if (count > 0) {
-      count += 1;
+    
+    if(msCount < 3000){ 
+      //green
+      msCount += 20;
+      LED.set(0.71);
     }
-
-    if (count > 200) {
-      setColor("Violet");
-      count = 0;
+    else {
+      //red
+      LED.set(0.59);
     }
   }
 }
