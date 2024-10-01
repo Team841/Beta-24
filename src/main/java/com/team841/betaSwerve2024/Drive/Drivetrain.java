@@ -246,6 +246,9 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
     ctreP.set(this.getState().Pose);
     limeP.set(PoseEstimate.pose);
 
+    SmartDashboard.putNumber("Heading to Speaker", this.getHeadingToSpeaker.get().getDegrees());
+    SmartDashboard.putNumber("diff to speaker", this.getState().Pose.getRotation().getDegrees() - this.getHeadingToSpeaker.get().getDegrees());
+
     boolean close = false;
     double dis;
     if (ConstantsIO.isRedAlliance.get()){
@@ -256,7 +259,9 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
       dis = Math.sqrt(Math.pow(trans.getX(), 2) + Math.pow(trans.getY(),2));
     }
 
-    close = (dis < 20 && dis > 10);
+    SmartDashboard.putNumber("dis", dis);
+
+    close = (dis < 3.125 && dis > 2.8);
     SmartDashboard.putBoolean("IN RANGE", close);
 /*
     SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
