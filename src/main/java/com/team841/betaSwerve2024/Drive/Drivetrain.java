@@ -13,7 +13,6 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 import com.team841.betaSwerve2024.Constants.ConstantsIO;
 import com.team841.betaSwerve2024.Constants.Field;
-import com.team841.betaSwerve2024.Constants.Manifest;
 import com.team841.betaSwerve2024.Constants.Swerve;
 import com.team841.betaSwerve2024.Vision.LimelightHelpers;
 import edu.wpi.first.math.VecBuilder;
@@ -25,8 +24,6 @@ import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import java.util.function.Supplier;
@@ -70,7 +67,7 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
   private final SwerveRequest.ApplyChassisSpeeds autoRequest =
       new SwerveRequest.ApplyChassisSpeeds();
 
-  //public ComputeThread compute;
+  // public ComputeThread compute;
 
   public Drivetrain(
       SwerveDrivetrainConstants driveTrainConstants,
@@ -244,11 +241,11 @@ public class Drivetrain extends SwerveDrivetrain implements Subsystem {
 
     ctreP.set(this.getState().Pose);
     limeP.set(PoseEstimate.pose);
-/*
-    SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
-    Manifest.SubsystemManifest.drivetrain.compute.update(
-        this.getState().Pose, Timer.getFPGATimestamp());
-*/
+    /*
+        SmartDashboard.putBoolean("2 tags", PoseEstimate.tagCount >= 2);
+        Manifest.SubsystemManifest.drivetrain.compute.update(
+            this.getState().Pose, Timer.getFPGATimestamp());
+    */
     // SmartDashboard.putNumber("Turn angle", getHeadingToSpeaker.get().getDegrees());
     // SmartDashboard.putNumber("Facing", this.getState().Pose.getRotation().getDegrees());
   }

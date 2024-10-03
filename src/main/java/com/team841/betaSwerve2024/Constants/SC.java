@@ -121,7 +121,7 @@ public class SC {
   public static class Intake {
     public static final int kCurrentLimit = 60; // in amps
 
-    public static final int kBlinkingID = 1;
+    public static final int kBlinkingID = 0;
 
     public static final TalonFXConfiguration k_MotorOutputConfig = null;
   }
